@@ -23,7 +23,7 @@
     "dev": "run-p dev:*",
     "dev:css": "npm run generate:css -- --watch",
     "dev:remix": "cross-env NODE_ENV=development binode --require ./mocks -- @remix-run/dev:remix dev",
-    "format": "prettier --write .",
+    "format": "eslint --cache --cache-location ./node_modules/.cache/eslint . --fix",
     "generate:css": "tailwindcss -o ./app/styles/tailwind.css",
     "postinstall": "remix setup node",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
