@@ -1,7 +1,7 @@
 import type { FC } from "react"
 
 import type { LoaderFunction, ActionFunction } from "remix"
-import { redirect, json, useLoaderData, useCatch, Form } from "remix"
+import { useParams, redirect, json, useLoaderData, useCatch, Form } from "remix"
 
 import invariant from "tiny-invariant"
 
