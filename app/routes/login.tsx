@@ -201,3 +201,5 @@ const LoginPage: FC = () => {
     </div>
   )
 }
+
+export default LoginPage

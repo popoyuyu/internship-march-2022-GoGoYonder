@@ -126,3 +126,5 @@ const NewNotePage: FC = () => {
     </Form>
   )
 }
+
+export default NewNotePage
