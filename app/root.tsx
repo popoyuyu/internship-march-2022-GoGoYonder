@@ -50,3 +50,5 @@ const App: FC = () => {
     </html>
   )
 }
+
+export default App
