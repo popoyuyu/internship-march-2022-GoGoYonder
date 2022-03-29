@@ -1,10 +1,14 @@
 # March 2022 Internship Project
 
+## Environments
+ - [Staging](https://internship-march-2022-5948-staging.fly.dev/)
+ - [Production](https://internship-march-2022-5948.fly.dev/)
+
 ## Built on the Remix Indie Stack
 
 ![The Remix Indie Stack](https://repository-images.githubusercontent.com/465928257/a241fa49-bd4d-485a-a2a5-5cb8e4ee0abf)
 
-Learn more about [Remix Stacks](https://remix.run/stacks).
+Learn more about [Remix Stacks](https://remix.run/stacks)
 
 ```
 npx create-remix --template remix-run/indie-stack
