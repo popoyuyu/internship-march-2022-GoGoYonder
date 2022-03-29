@@ -1,4 +1,7 @@
-# Remix Indie Stack
+# March 2022 Internship Project
+
+
+## Built on the Remix Indie Stack
 
 ![The Remix Indie Stack](https://repository-images.githubusercontent.com/465928257/a241fa49-bd4d-485a-a2a5-5cb8e4ee0abf)
 
@@ -8,7 +11,7 @@ Learn more about [Remix Stacks](https://remix.run/stacks).
 npx create-remix --template remix-run/indie-stack
 ```
 
-## What's in the stack
+### What's in the stack
 
 - [Fly app deployment](https://fly.io) with [Docker](https://www.docker.com/)
 - Production-ready [SQLite Database](https://sqlite.org)
@@ -26,7 +29,7 @@ npx create-remix --template remix-run/indie-stack
 
 Not a fan of bits of the stack? Fork it, change it, and use `npx create-remix --template your/repo`! Make it your own.
 
-## Development
+### Development
 
 - Initial setup: _If you just generated this project, this step has been done for you._
 
@@ -47,7 +50,7 @@ The database seed script creates a new user with some data you can use to get st
 - Email: `rachel@remix.run`
 - Password: `rachelIsCool`
 
-### Relevant code:
+#### Relevant code:
 
 This is a pretty simple note-taking app, but it's a good example of how you can build a full stack app with Prisma and Remix. The main functionality is creating users, logging in and out, and creating and deleting notes.
 
@@ -55,7 +58,7 @@ This is a pretty simple note-taking app, but it's a good example of how you can 
 - user sessions, and verifying them [./app/session.server.ts](./app/session.server.ts)
 - creating, and deleting notes [./app/models/note.server.ts](./app/models/note.server.ts)
 
-## Deployment
+### Deployment
 
 This Remix Stack comes with two GitHub Actions that handle automatically deploying your app to production and staging environments.
 
@@ -112,13 +115,17 @@ Now that every is set up you can commit and push your changes to your repo. Ever
 
 If you run into any issues deploying to Fly, make sure you've followed all of the steps above and if you have, then post as many details about your deployment (including your app name) to [the Fly support community](https://community.fly.io). They're normally pretty responsive over there and hopefully can help resolve any of your deployment issues and questions.
 
-## GitHub Actions
+### GitHub Actions
 
 We use GitHub Actions for continuous integration and deployment. Anything that gets into the `main` branch will be deployed to production after running tests/build/etc. Anything in the `dev` branch will be deployed to staging.
 
-## Testing
+### Dependency Management
 
-### Cypress
+[Renovate Bot](https://github.com/renovatebot/renovate) helps manage dependency updates through the [Github App](https://github.com/apps/renovate) integration.  The bot should automatically generate pull requests for dependency updates.  Its configuration is managed via [renovate.json](/renovate.json).
+
+### Testing
+
+#### Cypress
 
 We use Cypress for our End-to-End tests in this project. You'll find those in the `cypress` directory. As you make changes, add to an existing file or create a new file in the `cypress/e2e` directory to test your changes.
 
@@ -143,18 +150,18 @@ afterEach(() => {
 
 That way, we can keep your local db clean and keep your tests isolated from one another.
 
-### Vitest
+#### Vitest
 
 For lower level tests of utilities and individual components, we use `vitest`. We have DOM-specific assertion helpers via [`@testing-library/jest-dom`](https://testing-library.com/jest-dom).
 
-### Type Checking
+#### Type Checking
 
 This project uses TypeScript. It's recommended to get TypeScript set up for your editor to get a really great in-editor experience with type checking and auto-complete. To run type checking across the whole project, run `npm run typecheck`.
 
-### Linting
+#### Linting
 
 This project uses ESLint for linting. That is configured in `.eslintrc.js`.
 
-### Formatting
+#### Formatting
 
 We use [Prettier](https://prettier.io/) for auto-formatting in this project. It's recommended to install an editor plugin (like the [VSCode Prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)) to get auto-formatting on save. There's also a `npm run format` script you can run to format all files in the project.
