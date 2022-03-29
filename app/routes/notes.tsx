@@ -1,23 +1,25 @@
-import { Form, json, useLoaderData, Outlet, Link, NavLink } from "remix";
-import type { LoaderFunction } from "remix";
+import type { FC } from "react"
 
-import { requireUserId } from "~/session.server";
-import { useUser } from "~/utils";
-import { getNoteListItems } from "~/models/note.server";
+import { Form, json, useLoaderData, Outlet, Link, NavLink } from "remix"
+import type { LoaderFunction } from "remix"
+
+import { getNoteListItems } from "~/models/note.server"
+import { requireUserId } from "~/session.server"
+import { join, useUser } from "~/utils"
 
 type LoaderData = {
-  noteListItems: Awaited<ReturnType<typeof getNoteListItems>>;
-};
+  noteListItems: Awaited<ReturnType<typeof getNoteListItems>>
+}
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const userId = await requireUserId(request);
-  const noteListItems = await getNoteListItems({ userId });
-  return json<LoaderData>({ noteListItems });
-};
+  const userId = await requireUserId(request)
+  const noteListItems = await getNoteListItems({ userId })
+  return json<LoaderData>({ noteListItems })
+}
 
-export default function NotesPage() {
-  const data = useLoaderData() as LoaderData;
-  const user = useUser();
+const NotesPage: FC = () => {
+  const data = useLoaderData() as LoaderData
+  const user = useUser()
 
   return (
     <div className="flex h-full min-h-screen flex-col">
@@ -29,7 +31,15 @@ export default function NotesPage() {
         <Form action="/logout" method="post">
           <button
             type="submit"
-            className="rounded bg-slate-600 py-2 px-4 text-blue-100 hover:bg-blue-500 active:bg-blue-600"
+            className={join(
+              `rounded`,
+              `bg-slate-600`,
+              `py-2`,
+              `px-4`,
+              `text-blue-100`,
+              `hover:bg-blue-500`,
+              `active:bg-blue-600`,
+            )}
           >
             Logout
           </button>
@@ -52,7 +62,7 @@ export default function NotesPage() {
                 <li key={note.id}>
                   <NavLink
                     className={({ isActive }) =>
-                      `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`
+                      `block border-b p-4 text-xl ${isActive ? `bg-white` : ``}`
                     }
                     to={note.id}
                   >
@@ -69,5 +79,6 @@ export default function NotesPage() {
         </div>
       </main>
     </div>
-  );
+  )
 }
+export default NotesPage

@@ -1,35 +1,39 @@
-import type { User, Note } from "@prisma/client";
+import type { User, Note, Prisma } from "@prisma/client"
 
-import { prisma } from "~/db.server";
+import { prisma } from "~/db.server"
 
-export type { Note } from "@prisma/client";
+export type { Note } from "@prisma/client"
 
 export function getNote({
   id,
   userId,
-}: Pick<Note, "id"> & {
-  userId: User["id"];
-}) {
+}: Pick<Note, `id`> & {
+  userId: User[`id`]
+}): Promise<Note | null> {
   return prisma.note.findFirst({
     where: { id, userId },
-  });
+  })
 }
 
-export function getNoteListItems({ userId }: { userId: User["id"] }) {
+export function getNoteListItems({
+  userId,
+}: {
+  userId: User[`id`]
+}): Promise<Pick<Note, `id` | `title`>[]> {
   return prisma.note.findMany({
     where: { userId },
     select: { id: true, title: true },
-    orderBy: { updatedAt: "desc" },
-  });
+    orderBy: { updatedAt: `desc` },
+  })
 }
 
 export function createNote({
   body,
   title,
   userId,
-}: Pick<Note, "body" | "title"> & {
-  userId: User["id"];
-}) {
+}: Pick<Note, `body` | `title`> & {
+  userId: User[`id`]
+}): Promise<Note> {
   return prisma.note.create({
     data: {
       title,
@@ -40,14 +44,14 @@ export function createNote({
         },
       },
     },
-  });
+  })
 }
 
 export function deleteNote({
   id,
   userId,
-}: Pick<Note, "id"> & { userId: User["id"] }) {
+}: Pick<Note, `id`> & { userId: User[`id`] }): Promise<Prisma.BatchPayload> {
   return prisma.note.deleteMany({
     where: { id, userId },
-  });
+  })
 }

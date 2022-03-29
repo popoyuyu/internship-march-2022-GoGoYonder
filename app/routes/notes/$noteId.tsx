@@ -1,38 +1,40 @@
-import type { LoaderFunction, ActionFunction } from "remix";
-import { redirect } from "remix";
-import { json, useLoaderData, useCatch, Form } from "remix";
-import invariant from "tiny-invariant";
-import type { Note } from "~/models/note.server";
-import { deleteNote } from "~/models/note.server";
-import { getNote } from "~/models/note.server";
-import { requireUserId } from "~/session.server";
+import type { FC } from "react"
+
+import type { LoaderFunction, ActionFunction } from "remix"
+import { redirect, json, useLoaderData, useCatch, Form } from "remix"
+
+import invariant from "tiny-invariant"
+
+import type { Note } from "~/models/note.server"
+import { deleteNote, getNote } from "~/models/note.server"
+import { requireUserId } from "~/session.server"
 
 type LoaderData = {
-  note: Note;
-};
+  note: Note
+}
 
 export const loader: LoaderFunction = async ({ request, params }) => {
-  const userId = await requireUserId(request);
-  invariant(params.noteId, "noteId not found");
+  const userId = await requireUserId(request)
+  invariant(params.noteId, `noteId not found`)
 
-  const note = await getNote({ userId, id: params.noteId });
+  const note = await getNote({ userId, id: params.noteId })
   if (!note) {
-    throw new Response("Not Found", { status: 404 });
+    throw new Response(`Not Found`, { status: 404 })
   }
-  return json<LoaderData>({ note });
-};
+  return json<LoaderData>({ note })
+}
 
 export const action: ActionFunction = async ({ request, params }) => {
-  const userId = await requireUserId(request);
-  invariant(params.noteId, "noteId not found");
+  const userId = await requireUserId(request)
+  invariant(params.noteId, `noteId not found`)
 
-  await deleteNote({ userId, id: params.noteId });
+  await deleteNote({ userId, id: params.noteId })
 
-  return redirect("/notes");
-};
+  return redirect(`/notes`)
+}
 
-export default function NoteDetailsPage() {
-  const data = useLoaderData() as LoaderData;
+const NoteDetailsPage: FC = () => {
+  const data = useLoaderData() as LoaderData
 
   return (
     <div>
@@ -48,21 +50,22 @@ export default function NoteDetailsPage() {
         </button>
       </Form>
     </div>
-  );
+  )
+}
+export default NoteDetailsPage
+
+export const ErrorBoundary: FC<{ error: Error }> = ({ error }) => {
+  console.error(error)
+
+  return <div>An unexpected error occurred: {error.message}</div>
 }
 
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
-
-  return <div>An unexpected error occurred: {error.message}</div>;
-}
-
-export function CatchBoundary() {
-  const caught = useCatch();
+export const CatchBoundary: FC = () => {
+  const caught = useCatch()
 
   if (caught.status === 404) {
-    return <div>Note not found</div>;
+    return <div>Note not found</div>
   }
 
-  throw new Error(`Unexpected caught response with status: ${caught.status}`);
+  throw new Error(`Unexpected caught response with status: ${caught.status}`)
 }

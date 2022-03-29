@@ -1,3 +1,5 @@
+import type { FC } from "react"
+
 import {
   json,
   Links,
@@ -6,33 +8,33 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "remix";
-import type { LinksFunction, MetaFunction, LoaderFunction } from "remix";
+} from "remix"
+import type { LinksFunction, MetaFunction, LoaderFunction } from "remix"
 
-import tailwindStylesheetUrl from "./styles/tailwind.css";
-import { getUser } from "./session.server";
+import { getUser } from "./session.server"
+import tailwindStylesheetUrl from "./styles/tailwind.css"
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
-};
+  return [{ rel: `stylesheet`, href: tailwindStylesheetUrl }]
+}
 
 export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Remix Notes",
-  viewport: "width=device-width,initial-scale=1",
-});
+  charset: `utf-8`,
+  title: `Remix Notes`,
+  viewport: `width=device-width,initial-scale=1`,
+})
 
 type LoaderData = {
-  user: Awaited<ReturnType<typeof getUser>>;
-};
+  user: Awaited<ReturnType<typeof getUser>>
+}
 
 export const loader: LoaderFunction = async ({ request }) => {
   return json<LoaderData>({
     user: await getUser(request),
-  });
-};
+  })
+}
 
-export default function App() {
+const App: FC = () => {
   return (
     <html lang="en" className="h-full">
       <head>
@@ -46,5 +48,5 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
-  );
+  )
 }
