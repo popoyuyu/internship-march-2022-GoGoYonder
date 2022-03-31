@@ -1,4 +1,4 @@
-app = "internship-march-2022-5948"
+app = "gogoyonder"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = [ ]

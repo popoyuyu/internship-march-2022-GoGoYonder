@@ -1,9 +1,11 @@
 {
-  "name": "internship-march-2022-5948",
+  "name": "gogoyonder",
   "private": true,
   "description": "",
   "license": "GPL-3.0-or-later",
   "sideEffects": false,
+  "website": "https://gogoyonder.fly.dev",
+  "repository": "https://github.com/eyecuelab/internship-march-2022.git",
   "contributors": [
     {
       "name": "Aaron Ross",
