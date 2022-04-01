@@ -1,6 +1,10 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    ":rebaseStalePrs"
+  ],
+  "baseBranches": [
+    "dev"
   ],
   "packageRules": [
     {
@@ -15,5 +19,8 @@
       "groupSlug": "all-minor-patch"
     }
   ],
-  "prConcurrentLimit": 2
+  "prConcurrentLimit": 1,
+  "schedule": [
+    "after 8am and before 6pm every weekday"
+  ]
 }
