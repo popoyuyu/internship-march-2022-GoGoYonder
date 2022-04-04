@@ -15,6 +15,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   password Password?
+  trips TripUser[]
   notes    Note[]
 }
 
@@ -26,9 +27,10 @@ model Password {
 }
 
 model Trip {
-  tripId String @id @default(cuid())
-  ownerId String
+  id String @id @default(cuid())
   tripName String 
+
+  tripUsers TripUser[]
 
   startDate DateTime?
   endDate DateTime?
@@ -38,11 +40,41 @@ model Trip {
 }
 
 model TripUser{
-  tripUserId String @id @default(cuid())
+  //id String @id @default(cuid())
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   tripId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId String
 
   isAccepted DateTime?
+
+  expenseTripUsers ExpenseTripUser[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+ 
+  @@id([tripId, userId])
+}
+
+model Expense {
+  id String @id @default(cuid())
+  expenseName String
+  expenseTotal Int
+
+  expenseTripUser ExpenseTripUser[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model ExpenseTripUser {
+  expenseUserId String @id @default(cuid())
+  expenseId String
+  expense Expense @relation(fields: [expenseId], references: [id])
+  tripId String
+  userId String
+  tripUser TripUser @relation(fields: [tripId, userId], references: [tripId, userId])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
