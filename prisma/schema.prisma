@@ -37,7 +37,16 @@ model Trip {
   updatedAt DateTime @updatedAt
 }
 
+model TripUser{
+  tripUserId String @id @default(cuid())
+  tripId String
+  userId String
 
+  isAccepted DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
 model Note {
   id    String @id @default(cuid())
