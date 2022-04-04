@@ -22,6 +22,11 @@
       "email": "jacobleeeugenewilson@gmail.com",
       "url" : "https://eyecuelab.com"
     }
+    {
+      "name": "Ella Tanttu",
+      "email": "ellajtanttu@gmail.com",
+      "url" : "https://eyecuelab.com"
+    }
   ],
   "scripts": {
     "build": "run-s build:*",
