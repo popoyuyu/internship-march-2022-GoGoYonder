@@ -11,11 +11,17 @@ import {
 } from "remix"
 import type { LinksFunction, MetaFunction, LoaderFunction } from "remix"
 
+import { join } from "~/utils"
+
 import { getUser } from "./session.server"
+import ourStyles from "./styles/index.css"
 import tailwindStylesheetUrl from "./styles/tailwind.css"
 
 export const links: LinksFunction = () => {
-  return [{ rel: `stylesheet`, href: tailwindStylesheetUrl }]
+  return [
+    { rel: `stylesheet`, href: tailwindStylesheetUrl },
+    { rel: `stylesheet`, href: ourStyles },
+  ]
 }
 
 export const meta: MetaFunction = () => ({
@@ -40,8 +46,9 @@ const App: FC = () => {
       <head>
         <Meta />
         <Links />
+        {typeof document === `undefined` ? `__STYLES__` : null}
       </head>
-      <body className="h-full">
+      <body className={join(`h-full`, `bg-[#2F3E46DE]`)}>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

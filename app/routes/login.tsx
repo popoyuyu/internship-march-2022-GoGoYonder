@@ -11,6 +11,8 @@ import {
   useSearchParams,
 } from "remix"
 
+import { MainBtn } from "app/styles/styledComponents"
+
 import { verifyLogin } from "~/models/user.server"
 import { createUserSession, getUserId } from "~/session.server"
 import { join, validateEmail } from "~/utils"
@@ -69,7 +71,7 @@ export const action: ActionFunction = async ({ request }) => {
     request,
     userId: user.id,
     remember: remember === `on` ? true : false,
-    redirectTo: typeof redirectTo === `string` ? redirectTo : `/notes`,
+    redirectTo: typeof redirectTo === `string` ? redirectTo : `/profile`,
   })
 }
 
@@ -81,7 +83,7 @@ export const meta: MetaFunction = () => {
 
 const LoginPage: FC = () => {
   const [searchParams] = useSearchParams()
-  const redirectTo = searchParams.get(`redirectTo`) || `/notes`
+  const redirectTo = searchParams.get(`redirectTo`) || `/profile`
   const actionData = useActionData() as ActionData
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
@@ -153,21 +155,7 @@ const LoginPage: FC = () => {
           </div>
 
           <input type="hidden" name="redirectTo" value={redirectTo} />
-          <button
-            type="submit"
-            className={join(
-              `w-full`,
-              `rounded`,
-              `bg-blue-500`,
-              `py-2`,
-              `px-4`,
-              `text-white`,
-              `hover:bg-blue-600`,
-              `focus:bg-blue-400`,
-            )}
-          >
-            Log in
-          </button>
+          <MainBtn type="submit">Log in</MainBtn>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
