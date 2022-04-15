@@ -6,7 +6,7 @@ import { Link, json, Form, redirect, useActionData, useParams, useLoaderData } f
 import invariant from "tiny-invariant"
 
 import { useCatch } from "@remix-run/react";
-import { Trip, getTrip } from "~/models/trip.server"
+import { Trip, getTripById } from "~/models/trip.server"
 import { createAttendee } from "~/models/attendee.server"
 import { getUserByEmail } from "~/models/user.server"
 import { join, validateEmail } from "~/utils"
@@ -21,7 +21,7 @@ export const loader: LoaderFunction = async ({
 }) => {
   invariant(params.tripId, `params.id is required`);
 
-  const trip = await getTrip(params.tripId);
+  const trip = await getTripById(params.tripId);
   invariant(trip, `Trip not found: ${params.tripId}`);
 
   return json<LoaderData>({ trip });

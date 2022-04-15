@@ -1,4 +1,4 @@
-import type { Attendee } from "@prisma/client"
+import type { Attendee, User } from "@prisma/client"
 
 import { prisma } from "../db.server"
 
@@ -6,6 +6,10 @@ export type { Attendee }
 
 export async function getAttendees(): Promise<Attendee[]> {
   return prisma.attendee.findMany()
+}
+
+export async function getAttendeesByUserId(userId: User['id']): Promise<Attendee[]> {
+  return prisma.attendee.findMany({ where: { userId: userId } })
 }
 
 export async function createAttendee(

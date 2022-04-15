@@ -1,20 +1,29 @@
 import type { FC } from "react"
 
-import { Link, json, useLoaderData } from "remix"
+import { Link, json, useLoaderData, LoaderFunction } from "remix"
 
-import type { Trip } from "@prisma/client"
-import { data } from "msw/lib/types/context"
-
-import { getTrips } from "~/models/trip.server"
+import type { Trip, Attendee } from "@prisma/client"
+import { getAttendeesByUserId } from "~/models/attendee.server"
+import { getTripById } from "~/models/trip.server"
+import { requireUserId } from "~/session.server"
 import { join } from "~/utils"
 
 type LoaderData = {
-  trips: Awaited<ReturnType<typeof getTrips>>
+  trips: Trip[]
 }
 
-export const loader = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
+  const userId = await requireUserId(request)
+  const attendees = await getAttendeesByUserId(userId)
+  const promises = await Promise.all(
+    attendees.map(async (attendee) => (
+      await getTripById(attendee.tripId)
+    )))
+
+  const trips = promises as Trip[]
+
   return json<LoaderData>({
-    trips: await getTrips(),
+    trips: trips
   })
 }
 
