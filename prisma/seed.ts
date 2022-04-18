@@ -1,11 +1,9 @@
 import { PrismaClient } from "@prisma/client"
-import type { Trip, User, Attendee, Decider } from "@prisma/client"
+import type { Trip, User, Attendee, Decider, Item } from "@prisma/client"
 import bcrypt from "bcryptjs"
 const prisma = new PrismaClient()
-
 async function seed() {
   const email = `rachel@remix.run`
-
   // cleanup the existing database
   await prisma.user.delete({ where: { email } }).catch(() => {
     // no worries if it doesn't exist ye
@@ -17,12 +15,11 @@ async function seed() {
     data: {
       email,
       password: {
-        create: {
-          hash: hashedPassword,
-        },
+        create: { hash: hashedPassword },
       },
     },
   })
+
   await Promise.all(
     getUsers().map((user) => {
       return prisma.user.create({
@@ -56,10 +53,13 @@ async function seed() {
       return prisma.decider.create({ data: decider })
     }),
   )
-
+  await Promise.all(
+    getItems().map((item) => {
+      return prisma.item.create({ data: item })
+    }),
+  )
   console.log(`Database has been seeded. 🌱`)
 }
-
 const getUsers = (): User[] => {
   return [
     {
@@ -152,7 +152,6 @@ const getTrips = (): Trip[] => {
     },
   ]
 }
-
 const getAttendees = (): Attendee[] => {
   return [
     {
@@ -217,6 +216,47 @@ const getDeciders = (): Pick<Decider, `tripId`>[] => {
     },
   ]
 }
+const getItems = (): Item[] => {
+  return [
+    {
+      id: `cl1xvdwqy0046qz1dfy8rfcc7`,
+      description: `Camping Stove`,
+      tripId: `cl1xvd63a0068qz1dbhh557su`,
+      userId: `cl1ihz4wr02309c1dbp8gi835`,
+      createdAt: new Date(
+        `Tue Sep 25 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
+      updatedAt: new Date(
+        `Tue Sep 26 2021 16:17:00 GMT-0400 (Eastern Daylight Time)`,
+      ),
+    },
+    {
+      id: `cl1xvdwqy0089qz1dfy8rqcc6`,
+      description: `Beach Towel`,
+      tripId: `cl1xvd63a0068qz1dbhh557su`, //testTrip1
+      userId: `cl1ihz4wr02309c1dbp8gi835`, //ella@test
+      createdAt: new Date(
+        `Tue Sep 25 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
+      updatedAt: new Date(
+        `Tue Sep 26 2021 16:17:00 GMT-0400 (Eastern Daylight Time)`,
+      ),
+    },
+    {
+      id: `cl1xvdwqy0077qz1dfy8rxcc5`,
+      description: `Propane`,
+      tripId: `cl1xvd63a0068qz1dbhh557su`, //testTrip1
+      userId: `cl1ihz4wr02309c1dbp8gi835`, //ella@test
+      createdAt: new Date(
+        `Tue Sep 25 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
+      updatedAt: new Date(
+        `Tue Sep 26 2021 16:17:00 GMT-0400 (Eastern Daylight Time)`,
+      ),
+    },
+  ]
+}
+
 seed()
   .catch((e) => {
     console.error(e)
