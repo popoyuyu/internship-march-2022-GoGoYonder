@@ -18,3 +18,7 @@ export async function getItemsByAttendee(
     },
   })
 }
+
+export async function createItem(item: Item): Promise<Item> {
+  return prisma.item.create({ data: item })
+}
