@@ -61,10 +61,16 @@ export const ErrorDiv = styled.div`
 export const TripLiContainer = styled.li`
   background: #52796F;
   border-radius: 13px;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
 `
 export const TripLiImage = styled.img`
-  background: url(https://s3-alpha-sig.figma.com/img/522c/209c/ff9f7d7d9bec580ba37c71a849ba255c?Expires=1651449600&Signature=E-RJzjBZ5iMHbGs3PRP9BYK6pYGwS1TlA3aimrTprAsI0k2ePB0IsJzZMPwONrrIg9nsVy3CfS7g4p~9RTdXCbHOMxMznQ68NqFsQeIOGjdbR8cCsX2S1sJovGGmsPg-ZrqWSkBahOZTT7TCBFaS~g8MGlL6JVm20vjnNdZt~XS90wGB25T3iAn~gGtyUOjHnhnRKVjKFy518Ni-py4Q-tfIGdZ3d3m9SR1Zk8bpEYPlxZVUtWYJSmdcL0lazMDfibjt0JGAyMjG-5QPhnAFSd4WqyRHApgfl6AvVKzsKuRuknNGvpvA-7L6LkQ7IMnHPckG8m40eHe7xSmWamBsjw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA), #52796F;
   border-radius: 13px 13px 0px 0px;
+  object-fit: cover;
+  height: 35%;
+  width: 100%;
 `
 export const TripLiTitle = styled.h1`
   font-family: 'Lato';
@@ -75,9 +81,9 @@ export const TripLiTitle = styled.h1`
   text-transform: capitalize;
 `
 export const TripLiFlex = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 export const TripLiGroup = styled.h3`
   font-family: 'Lato';
