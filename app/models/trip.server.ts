@@ -14,7 +14,7 @@ export async function getTripById(id: Trip[`id`]) {
       id
     },
     include: {
-      stops: {}
+      stops: true
     }
   })
 }
