@@ -30,6 +30,8 @@ export const loader: LoaderFunction = async ({ request }) => {
   const pendingTrips = pendingPromises as Trip[]
   const acceptedTrips = acceptedPromises as Trip[]
 
+  console.log(pendingTrips)
+  console.log(acceptedTrips)
   return json<LoaderData>({
     pendingTrips: pendingTrips,
     acceptedTrips: acceptedTrips
