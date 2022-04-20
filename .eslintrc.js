@@ -19,10 +19,11 @@ module.exports = {
     },
   },
   rules: {
-    linebreak- style: 0,
-},
+    linebreak: {
+      style: 0,
+    }
+  },
   parserOptions: {
-    ``
-  project: [`./tsconfig.json`, `./cypress/tsconfig.json`],
+    project: [`./tsconfig.json`, `./cypress/tsconfig.json`],
   },
 }
