@@ -17,6 +17,9 @@ module.exports = {
       version: 27,
     },
   },
+  rules: {
+    "linebreak-style": [`error`, `unix`],
+  },
   parserOptions: {
     project: [`./tsconfig.json`, `./cypress/tsconfig.json`],
   },

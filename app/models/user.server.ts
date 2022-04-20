@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import type { Password, User } from "@prisma/client"
 import bcrypt from "bcryptjs"
 
-import { prisma } from "~/db.server"
+import { prisma } from "../db.server"
 
 export type { User } from "@prisma/client"
+
+export async function getUsers(): Promise<User[]> {
+  return prisma.user.findMany()
+}
 
 export async function getUserById(id: User[`id`]): Promise<User | null> {
   return prisma.user.findUnique({ where: { id } })
