@@ -34,8 +34,7 @@ export const SmClearBtn = styled(ClearBtn)`
 export const Header = styled.h1`
   font-family: 'Playfair Display', serif;
   font-size: 2em;
-  margin-top: 1em;
-  margin-left: 1em;
+  margin: 1em auto 1em 1em;
   color: #ffffff;
 `
 export const InputLabel = styled.label`
@@ -58,19 +57,27 @@ export const ErrorDiv = styled.div`
   justify-content: center;
   color: red;
 `
+export const TripBtn = styled(MainBtn)`
+  margin: 1em auto auto;
+`
 export const TripLiContainer = styled.li`
   background: #52796F;
+  color: white;
   border-radius: 13px;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-  height: 300px;
+  margin: 1em auto;
+  text-align: center;
+  width: 324px;
+  height: 327px;
+`
+export const TripHr = styled.hr`
+  margin: 1em;
 `
 export const TripLiImage = styled.img`
   border-radius: 13px 13px 0px 0px;
   object-fit: cover;
-  height: 35%;
-  width: 100%;
+  height: 109px;
+  width: 324px;
+  margin-bottom: 1em;
 `
 export const TripLiTitle = styled.h1`
   font-family: 'Lato';
@@ -84,8 +91,10 @@ export const TripLiFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 `
 export const TripLiGroup = styled.h3`
+  flex: 1 1 30%;
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
@@ -94,6 +103,7 @@ export const TripLiGroup = styled.h3`
   text-transform: capitalize;
 `
 export const TripLiDetail = styled.h2`
+  flex: 1 1 30%;
   font-family: 'Lato';
   font-style: normal;
   font-weight: 600;
@@ -101,5 +111,3 @@ export const TripLiDetail = styled.h2`
   line-height: 19px;
   text-transform: capitalize;
 `
-
-//https://s3-alpha-sig.figma.com/img/522c/209c/ff9f7d7d9bec580ba37c71a849ba255c?Expires=1651449600&Signature=E-RJzjBZ5iMHbGs3PRP9BYK6pYGwS1TlA3aimrTprAsI0k2ePB0IsJzZMPwONrrIg9nsVy3CfS7g4p~9RTdXCbHOMxMznQ68NqFsQeIOGjdbR8cCsX2S1sJovGGmsPg-ZrqWSkBahOZTT7TCBFaS~g8MGlL6JVm20vjnNdZt~XS90wGB25T3iAn~gGtyUOjHnhnRKVjKFy518Ni-py4Q-tfIGdZ3d3m9SR1Zk8bpEYPlxZVUtWYJSmdcL0lazMDfibjt0JGAyMjG-5QPhnAFSd4WqyRHApgfl6AvVKzsKuRuknNGvpvA-7L6LkQ7IMnHPckG8m40eHe7xSmWamBsjw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA
