@@ -63,7 +63,7 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 const NewAttendee: FC = () => {
-  const data = useLoaderData() as LoaderData;
+  const data = useLoaderData<LoaderData>();
   const actionData = useActionData();
 
   const outputError = (errorMessage: string) => {
