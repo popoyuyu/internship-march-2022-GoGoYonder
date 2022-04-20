@@ -1,7 +1,6 @@
 /**
  * @type {import('@types/eslint').Linter.BaseConfig}
  */
-
 module.exports = {
   extends: [
     `@eyecuelab/react`,
@@ -19,7 +18,7 @@ module.exports = {
     },
   },
   rules: {
-    linebreak: 0
+    "linebreak-style": [`error`, `unix`],
   },
   parserOptions: {
     project: [`./tsconfig.json`, `./cypress/tsconfig.json`],

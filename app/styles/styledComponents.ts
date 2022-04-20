@@ -32,7 +32,7 @@ export const SmClearBtn = styled(ClearBtn)`
   color: #ffffff;
 `
 export const Header = styled.h1`
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 2em;
   margin: 1em auto 1em 1em;
   color: #ffffff;
@@ -61,7 +61,7 @@ export const TripBtn = styled(MainBtn)`
   margin: 1em auto auto;
 `
 export const TripLiContainer = styled.li`
-  background: #52796F;
+  background: #52796f;
   color: white;
   border-radius: 13px;
   margin: 1em auto;
@@ -80,7 +80,7 @@ export const TripLiImage = styled.img`
   margin-bottom: 1em;
 `
 export const TripLiTitle = styled.h1`
-  font-family: 'Lato';
+  font-family: "Lato";
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -95,7 +95,7 @@ export const TripLiFlex = styled.div`
 `
 export const TripLiGroup = styled.h3`
   flex: 1 1 30%;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -104,7 +104,7 @@ export const TripLiGroup = styled.h3`
 `
 export const TripLiDetail = styled.h2`
   flex: 1 1 30%;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

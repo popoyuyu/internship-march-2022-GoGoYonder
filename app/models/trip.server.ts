@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import type { Trip } from "@prisma/client"
 
 import { prisma } from "../db.server"
@@ -11,11 +12,11 @@ export async function getTrips(): Promise<Trip[]> {
 export async function getTripById(id: Trip[`id`]) {
   return prisma.trip.findUnique({
     where: {
-      id
+      id,
     },
     include: {
-      stops: true
-    }
+      stops: true,
+    },
   })
 }
 

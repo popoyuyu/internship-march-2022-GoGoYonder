@@ -1,6 +1,7 @@
-import { prisma } from "../db.server"
-
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import type { Stop, Trip } from "@prisma/client"
+
+import { prisma } from "../db.server"
 
 export type { Stop }
 
