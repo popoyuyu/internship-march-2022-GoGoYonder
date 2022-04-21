@@ -9,7 +9,26 @@ import invariant from "tiny-invariant"
 
 import { getAttendeeById } from "~/models/attendee.server"
 import { getUserId, requireUserId } from "~/session.server"
+import { MainBtn } from "~/styles/styledComponents"
 import { join } from "~/utils"
+
+const inputClassName = `join(
+  flex
+  items-center
+  justify-center
+  rounded-md
+  border
+  border-transparent
+  bg-white
+  px-4
+  py-3
+  text-base
+  font-medium
+  text-yellow-700
+  shadow-sm
+  hover:bg-yellow-50
+  sm:px-8
+)`
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
@@ -40,70 +59,16 @@ const PackingList: FC = () => {
           <li key={item.id}>{item.description}</li>
         ))}
       </ul>
-      <Link
-        to="/trips/trip-id-goes-here"
-        className={join(
-          `flex`,
-          `items-center`,
-          `justify-center`,
-          `rounded-md`,
-          `border`,
-          `border-transparent`,
-          `bg-white`,
-          `px-4`,
-          `py-3`,
-          `text-base`,
-          `font-medium`,
-          `text-yellow-700`,
-          `shadow-sm`,
-          `hover:bg-yellow-50`,
-          `sm:px-8`,
-        )}
-      >
+      <Link to="/trips/trip-id-goes-here" className={inputClassName}>
         Return to trip dashboard
       </Link>
       <Link
         to={`/trips/${data?.tripId}/packing-list/new`}
-        className={join(
-          `flex`,
-          `items-center`,
-          `justify-center`,
-          `rounded-md`,
-          `border`,
-          `border-transparent`,
-          `bg-white`,
-          `px-4`,
-          `py-3`,
-          `text-base`,
-          `font-medium`,
-          `text-yellow-700`,
-          `shadow-sm`,
-          `hover:bg-yellow-50`,
-          `sm:px-8`,
-        )}
+        className={inputClassName}
       >
         Add Item
       </Link>
-      <Link
-        to="/profile"
-        className={join(
-          `flex`,
-          `items-center`,
-          `justify-center`,
-          `rounded-md`,
-          `border`,
-          `border-transparent`,
-          `bg-white`,
-          `px-4`,
-          `py-3`,
-          `text-base`,
-          `font-medium`,
-          `text-yellow-700`,
-          `shadow-sm`,
-          `hover:bg-yellow-50`,
-          `sm:px-8`,
-        )}
-      >
+      <Link to="/profile" className={inputClassName}>
         Return to profile
       </Link>
     </div>
