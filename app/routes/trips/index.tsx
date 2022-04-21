@@ -1,13 +1,13 @@
 import type { FC } from "react"
 
-import type { LoaderFunction } from "remix"
+import type { LoaderFunction, ActionFunction } from "remix"
 import { Link, json, useLoaderData, Form } from "remix"
 
 import type { Trip, Attendee, User } from "@prisma/client"
 import type { Params } from "react-router-dom"
 import invariant from "tiny-invariant"
 
-import { getAttendeesByUserId } from "~/models/attendee.server"
+import { getAttendeesByUserId, updateAttendee } from "~/models/attendee.server"
 import { getTripById } from "~/models/trip.server"
 import { requireUserId } from "~/session.server"
 import { join } from "~/utils"
@@ -51,6 +51,23 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   return json<LoaderData>(await getLoaderData(request, params))
 }
 
+type ActionData =
+  | {
+      nickName: string | null
+    }
+  | undefined
+
+export const action: ActionFunction = async ({ request }) => {
+  console.log(`button pressed`)
+  const formData = await request.formData()
+  const userId = await requireUserId(request)
+  const tripIdData = formData.get(`tripId`)
+  const isAccepted = new Date()
+
+  invariant(tripIdData, `trip id can not be null`)
+  const tripId = tripIdData?.toString()
+  return await updateAttendee(tripId, userId, isAccepted)
+}
 const Index: FC = () => {
   const data = useLoaderData<LoaderData>()
   const categoryStyles = [
@@ -80,13 +97,14 @@ const Index: FC = () => {
   return (
     <div>
       <Header>Your Trips</Header>
-      <h1 className={join(...categoryStyles)}>Pending Trips</h1>
+      <h1 className={join(...categoryStyles)}>Trip Requests</h1>
       <ul>
         {data.trips.pending.map((trip) => (
           <TripLiContainer key={trip?.id}>
             <TripLiImage src="https://images.unsplash.com/photo-1541570213932-8cd806e3f8f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHJvYWQlMjB0cmlwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60" />
             <TripLiTitle>
-              {trip?.stops[0] ? trip?.stops[0] : `Start`} to{` `}
+              {trip?.stops[0] ? trip?.stops[0] : `Start`}
+              <span className="mx-5">→</span>
               {trip?.stops[-1] ? trip?.stops[-1] : `End`}
             </TripLiTitle>
             <TripHr />
@@ -102,19 +120,22 @@ const Index: FC = () => {
               </TripLiDetail>
               <TripLiDetail>{trip?.stops.length}</TripLiDetail>
             </TripLiFlex>
-            <Form>
-              <TripBtn>Accept Trip Invite</TripBtn>
+            <Form method="post">
+              <input type="hidden" name="tripId" value={trip?.id} />
+              <TripBtn type="submit">Accept Trip Invite</TripBtn>
             </Form>
           </TripLiContainer>
         ))}
       </ul>
-      <h1 className={join(...categoryStyles)}>Accepted Trips</h1>
+      <h1 className={join(...categoryStyles)}>My Trips</h1>
       <ul>
         {data.trips.accepted.map((trip) => (
           <TripLiContainer key={trip?.id}>
             <TripLiImage src="https://images.unsplash.com/photo-1541570213932-8cd806e3f8f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHJvYWQlMjB0cmlwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60" />
             <TripLiTitle>
-              {trip?.stops[0]} to {trip?.stops[-1]}
+              {trip?.stops[0] ? trip?.stops[0] : `Start`}
+              <span className="mx-5">→</span>
+              {trip?.stops[-1] ? trip?.stops[-1] : `End`}
             </TripLiTitle>
             <TripHr />
             <TripLiFlex>
