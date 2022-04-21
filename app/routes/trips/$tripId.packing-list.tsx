@@ -9,7 +9,7 @@ import invariant from "tiny-invariant"
 
 import { getAttendeeById } from "~/models/attendee.server"
 import { getUserId, requireUserId } from "~/session.server"
-import { MainBtn } from "~/styles/styledComponents"
+import { MainBtn, RoundedRectangle } from "~/styles/styledComponents"
 import { join } from "~/utils"
 
 const inputClassName = `join(
@@ -54,11 +54,13 @@ const PackingList: FC = () => {
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>
         Packing List
       </h1>
-      <ul>
-        {data?.packingList.map((item: Item) => (
-          <li key={item.id}>{item.description}</li>
-        ))}
-      </ul>
+      <RoundedRectangle>
+        <ul>
+          {data?.packingList.map((item: Item) => (
+            <li key={item.id}>{item.description}</li>
+          ))}
+        </ul>
+      </RoundedRectangle>
       <Link to="/trips/trip-id-goes-here" className={inputClassName}>
         Return to trip dashboard
       </Link>

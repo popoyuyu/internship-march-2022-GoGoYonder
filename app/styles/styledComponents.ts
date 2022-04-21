@@ -3,6 +3,20 @@ import styled from "styled-components"
 // font-family: 'Lato', sans-serif;
 // font-family: 'Playfair Display', serif;
 
+export const
+
+export const RoundedRectangle = styled.div`
+  max-width: 600px;
+  height: max-content;
+  margin: auto;
+  margin-top: 1em;
+  background: #52796f;
+  border-radius: 13px;
+  color: #ffffff;
+  padding: 2em;
+  font-size: 0.5em;
+`
+
 export const MainBtn = styled.button`
   border: 1px solid #cad2c5;
   background: #cad2c5;
