@@ -12,17 +12,7 @@ import { getTripById } from "~/models/trip.server"
 import { requireUserId } from "~/session.server"
 import { join } from "~/utils"
 
-import {
-  TripLiContainer,
-  TripLiImage,
-  TripLiTitle,
-  TripLiFlex,
-  TripLiDetail,
-  TripLiGroup,
-  TripHr,
-  TripBtn,
-  Header,
-} from "../../styles/styledComponents"
+
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
@@ -30,6 +20,7 @@ const getLoaderData = async (request: Request, params: Params<string>) => {
   const userId = await requireUserId(request)
   invariant(userId, `userId required`)
   const attendees = await getAttendeesByUserId(userId)
+
   const pending = attendees.filter((trip) => trip.isAccepted === null)
   const accepted = attendees.filter((trip) => trip.isAccepted !== null)
   const pendingArray = await Promise.all(
@@ -69,6 +60,8 @@ export const action: ActionFunction = async ({ request }) => {
   return await updateAttendee(tripId, userId, isAccepted)
 }
 const Index: FC = () => {
+
+
   const data = useLoaderData<LoaderData>()
   const categoryStyles = [
     `flex`,
@@ -77,6 +70,7 @@ const Index: FC = () => {
     `text-white`,
     `mr-64`,
   ]
+
   const linkStyles = [
     `flex`,
     `items-center`,
@@ -96,6 +90,7 @@ const Index: FC = () => {
   ]
   return (
     <div>
+
       <Header>Your Trips</Header>
       <h1 className={join(...categoryStyles)}>Trip Requests</h1>
       <ul>

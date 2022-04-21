@@ -1,21 +1,10 @@
 import type { FC } from "react"
-
-import type { LoaderFunction } from "remix"
-import {
-  Link,
-  json,
-  Form,
-  redirect,
-  useActionData,
-  useParams,
-  useLoaderData,
-} from "remix"
-
 import type { Params } from "react-router"
-import invariant from "tiny-invariant"
-
-import { getTripById } from "~/models/trip.server"
+import { Link, json, Form, redirect, useActionData, useParams, useLoaderData, LoaderFunction } from "remix"
+import { getTripById } from "~/models/trip.server";
+import invariant from "tiny-invariant";
 import { join } from "~/utils"
+
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
