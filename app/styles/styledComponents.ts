@@ -81,6 +81,7 @@ export const ErrorDiv = styled.div`
   align-items: center;
   justify-content: center;
   color: red;
+`
 
 export const TripBtn = styled(MainBtn)`
   width: 90%;
