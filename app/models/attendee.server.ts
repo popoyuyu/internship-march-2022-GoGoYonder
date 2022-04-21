@@ -1,27 +1,20 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import type { Item } from "@prisma/client"
-import type { Attendee, User, Trip } from "@prisma/client"
+import type { Attendee, User } from "@prisma/client"
 
 import { prisma } from "../db.server"
 
-export type { Attendee, Item }
+export type { Attendee }
 
-export async function getAttendeesByTripId(tripId: Trip[`id`]) {
-  return prisma.attendee.findMany({
-    where: {
-      tripId: tripId,
-    },
-    include: {
-      user: {},
-      expenses: {},
-      packingList: {},
-      trip: {},
-    },
-  })
+export async function getAttendees() {
+  return prisma.attendee.findMany()
 }
 
-// export async function createItem(
-//   item: Pick<Item, `attendeeId` | `description`>,
-// ) {
-//   return prisma.item.create({ data: item })
-// }
+export async function getAttendeesByUserId(userId: User[`id`]) {
+  return prisma.attendee.findMany({ where: { userId: userId } })
+}
+
+export async function createAttendee(
+  attendee: Pick<Attendee, `tripId` | `userId`>,
+) {
+  return prisma.attendee.create({ data: attendee })
+}
