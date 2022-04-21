@@ -16,7 +16,6 @@ export const MainBtn = styled.button`
   width: 315px;
   height: 56px;
 `
-
 export const ClearBtn = styled(MainBtn)`
   box-sizing: border-box;
   background: rgba(202, 210, 197, 0);
@@ -33,10 +32,9 @@ export const SmClearBtn = styled(ClearBtn)`
   color: #ffffff;
 `
 export const Header = styled.h1`
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 2em;
-  margin-top: 1em;
-  margin-left: 1em;
+  margin: 1em auto 1em 1em;
   color: #ffffff;
 `
 export const InputLabel = styled.label`
@@ -58,4 +56,58 @@ export const ErrorDiv = styled.div`
   align-items: center;
   justify-content: center;
   color: red;
+`
+export const TripBtn = styled(MainBtn)`
+  margin: 1em auto auto;
+`
+export const TripLiContainer = styled.li`
+  background: #52796f;
+  color: white;
+  border-radius: 13px;
+  margin: 1em auto;
+  text-align: center;
+  width: 324px;
+  height: 327px;
+`
+export const TripHr = styled.hr`
+  margin: 1em;
+`
+export const TripLiImage = styled.img`
+  border-radius: 13px 13px 0px 0px;
+  object-fit: cover;
+  height: 109px;
+  width: 324px;
+  margin-bottom: 1em;
+`
+export const TripLiTitle = styled.h1`
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  text-transform: capitalize;
+`
+export const TripLiFlex = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+`
+export const TripLiGroup = styled.h3`
+  flex: 1 1 30%;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: capitalize;
+`
+export const TripLiDetail = styled.h2`
+  flex: 1 1 30%;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: capitalize;
 `
