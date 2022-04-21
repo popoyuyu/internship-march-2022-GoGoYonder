@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import type { FocusEvent, FC } from "react"
 
 import { redirect, Form, Link, json, useActionData, useLoaderData } from "remix"
@@ -7,7 +8,7 @@ import type { Item, Attendee, User, Trip } from "@prisma/client"
 import type { Params } from "react-router"
 import invariant from "tiny-invariant"
 
-import { getAttendeesByTripId } from "~/models/attendee.server"
+import { getAttendeeById} from "~/models/attendee.server"
 import { createItem } from "~/models/item.server"
 import { requireUserId } from "~/session.server"
 import { join } from "~/utils"
@@ -40,20 +41,25 @@ type ActionData =
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
-const getLoaderData = async (params: Params<string>) => {
-  const { tripId } = params
+const getLoaderData = async (request: Request,params: Params<string>) => {
+  // eslint-disable-next-line prefer-destructuring
+  const userId = await requireUserId(request)
+  // eslint-disable-next-line prefer-destructuring
+  const tripId = params.tripId
+  invariant(userId, `need userId`)
   invariant(tripId, `need tripId`)
-  return await json(getAttendeesByTripId(tripId))
+  return await json(getAttendeeById(tripId, userId))
 }
 
-export const loader: LoaderFunction = async ({ params }) => {
-  return json(await getLoaderData(params))
+export const loader: LoaderFunction = async ({ request, params }) => {
+  return json(await getLoaderData(request, params))
 }
 
 export const action: ActionFunction = async ({ request, params }) => {
   // eslint-disable-next-line prefer-destructuring
-  const tripId = params.tripId
   const userId = await requireUserId(request)
+  // eslint-disable-next-line prefer-destructuring
+  const tripId = params.tripId
   const formData = await request.formData()
   const description = formData.get(`description`)
 
@@ -74,7 +80,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 
   await createItem({ description, tripId, userId })
 
-  return redirect(`packing-list/`)
+  return redirect(`/trips/${tripId}/packing-list/`)
 }
 
 const AddItem: FC = () => {
@@ -113,65 +119,3 @@ const AddItem: FC = () => {
 }
 
 export default AddItem
-
-// import type { FC } from "react"
-
-// import { Form, Link } from "remix"
-
-// import { join } from "~/utils"
-
-// const AddItem: FC = () => {
-//   return (
-//     <div>
-//       <h1 className={join(`flex`, `items-center`, `justify-center`)}>
-//         Add Item
-//       </h1>
-//       <Link
-//         to="/packing-list"
-//         className={join(
-//           `flex`,
-//           `items-center`,
-//           `justify-center`,
-//           `rounded-md`,
-//           `border`,
-//           `border-transparent`,
-//           `bg-white`,
-//           `px-4`,
-//           `py-3`,
-//           `text-base`,
-//           `font-medium`,
-//           `text-yellow-700`,
-//           `shadow-sm`,
-//           `hover:bg-yellow-50`,
-//           `sm:px-8`,
-//         )}
-//       >
-//         Return to trips
-//       </Link>
-//       <Link
-//         to="/profile"
-//         className={join(
-//           `flex`,
-//           `items-center`,
-//           `justify-center`,
-//           `rounded-md`,
-//           `border`,
-//           `border-transparent`,
-//           `bg-white`,
-//           `px-4`,
-//           `py-3`,
-//           `text-base`,
-//           `font-medium`,
-//           `text-yellow-700`,
-//           `shadow-sm`,
-//           `hover:bg-yellow-50`,
-//           `sm:px-8`,
-//         )}
-//       >
-//         Return to profile
-//       </Link>
-//     </div>
-//   )
-// }
-
-// export default AddItem

@@ -3,37 +3,40 @@ import type { FC } from "react"
 import { Link, json, useLoaderData } from "remix"
 import type { LoaderFunction } from "remix"
 
-import type { Item, Attendee, User, Trip } from "@prisma/client"
+import type { Item } from "@prisma/client"
 import type { Params } from "react-router"
 import invariant from "tiny-invariant"
 
-import { getAttendeesByTripId } from "~/models/attendee.server"
+import { getAttendeeById } from "~/models/attendee.server"
+import { getUserId, requireUserId } from "~/session.server"
 import { join } from "~/utils"
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
-const getLoaderData = async (params: Params<string>) => {
-  const { tripId } = params
+const getLoaderData = async (request: Request, params: Params<string>) => {
+  // eslint-disable-next-line prefer-destructuring
+  const userId = await requireUserId(request)
+  // eslint-disable-next-line prefer-destructuring
+  const tripId = params.tripId
+  invariant(userId, `need userId`)
   invariant(tripId, `need tripId`)
-  // const items = await getItemsByAttendee(userId, tripId)
 
-  return await json(getAttendeesByTripId(tripId))
+  return getAttendeeById(tripId, userId)
 }
 
-export const loader: LoaderFunction = async ({ params }) => {
-  return json(await getLoaderData(params))
+export const loader: LoaderFunction = async ({ request, params }) => {
+  return json(await getLoaderData(request, params))
 }
 
 const PackingList: FC = () => {
   const data = useLoaderData<LoaderData>()
-  console.log(data)
   return (
     <div>
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>
         Packing List
       </h1>
       <ul>
-        {data.items.map((item: Item) => (
+        {data?.packingList.map((item: Item) => (
           <li key={item.id}>{item.description}</li>
         ))}
       </ul>
@@ -60,7 +63,7 @@ const PackingList: FC = () => {
         Return to trip dashboard
       </Link>
       <Link
-        to="/trips/${tripId}`/packing-list/new"
+        to={`/trips/${data?.tripId}/packing-list/new`}
         className={join(
           `flex`,
           `items-center`,
