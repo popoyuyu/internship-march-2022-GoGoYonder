@@ -1,8 +1,20 @@
 import type { FC } from "react"
+
+import type { LoaderFunction } from "remix"
+import {
+  Link,
+  json,
+  Form,
+  redirect,
+  useActionData,
+  useParams,
+  useLoaderData,
+} from "remix"
+
 import type { Params } from "react-router"
-import { Link, json, Form, redirect, useActionData, useParams, useLoaderData, LoaderFunction } from "remix"
-import { getTripById } from "~/models/trip.server";
-import invariant from "tiny-invariant";
+import invariant from "tiny-invariant"
+
+import { getTripById } from "~/models/trip.server"
 import { join } from "~/utils"
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
@@ -12,13 +24,11 @@ const getLoaderData = async (params: Params<string>) => {
   return await getTripById(params.tripId)
 }
 
-export const loader: LoaderFunction = async ({
-  params,
-}) => {
+export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.tripId, `trip id is required`)
 
   return json<LoaderData>(await getLoaderData(params))
-};
+}
 
 const UserList: FC = () => {
   const data = useLoaderData<LoaderData>()
