@@ -1,10 +1,15 @@
-import type { FC } from "react"
+import type { FocusEvent, FC } from "react"
 
-import { redirect, Form, Link } from "remix"
+import { redirect, Form, Link, json, useActionData, useLoaderData } from "remix"
+import type { ActionFunction, LoaderFunction } from "remix"
 
-import { createResponseComposition } from "msw"
+import type { Item, Attendee, User, Trip } from "@prisma/client"
+import type { Params } from "react-router"
+import invariant from "tiny-invariant"
 
+import { getAttendeesByTripId } from "~/models/attendee.server"
 import { createItem } from "~/models/item.server"
+import { requireUserId } from "~/session.server"
 import { join } from "~/utils"
 
 const inputClassName = `join(
@@ -25,13 +30,55 @@ const inputClassName = `join(
   sm:px-8
 )`
 
-export const action = async ({ request }) => {
+type ActionData =
+  | {
+    description: string | null
+    userId: string | null
+    tripId: string | null
+  }
+  | undefined
+
+type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
+
+const getLoaderData = async (params: Params<string>) => {
+  const { tripId } = params
+  invariant(tripId, `need tripId`)
+  return await json(getAttendeesByTripId(tripId))
+}
+
+export const loader: LoaderFunction = async ({ params }) => {
+  return json(await getLoaderData(params))
+}
+
+export const action: ActionFunction = async ({ request, params }) => {
+  // eslint-disable-next-line prefer-destructuring
+  const tripId = params.tripId
+  const userId = await requireUserId(request)
   const formData = await request.formData()
-  await createResponseComposition(formData.get(`description`))
+  const description = formData.get(`description`)
+
+  const errors: ActionData = {
+    description: description ? null : `Item description is required.`,
+    tripId: description ? null : `tripId is required.`,
+    userId: description ? null : `userId is required.`,
+  }
+
+  const hasErrors = Object.values(errors).some((errorMessage) => errorMessage)
+  if (hasErrors) {
+    return json<ActionData>(errors)
+  }
+
+  invariant(typeof description === `string`, `description must be a string`)
+  // invariant(typeof userId === `string`, `userId must be a string`)
+  invariant(typeof tripId === `string`, `tripId must be a string`)
+
+  await createItem({ description, tripId, userId })
+
   return redirect(`packing-list/`)
 }
 
 const AddItem: FC = () => {
+  const errors = useActionData()
   return (
     <div>
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>
@@ -42,6 +89,9 @@ const AddItem: FC = () => {
         <p>
           <label>
             Item Description:{` `}
+            {errors?.description ? (
+              <em className="text-red-600">{errors.description}</em>
+            ) : null}
             <input type="text" name="description" className={inputClassName} />
           </label>
         </p>

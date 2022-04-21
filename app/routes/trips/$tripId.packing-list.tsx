@@ -4,30 +4,36 @@ import { Link, json, useLoaderData } from "remix"
 import type { LoaderFunction } from "remix"
 
 import type { Item, Attendee, User, Trip } from "@prisma/client"
+import type { Params } from "react-router"
+import invariant from "tiny-invariant"
 
-import { getItemsByAttendee } from "~/models/item.server"
+import { getAttendeesByTripId } from "~/models/attendee.server"
 import { join } from "~/utils"
 
-import { prisma } from "../../db.server"
+type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
-type LoaderData = { items: Array<Item> }
+const getLoaderData = async (params: Params<string>) => {
+  const { tripId } = params
+  invariant(tripId, `need tripId`)
+  // const items = await getItemsByAttendee(userId, tripId)
 
-export const loader: LoaderFunction = async () => {
-  const data: LoaderData = {
-    items: await prisma.item.findMany(),
-  }
-  return json(data)
+  return await json(getAttendeesByTripId(tripId))
+}
+
+export const loader: LoaderFunction = async ({ params }) => {
+  return json(await getLoaderData(params))
 }
 
 const PackingList: FC = () => {
   const data = useLoaderData<LoaderData>()
+  console.log(data)
   return (
     <div>
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>
         Packing List
       </h1>
       <ul>
-        {data.items.map((item) => (
+        {data.items.map((item: Item) => (
           <li key={item.id}>{item.description}</li>
         ))}
       </ul>
@@ -54,7 +60,7 @@ const PackingList: FC = () => {
         Return to trip dashboard
       </Link>
       <Link
-        to="/trips/trip-id-goes-here/packing-list/new"
+        to="/trips/${tripId}`/packing-list/new"
         className={join(
           `flex`,
           `items-center`,
