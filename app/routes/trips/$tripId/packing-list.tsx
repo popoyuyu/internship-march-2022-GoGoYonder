@@ -54,25 +54,6 @@ const PackingList: FC = () => {
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>
         Packing List
       </h1>
-      <RoundedRectangle>
-        <ul>
-          {data?.packingList.map((item: Item) => (
-            <li key={item.id}>{item.description}</li>
-          ))}
-        </ul>
-      </RoundedRectangle>
-      <Link to="/trips/trip-id-goes-here" className={inputClassName}>
-        Return to trip dashboard
-      </Link>
-      <Link
-        to={`/trips/${data?.tripId}/packing-list/new`}
-        className={inputClassName}
-      >
-        Add Item
-      </Link>
-      <Link to="/profile" className={inputClassName}>
-        Return to profile
-      </Link>
     </div>
   )
 }

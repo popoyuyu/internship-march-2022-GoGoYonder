@@ -181,8 +181,32 @@ const getAttendees = (): Attendee[] => {
       ),
     },
     {
+      //kim on ellas
+      tripId: `cl1xvd63a0068qz1dbhh557su`,
+      userId: `cl1xv8xul0010qz1dmv2l3jqy`,
+      isAccepted: null,
+      createdAt: new Date(
+        `Tue Sep 21 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
+      updatedAt: new Date(
+        `Tue Sep 21 2021 16:17:00 GMT-0400 (Eastern Daylight Time)`,
+      ),
+    },
+    {
       //ella@test
       tripId: `cl1xvd63a0068qz1dbhh557su`,
+      userId: `cl1ihz4wr02309c1dbp8gi835`,
+      isAccepted: null,
+      createdAt: new Date(
+        `Tue Sep 22 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
+      updatedAt: new Date(
+        `Tue Sep 22 2021 16:17:00 GMT-0400 (Eastern Daylight Time)`,
+      ),
+    },
+    {
+      //ella on jeffs
+      tripId: `cl1xvdwqy0085qz1dfy8rscc9`,
       userId: `cl1ihz4wr02309c1dbp8gi835`,
       isAccepted: null,
       createdAt: new Date(
@@ -205,8 +229,32 @@ const getAttendees = (): Attendee[] => {
       ),
     },
     {
+      //jeff on jacobs
+      tripId: `cl1xwxl5a0024jj1d78omqrta`,
+      userId: `cl1xvbab00028qz1d1e0u5h63`,
+      isAccepted: null,
+      createdAt: new Date(
+        `Tue Sep 23 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
+      updatedAt: new Date(
+        `Tue Sep 23 2021 16:17:00 GMT-0400 (Eastern Daylight Time)`,
+      ),
+    },
+    {
       //jacob@test
       tripId: `cl1xwxl5a0024jj1d78omqrta`,
+      userId: `cl1xwwtyf0007jj1dl1yiycqb`,
+      isAccepted: null,
+      createdAt: new Date(
+        `Tue Sep 24 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
+      updatedAt: new Date(
+        `Tue Sep 24 2021 16:17:00 GMT-0400 (Eastern Daylight Time)`,
+      ),
+    },
+    {
+      //jacob on kims trip
+      tripId: `cl1xvci7b0050qz1d3o01tyg1`,
       userId: `cl1xwwtyf0007jj1dl1yiycqb`,
       isAccepted: null,
       createdAt: new Date(

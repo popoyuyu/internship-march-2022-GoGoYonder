@@ -107,13 +107,6 @@ const AddItem: FC = () => {
           </button>
         </p>
       </Form>
-
-      <Link to="/trips" className={inputClassName}>
-        Return to trips
-      </Link>
-      <Link to="/profile" className={inputClassName}>
-        Return to profile
-      </Link>
     </div>
   )
 }

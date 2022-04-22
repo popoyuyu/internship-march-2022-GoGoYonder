@@ -6,8 +6,6 @@ import styled from "styled-components"
 export const MainBtn = styled.button`
   width: 276.07px;
   height: 56px;
-  left: 46.84px;
-  top: 683.4px;
   background: #cad2c5;
   border-radius: 15px;
 `
@@ -44,7 +42,7 @@ export const SubHeader = styled.h2`
   color: #ffffff;
 `
 export const InputLabel = styled.label`
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: bold;
   color: #ffffff;
 `
@@ -54,7 +52,6 @@ export const InputField = styled.input`
   color: black;
   padding .5em;
   border-radius: 15px;
-  margin-top: 10em
 `
 export const RoundedRectangle = styled.div`
   max-width: 600px;

@@ -1,13 +1,16 @@
 import type { FC } from "react"
-import type { Position } from "vitest"
 import { useEffect } from "react"
-import { Link, LoaderFunction, useLoaderData, json } from "remix"
+
+import type { LoaderFunction } from "remix"
+import { Link, useLoaderData, json } from "remix"
+
+import { Navigator } from "node-navigator"
+import type { Params } from "react-router-dom"
+import type { Position } from "vitest"
 
 import { join } from "~/utils"
 
-import { Params } from "react-router-dom"
-
-import { Navigator } from "node-navigator"
+import NavBar from "./navbar"
 
 // if (navigator.geolocation) {
 //   navigator.geolocation.getCurrentPosition(
@@ -32,65 +35,45 @@ import { Navigator } from "node-navigator"
 // }
 // });
 
-
-type LoaderData = Awaited<ReturnType<typeof getLoaderData>>;
+type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
 const getLoaderData = async (request: Request, params: Params<string>) => {
-  const navigator = new Navigator();
+  console.log(process.env)
+  const apiKey = process.env.REACT_APP_MAP_API
+  return {
+    apiKey: apiKey,
+  }
+}
+
+export const loader: LoaderFunction = async ({ request, params }) => {
+  return json<LoaderData>(await getLoaderData(request, params))
+}
+const Map: FC = () => {
+  const data = useLoaderData<LoaderData>()
+  const navigator = new Navigator()
   const pos = {
     lat: 0,
-    lng: 0
-  };
-
-  const updatePos = (latitude: number, longitute: number){
-    pos.lat = latitude
-    pos.lng = longitude
+    lng: 0,
   }
-  const setPosition = (position: any) => {
+  const updatePosition = (position: any) => {
     pos.lat = position.latitude
     pos.lng = position.longitude
   }
+  const setPosition = (position: any) => {
+    updatePosition(position)
+  }
   const getLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setPosition);
+      navigator.geolocation.getCurrentPosition(setPosition)
     } else {
       //do literally anything if you cant get the location
     }
   }
-  const location = await getLocation();
-  console.log(location)
-  // const pos = navigator.geolocation !== null ?
-  // navigator.geolocation.getCurrentPosition(
-  //   (position: GeolocationPosition) => {
-  //      const pos = {
-  //       lat: position.coords.longitude,
-  //       lng: position.coords.latitude
-  //       }
-  //   }
-  // ) :
-  // pos.lat = 45.5152
-  // pos.lng = -122.6784
-      
+  getLocation()
+  console.log(pos)
 
-  const url = `https://www.google.com/maps/embed/v1/view?zoom=10&center=${pos.lat}%2C${pos.lng}&key=${process.env.REACT_APP_MAP_API}`
-
-  return {
-    url: url
-  }
-}
-
-export const loader: LoaderFunction = async ({
-  request,
-  params
-}) => {
-
-  return json<LoaderData>(await getLoaderData(request, params))
-}
-const Map: FC = () => {
-  const data = useLoaderData<LoaderData>();
-  // useEffect(() => {
-  //   //get the new position here 
-  // }, [/* whatever variable that changes, Position?*/])
+  console.log(data.apiKey)
+  const url = `https://www.google.com/maps/embed/v1/view?zoom=10&center=${pos.lat}%2C${pos.lng}&key=${data.apiKey}`
   return (
     <div>
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>Map</h1>
@@ -138,13 +121,8 @@ const Map: FC = () => {
       >
         Return to profile
       </Link>
-      <iframe 
-      width="600"
-      height="450"
-      loading="lazy"
-      src={data.url}
-      >
-      </iframe>
+      <iframe width="600" height="450" loading="lazy" src={url}></iframe>
+      <NavBar />
     </div>
   )
 }

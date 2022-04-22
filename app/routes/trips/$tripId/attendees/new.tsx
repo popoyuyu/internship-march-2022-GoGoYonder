@@ -26,7 +26,7 @@ import {
   InputLabel,
   Header,
   ErrorDiv,
-} from "../../styles/styledComponents"
+} from "../../../../styles/styledComponents"
 
 type LoaderData = {
   trip: Trip
@@ -119,7 +119,8 @@ const NewAttendee: FC = () => {
             <InputField
               type="text"
               name="email"
-              className={join(`mx-auto`, `block`)}
+              className={join(`mx-auto`, `block`, `mt-xl`)}
+              //margin-top: 10em
             />
           </InputLabel>
           <br />
@@ -131,16 +132,6 @@ const NewAttendee: FC = () => {
           <MainBtn type="submit">Add Attendee</MainBtn>
         </div>
       </Form>
-
-      <Link to="/trips/trip-id-goes-here/" className={join(...linkStyles)}>
-        Return to trip dashboard
-      </Link>
-      <Link to="/trips" className={join(...linkStyles)}>
-        Return to trips
-      </Link>
-      <Link to="/profile" className={join(...linkStyles)}>
-        Return to profile
-      </Link>
     </div>
   )
 }

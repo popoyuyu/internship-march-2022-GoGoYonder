@@ -19,7 +19,7 @@ import { join, validateEmail } from "~/utils"
 
 export const loader: LoaderFunction = async ({ request }) => {
   const userId = await getUserId(request)
-  if (userId) return redirect(`/`)
+  if (userId) return redirect(`/home`)
   return json({})
 }
 
@@ -71,7 +71,7 @@ export const action: ActionFunction = async ({ request }) => {
     request,
     userId: user.id,
     remember: remember === `on` ? true : false,
-    redirectTo: typeof redirectTo === `string` ? redirectTo : `/profile`,
+    redirectTo: typeof redirectTo === `string` ? redirectTo : `/home`,
   })
 }
 
@@ -83,7 +83,7 @@ export const meta: MetaFunction = () => {
 
 const LoginPage: FC = () => {
   const [searchParams] = useSearchParams()
-  const redirectTo = searchParams.get(`redirectTo`) || `/profile`
+  const redirectTo = searchParams.get(`redirectTo`) || `/home`
   const actionData = useActionData() as ActionData
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
