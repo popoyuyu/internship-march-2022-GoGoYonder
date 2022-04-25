@@ -1,41 +1,107 @@
+import { SlowBuffer } from "buffer"
+
 import type { FC } from "react"
+import { useState } from "react"
 
-import { Link, Form } from "remix"
+import type { LinksFunction } from "remix"
+import { NavLink } from "remix"
 
+import { NavButton } from "~/styles/styledComponents"
+import SvgHome from "~/styles/SVGR/SvgHome"
+import SvgMap from "~/styles/SVGR/SvgMap"
+import SvgProfile from "~/styles/SVGR/SvgProfile"
+import SvgTrip from "~/styles/SVGR/SvgTrip"
 import { join } from "~/utils"
 
 const NavBar: FC = () => {
-  const linkStyles = [
+  const activeStyle = [
+    `bg-[#52796F]`,
     `flex`,
     `items-center`,
     `justify-center`,
-    `rounded-md`,
-    `border`,
-    `border-transparent`,
-    `bg-white`,
-    `px-4`,
-    `py-3`,
-    `text-base`,
-    `font-medium`,
-    `text-yellow-700`,
-    `shadow-sm`,
-    `hover:bg-yellow-50`,
-    `sm:px-8`,
+    `p-2.5`,
+    `rounded-lg`,
   ]
+  const centered = [`flex`, `items-center`, `justify-center`]
+  const buttonStyles = [`mx-4`, `w-full`, `h-full`]
   return (
-    <div className={join(`flex`, `items-center`, `justify-center`)}>
-      <Link to="/home" className={join(...linkStyles)}>
-        Home
-      </Link>
-      <Link to="/trips" className={join(...linkStyles)}>
-        Trips
-      </Link>
-      <Link to="/map" className={join(...linkStyles)}>
-        Map
-      </Link>
-      <Link to="/profile" className={join(...linkStyles)}>
-        View Profile for (add user in loader data)
-      </Link>
+    <div className={join(...centered)}>
+      <NavButton className={join(...buttonStyles)}>
+        <NavLink
+          to="/home"
+          className={({ isActive }) =>
+            isActive ? join(...activeStyle) : undefined
+          }
+        >
+          {({ isActive }) =>
+            isActive ? (
+              <div className={join(...centered)}>
+                <SvgHome />
+                <h1>Home</h1>
+              </div>
+            ) : (
+              <SvgHome />
+            )
+          }
+        </NavLink>
+      </NavButton>
+      <NavButton className={join(...buttonStyles)}>
+        <NavLink
+          to="/trips"
+          className={({ isActive }) =>
+            isActive ? join(...activeStyle) : undefined
+          }
+        >
+          {({ isActive }) =>
+            isActive ? (
+              <div className={join(...centered)}>
+                <SvgTrip />
+                <h1 className="ml-1">Trips</h1>
+              </div>
+            ) : (
+              <SvgTrip />
+            )
+          }
+        </NavLink>
+      </NavButton>
+      <NavButton className={join(...buttonStyles)}>
+        <NavLink
+          to="/map"
+          className={({ isActive }) =>
+            isActive ? join(...activeStyle) : undefined
+          }
+        >
+          {({ isActive }) =>
+            isActive ? (
+              <div className={join(...centered)}>
+                <SvgMap />
+                <h1 className="ml-1">Map</h1>
+              </div>
+            ) : (
+              <SvgMap />
+            )
+          }
+        </NavLink>
+      </NavButton>
+      <NavButton className={join(...buttonStyles)}>
+        <NavLink
+          to="/profile"
+          className={({ isActive }) =>
+            isActive ? join(...activeStyle) : undefined
+          }
+        >
+          {({ isActive }) =>
+            isActive ? (
+              <div className={join(...centered)}>
+                <SvgProfile />
+                <h1 className="ml-1">Profile</h1>
+              </div>
+            ) : (
+              <SvgProfile />
+            )
+          }
+        </NavLink>
+      </NavButton>
     </div>
   )
 }

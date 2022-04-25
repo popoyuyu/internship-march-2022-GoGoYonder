@@ -132,3 +132,7 @@ export const TripLiDetail = styled.h2`
   text-transform: capitalize;
   margin-bottom: 1em;
 `
+export const NavButton = styled.div`
+  display: flex;
+  justify-content: center;
+`
