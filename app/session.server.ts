@@ -21,6 +21,7 @@ export const sessionStorage = createCookieSessionStorage({
 })
 
 const USER_SESSION_KEY = `userId`
+const TRIP_SESSION_KEY = `tripId`
 
 export async function getSession(request: Request): Promise<Session> {
   const cookie = request.headers.get(`Cookie`)
@@ -31,6 +32,11 @@ export async function getUserId(request: Request): Promise<string | undefined> {
   const session = await getSession(request)
   const userId = session.get(USER_SESSION_KEY)
   return userId
+}
+export async function getTripId(request: Request): Promise<string | undefined> {
+  const session = await getSession(request)
+  const tripId = session.get(TRIP_SESSION_KEY) //****************** */
+  return tripId
 }
 
 export async function getUser(request: Request): Promise<User | null> {
