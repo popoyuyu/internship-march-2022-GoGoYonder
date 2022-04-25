@@ -1,6 +1,6 @@
 import type { FC } from "react"
 
-import type { ActionFunction, LoaderFunction } from "remix" } from "remix"
+import type { ActionFunction, LoaderFunction } from "remix"
 import {
   Link,
   json,
@@ -51,17 +51,6 @@ export const action: ActionFunction = async ({ request, params }) => {
 
   const total = Number(inputTotal)
 
-  type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
-
-  const getLoaderData = async (params: Params<string>) => {
-    invariant(params.tripId, `trips required`)
-    return await params.tripId
-  }
-  const loader: LoaderFunction = async ({ params }) => {
-    invariant(params.tripId, `tripId is required`)
-    return json<LoaderData>(await getLoaderData(params))
-  }
-
   const errors: ActionData = {
     userId: userId ? null : `not a valid id`,
     tripId: tripId ? null : `not a valid id`,
@@ -83,9 +72,9 @@ export const action: ActionFunction = async ({ request, params }) => {
 }
 
 const NewExpense: FC = () => {
+  const params = useParams()
   const actionData = useActionData()
   const navigate = useNavigate()
-  const tripId = expense.tripId
 
   const outputError = (errorMessage: string) => {
     return (
@@ -98,7 +87,9 @@ const NewExpense: FC = () => {
 
   return (
     <div>
-      <ModalBackdrop onClick={() => navigate(`/trips/${tripId}/expenses`)} />
+      <ModalBackdrop
+        onClick={() => navigate(`/trips/${params.tripId}/expenses`)}
+      />
       <Modal>
         <SubHeader>Add Your Expenses</SubHeader>
         <form method="post">
