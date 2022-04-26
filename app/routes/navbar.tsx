@@ -24,7 +24,14 @@ const NavBar: FC = () => {
     `rounded-lg`,
   ]
   const centered = [`flex`, `items-center`, `justify-center`]
-  const container = [`fixed`, `bottom-0`, `w-full`]
+  const container = [
+    `fixed`,
+    `bottom-0`,
+    `w-full`,
+    `bg-[#2F3E46DE]`,
+    `pt-2.5`,
+    `pb-4`,
+  ]
   const buttonStyles = [`mx-4`, `w-full`, `h-full`]
   return (
     <div className={join(...centered, ...container)}>
