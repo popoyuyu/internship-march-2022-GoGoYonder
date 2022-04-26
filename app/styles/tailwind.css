@@ -521,6 +521,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
+.m-1 {
+  margin: 0.25rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -541,6 +545,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 1.25rem;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -559,6 +578,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mr-64 {
   margin-right: 16rem;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
 }
 
 .block {
@@ -605,6 +628,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 14rem;
 }
 
+.w-20 {
+  width: 5rem;
+}
+
+.w-2 {
+  width: 0.5rem;
+}
+
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -623,6 +654,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .flex-col {
@@ -667,6 +702,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .rounded-md {
   border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .border {
@@ -742,6 +781,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(52 211 153 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#52796F\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(82 121 111 / var(--tw-bg-opacity));
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -753,6 +797,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-2\.5 {
+  padding: 0.625rem;
 }
 
 .px-4 {
@@ -793,6 +849,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+
+.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .pt-16 {
