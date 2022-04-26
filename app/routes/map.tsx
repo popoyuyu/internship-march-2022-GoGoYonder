@@ -2,7 +2,7 @@ import type { FC } from "react"
 import { useState, useEffect } from "react"
 
 import type { LoaderFunction } from "remix"
-import { Link, useLoaderData, json, redirect } from "remix"
+import { Link, useLoaderData, json, redirect, Form } from "remix"
 
 import { Navigator } from "node-navigator"
 import type { Params } from "react-router-dom"
@@ -10,6 +10,7 @@ import { Position } from "vitest"
 
 import { join } from "~/utils"
 
+import { MapInputField } from "../styles/styledComponents"
 import NavBar from "./navbar"
 
 // if (navigator.geolocation) {
@@ -84,6 +85,10 @@ const Map: FC = () => {
   // console.log(data.apiKey)
   const url = `https://www.google.com/maps/embed/v1/view?zoom=10&center=${position.lat}%2C${position.lng}&key=${data.apiKey}`
   // console.log(url)
+
+  const width = window.innerWidth
+  const height = window.innerHeight
+
   return (
     <div>
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>Map</h1>
@@ -131,7 +136,16 @@ const Map: FC = () => {
       >
         Return to profile
       </Link>
-      <iframe width="600" height="450" loading="lazy" src={url}></iframe>
+      <Form method="post">
+        <div className={join(`text-center`)}>
+          <input type="hidden" />
+          <MapInputField
+            className={join(`opacity-60`, `absolute`)}
+            placeholder="Search..."
+          ></MapInputField>
+        </div>
+      </Form>
+      <iframe width={width} height={height} loading="lazy" src={url}></iframe>
       <NavBar />
     </div>
   )

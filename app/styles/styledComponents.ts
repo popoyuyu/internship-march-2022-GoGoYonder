@@ -41,6 +41,23 @@ export const SubHeader = styled.h2`
   text-transform: capitalize;
   color: #ffffff;
 `
+
+export const MapInputField = styled.input`
+  font-family: "Lato";
+  width: 342px;
+  height: 39px;
+  color: white;
+  background: rgba(0, 0, 0, 1);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  &::placeholder= {
+    color: white;
+    margin-left: 2em;
+  }
+`
+
 export const InputLabel = styled.label`
   font-size: 1em;
   font-weight: bold;
