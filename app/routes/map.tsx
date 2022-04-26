@@ -55,28 +55,31 @@ const Map: FC = () => {
     lng: -122.676483,
   })
   const data = useLoaderData<LoaderData>()
-  const navigator = new Navigator()
 
-  // V Things in this function arent getting called V
-  const havePosition = (position: any) => {
+  const geolocationCallback: PositionCallback = (geolocationObj) => {
+    console.log(`geolocationObj`, geolocationObj)
     setPosition({
-      lat: position.latitude,
-      lng: position.longitude,
+      lat: geolocationObj.coords.latitude,
+      lng: geolocationObj.coords.longitude,
     })
-    console.log(`position changed`)
-    console.log(position)
   }
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(havePosition)
-      console.log(`Grabbing Location`)
-    } else {
-      console.log(`Location Not Available`)
-    }
+
+  const errorCallback: PositionErrorCallback = (error) => {
+    console.log(`error`, error)
   }
+
   useEffect(() => {
-    getLocation()
-  }, [navigator.geolocation])
+    // Set a listener for the geolocation when the component mounts
+    const watchId = navigator?.geolocation.watchPosition(
+      geolocationCallback,
+      errorCallback,
+    )
+
+    // When the component unmounts, clear the listener with the cleanup method
+    return () => {
+      navigator?.geolocation.clearWatch(watchId)
+    }
+  }, [])
 
   // console.log(data.apiKey)
   const url = `https://www.google.com/maps/embed/v1/view?zoom=10&center=${position.lat}%2C${position.lng}&key=${data.apiKey}`
