@@ -16,6 +16,7 @@ import { join } from "~/utils"
 const NavBar: FC = () => {
   const activeStyle = [
     `bg-[#52796F]`,
+    `text-white`,
     `flex`,
     `items-center`,
     `justify-center`,
@@ -23,9 +24,10 @@ const NavBar: FC = () => {
     `rounded-lg`,
   ]
   const centered = [`flex`, `items-center`, `justify-center`]
+  const container = [`fixed`, `bottom-0`, `w-full`]
   const buttonStyles = [`mx-4`, `w-full`, `h-full`]
   return (
-    <div className={join(...centered)}>
+    <div className={join(...centered, ...container)}>
       <NavButton className={join(...buttonStyles)}>
         <NavLink
           to="/home"
@@ -37,7 +39,7 @@ const NavBar: FC = () => {
             isActive ? (
               <div className={join(...centered)}>
                 <SvgHome />
-                <h1>Home</h1>
+                <h1 className="ml-2">Home</h1>
               </div>
             ) : (
               <SvgHome />
@@ -56,7 +58,7 @@ const NavBar: FC = () => {
             isActive ? (
               <div className={join(...centered)}>
                 <SvgTrip />
-                <h1 className="ml-1">Trips</h1>
+                <h1 className="ml-2">Trips</h1>
               </div>
             ) : (
               <SvgTrip />
@@ -75,7 +77,7 @@ const NavBar: FC = () => {
             isActive ? (
               <div className={join(...centered)}>
                 <SvgMap />
-                <h1 className="ml-1">Map</h1>
+                <h1 className="ml-2">Map</h1>
               </div>
             ) : (
               <SvgMap />
@@ -94,7 +96,7 @@ const NavBar: FC = () => {
             isActive ? (
               <div className={join(...centered)}>
                 <SvgProfile />
-                <h1 className="ml-1">Profile</h1>
+                <h1 className="ml-2">Profile</h1>
               </div>
             ) : (
               <SvgProfile />
