@@ -1,12 +1,12 @@
 import type { FC } from "react"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 
 import type { LoaderFunction } from "remix"
-import { Link, useLoaderData, json } from "remix"
+import { Link, useLoaderData, json, redirect } from "remix"
 
 import { Navigator } from "node-navigator"
 import type { Params } from "react-router-dom"
-import type { Position } from "vitest"
+import { Position } from "vitest"
 
 import { join } from "~/utils"
 
@@ -38,8 +38,9 @@ import NavBar from "./navbar"
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
 const getLoaderData = async (request: Request, params: Params<string>) => {
-  console.log(process.env)
-  const apiKey = process.env.REACT_APP_MAP_API
+  // console.log(process.env)
+  const apiKey = process.env.MAP_API
+  // console.log(apiKey)
   return {
     apiKey: apiKey,
   }
@@ -49,31 +50,37 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   return json<LoaderData>(await getLoaderData(request, params))
 }
 const Map: FC = () => {
+  const [position, setPosition] = useState({
+    lat: 45.523064,
+    lng: -122.676483,
+  })
   const data = useLoaderData<LoaderData>()
   const navigator = new Navigator()
-  const pos = {
-    lat: 0,
-    lng: 0,
-  }
-  const updatePosition = (position: any) => {
-    pos.lat = position.latitude
-    pos.lng = position.longitude
-  }
-  const setPosition = (position: any) => {
-    updatePosition(position)
+
+  // V Things in this function arent getting called V
+  const havePosition = (position: any) => {
+    setPosition({
+      lat: position.latitude,
+      lng: position.longitude,
+    })
+    console.log(`position changed`)
+    console.log(position)
   }
   const getLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(setPosition)
+      navigator.geolocation.getCurrentPosition(havePosition)
+      console.log(`Grabbing Location`)
     } else {
-      //do literally anything if you cant get the location
+      console.log(`Location Not Available`)
     }
   }
-  getLocation()
-  console.log(pos)
+  useEffect(() => {
+    getLocation()
+  }, [navigator.geolocation])
 
-  console.log(data.apiKey)
-  const url = `https://www.google.com/maps/embed/v1/view?zoom=10&center=${pos.lat}%2C${pos.lng}&key=${data.apiKey}`
+  // console.log(data.apiKey)
+  const url = `https://www.google.com/maps/embed/v1/view?zoom=10&center=${position.lat}%2C${position.lng}&key=${data.apiKey}`
+  // console.log(url)
   return (
     <div>
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>Map</h1>
