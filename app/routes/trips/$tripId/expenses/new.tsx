@@ -90,37 +90,35 @@ const NewExpense: FC = () => {
       <ModalBackdrop
         onClick={() => navigate(`/trips/${params.tripId}/expenses`)}
       />
-      <Modal>
+      <Modal className={join(`w-px:321`)}>
         <SubHeader>Add Your Expenses</SubHeader>
         <form method="post">
-          <div className={join(`text-center`, `my-5`)}>
-            <p>
-              <InputLabel>
-                Expense Type
-                <p>
-                  <InputField type="text" name="description" />
-                </p>
-              </InputLabel>
-            </p>
-            <p>
-              <InputLabel>
-                Expense Total
-                <p>
-                  <InputField type="text" name="total" />
-                </p>
-              </InputLabel>
-            </p>
+          <p className={join(`p-2`)}>
+            <InputLabel>
+              Expense Type
+              <p className={join(`p-2`, `text-center`)}>
+                <InputField type="text" name="description" />
+              </p>
+            </InputLabel>
+          </p>
+          <p className={join(`p-2`, `text-center`)}>
+            <InputLabel>
+              Expense Total
+              <p className={join(`p-2`, `text-center`)}>
+                <InputField type="text" name="total" />
+              </p>
+            </InputLabel>
+          </p>
 
-            {actionData?.userId && outputError(actionData.userId)}
-            {actionData?.tripId && outputError(actionData.tripId)}
-            {actionData?.inputDescription &&
-              outputError(actionData.inputDescription)}
-            {actionData?.inputTotal && outputError(actionData.inputTotal)}
+          {actionData?.userId && outputError(actionData.userId)}
+          {actionData?.tripId && outputError(actionData.tripId)}
+          {actionData?.inputDescription &&
+            outputError(actionData.inputDescription)}
+          {actionData?.inputTotal && outputError(actionData.inputTotal)}
 
-            <p>
-              <MainBtn type="submit">Expense Total</MainBtn>
-            </p>
-          </div>
+          <p className={join(`p-8`, `center`)}>
+            <MainBtn type="submit">Expense Total</MainBtn>
+          </p>
         </form>
       </Modal>
     </div>

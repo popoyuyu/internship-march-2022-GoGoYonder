@@ -94,13 +94,9 @@ const ExpenseLayout: FC = () => {
           ) : null}
         </div>
       ))}
-      <div>
-        <Outlet />
-      </div>
+      <Outlet />
       <SubHeader>
-        <p>
-          <Link to={`new`}>Add Expense</Link>
-        </p>
+        <Link to={`new`}>Add Expense</Link>
       </SubHeader>
     </div>
   )

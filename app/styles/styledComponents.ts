@@ -47,6 +47,7 @@ export const InputLabel = styled.label`
   font-size: 1em;
   font-weight: bold;
   color: #ffffff;
+  width: 276px;
 `
 export const InputField = styled.input`
   width: 315px;
@@ -56,7 +57,7 @@ export const InputField = styled.input`
   border-radius: 15px;
 `
 export const RoundedRectangle = styled.div`
-  max-width: 600px;
+  width: 300px;
   height: max-content;
   margin: auto;
   margin-top: 1em;
@@ -76,13 +77,12 @@ export const ModalBackdrop = styled.div`
 `
 export const Modal = styled.div`
   position: relative;
-  z-index: 2;
-  max-width: 600px;
-  height: 430.74px;
-  left: 0px;
-  top: 381.26px
-  background: #2A3840
-  border-radius: 20px, 20px, 0px, 0px;
+  margin: 150px auto 0;
+  padding: 40px;
+  height: auto;
+  border: 2px;
+  background: #2a3840;
+  border-radius: 20px 20px 0px 0px;
 `
 export const CostText = styled.text`
   font-family: "Lato";
