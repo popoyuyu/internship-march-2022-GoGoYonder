@@ -86,8 +86,8 @@ const Map: FC = () => {
   const url = `https://www.google.com/maps/embed/v1/view?zoom=10&center=${position.lat}%2C${position.lng}&key=${data.apiKey}`
   // console.log(url)
 
-  const width = window.innerWidth
-  const height = window.innerHeight
+  const width = window?.innerWidth
+  const height = window?.innerHeight
 
   return (
     <div>

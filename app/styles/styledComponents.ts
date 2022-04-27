@@ -52,9 +52,9 @@ export const MapInputField = styled.input`
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  &::placeholder= {
+  &::placeholder {
     color: white;
-    margin-left: 2em;
+    padding-left: 2em;
   }
 `
 
