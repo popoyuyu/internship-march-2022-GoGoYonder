@@ -34,7 +34,7 @@ export const Header = styled.h1`
   color: #ffffff;
 `
 
-export const SubHeader = styled.h2`
+export const SubHeader = styled.h3`
   font-family: "Lato";
   font-style: normal;
   font-weight: 600;
@@ -45,19 +45,33 @@ export const SubHeader = styled.h2`
 `
 export const InputLabel = styled.label`
   font-size: 1em;
-  font-weight: bold;
+  font-weight: semi-bold;
   color: #ffffff;
   width: 276px;
 `
 export const InputField = styled.input`
   width: 315px;
+  weight: semi-bold;
   height: 55px;
   color: black;
   padding .5em;
-  border-radius: 15px;
+  border-radius: 15px;`
+
+export const InputFieldMid = styled.input`
+  width: 276px;
+  weight: semi-bold;
+  height: 55px;
+  color: black;
+  padding .5em;
+  border-radius: 15px;`
+
+export const Avatar = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 `
+
 export const RoundedRectangle = styled.div`
-  width: 300px;
   height: max-content;
   margin: auto;
   margin-top: 1em;
@@ -76,22 +90,40 @@ export const ModalBackdrop = styled.div`
   background: rgba(55, 71, 80, 0.68);
 `
 export const Modal = styled.div`
-  position: relative;
-  margin: 150px auto 0;
-  padding: 40px;
+  position: absolute;
+  width: 100vw;
+  bottom: 0;
   height: auto;
   border: 2px;
   background: #2a3840;
   border-radius: 20px 20px 0px 0px;
 `
-export const CostText = styled.text`
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 600;
+export const CostAmount = styled.h3`
+  font-family: Lato;
+  font-style: SemiBold;
   font-size: 18px;
-  line-height: 22px;
-  text-align: right;
   color: #ffffff;
+  align: right;
+`
+export const TitleText = styled.h3`
+  font-family: Lato;
+  font-style: SemiBold;
+  font-size: 16px;
+  color: #ffffff;
+`
+export const CostDescription = styled.h4`
+  font-family: Lato;
+  font-style: SemiBold;
+  font-size: 16px;
+  color: #ffffff;
+`
+export const AddButtonText = styled.h4`
+Font family: Lato;
+Font style: Bold;
+Font size: 14px;
+Line height: 17px;
+Line height: 100%;
+color: #ffffff;
 `
 export const ErrorDiv = styled.div`
   display: flex;
