@@ -22,12 +22,17 @@ import {
   InputField,
   InputLabel,
   Header,
-  SubHeader,
   RoundedRectangle,
-  CostText,
+  CostAmount,
   ModalBackdrop,
   Modal,
+  TitleText,
+  AddButtonText,
+  Avatar,
+  CostDescription,
 } from "~/styles/styledComponents"
+import SvgAddButton from "~/styles/SVGR/SvgAddButton"
+import SvgBackButton from "~/styles/SVGR/SvgBackButton"
 import { join } from "~/utils"
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
@@ -59,19 +64,38 @@ const ExpenseLayout: FC = () => {
 
   console.log(userTotals)
 
+  const rectangleStyles = [`flex`, `mx-2`]
+  const avatarDivStyles = [`ml-2`, `flex`]
+  const titleDivStyles = [`ml-4`, `text-left`, `flex-1`]
+  const costAmountStyles = [`flex-1`, `text-right`, `mr-2`]
+
   return (
     <div>
+      <div className={join(`ml-8`)}>
+        <SvgBackButton />
+      </div>
       <Header>Cost Sharing</Header>
-      <SubHeader>Expenses</SubHeader>
+      <TitleText>
+        <span className={join(`ml-8`)}>Expenses</span>
+      </TitleText>
       {data.map((attendee, index) => (
         <div key={attendee.tripId + index}>
-          <ul>
+          <ul className={join(`mx-8`)}>
             {attendee.expenses.map((expense: Expense) => (
               <li key={expense.id}>
-                <RoundedRectangle>
-                  <SubHeader>{attendee.user.userName}</SubHeader>
-                  {expense.description}
-                  <CostText>${expense.total}</CostText>
+                <RoundedRectangle className={join(...rectangleStyles)}>
+                  <div className={join(...avatarDivStyles)}>
+                    <Avatar src="https://s3-alpha-sig.figma.com/img/5371/122a/0163605d7f0ffd3bd46a8da315309d1f?Expires=1652054400&Signature=UlgB3Oj~OsNDovphm6GxObGvlddnNbzoNEDMk0iWF4pBZPV7PSJy4CigBXe-A8GlCazRZadEhkBrvIoMuvpD7q~frCVC-H5lyejFElj1KDotey4S-ty9BHBvl847S9AV8rdajvynfLJ5ELCshPfK~JZMj2aLExuJ8lQWh0mzg5z3Cq0raZXjevpKxpGSANqrwNBOmWiO2PXWqzd--pFGAOEqUjtFvL8jBRYVuGErUVq68T3UWFBC26LnlTOQDEwAxzKIQnQj1Sm3hu8owK9C8XKK4ydevEbDM1~C83v4WJ8F9HN9aYgKXPO-Lk3IuNQF-oihPBElteowoL973HeLcA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" />
+                  </div>
+                  <div className={join(...titleDivStyles)}>
+                    <TitleText>{attendee.user.userName}</TitleText>
+                    <CostDescription>{expense.description}</CostDescription>
+                  </div>
+                  <div>
+                    <CostAmount className={join(...costAmountStyles)}>
+                      ${expense.total}
+                    </CostAmount>
+                  </div>
                 </RoundedRectangle>
               </li>
             ))}
@@ -79,15 +103,24 @@ const ExpenseLayout: FC = () => {
         </div>
       ))}
       <br></br>
-      <SubHeader>Expense Totals</SubHeader>
+      <TitleText>
+        <span className={join(`ml-8`)}>Total Expenses</span>
+      </TitleText>
       {data.map((attendee, index) => (
         <div key={attendee.userId}>
           {userTotals[index] ? (
-            <ul>
+            <ul className={join(`mx-8`)}>
               <li>
-                <RoundedRectangle>
-                  <SubHeader>{attendee.user.userName}</SubHeader>
-                  <CostText>${userTotals[index]}</CostText>
+                <RoundedRectangle className={join(...rectangleStyles)}>
+                  <div className={join(...avatarDivStyles)}>
+                    <Avatar src="https://s3-alpha-sig.figma.com/img/5371/122a/0163605d7f0ffd3bd46a8da315309d1f?Expires=1652054400&Signature=UlgB3Oj~OsNDovphm6GxObGvlddnNbzoNEDMk0iWF4pBZPV7PSJy4CigBXe-A8GlCazRZadEhkBrvIoMuvpD7q~frCVC-H5lyejFElj1KDotey4S-ty9BHBvl847S9AV8rdajvynfLJ5ELCshPfK~JZMj2aLExuJ8lQWh0mzg5z3Cq0raZXjevpKxpGSANqrwNBOmWiO2PXWqzd--pFGAOEqUjtFvL8jBRYVuGErUVq68T3UWFBC26LnlTOQDEwAxzKIQnQj1Sm3hu8owK9C8XKK4ydevEbDM1~C83v4WJ8F9HN9aYgKXPO-Lk3IuNQF-oihPBElteowoL973HeLcA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" />
+                  </div>
+                  <div className={join(...titleDivStyles)}>
+                    <TitleText>{attendee.user.userName}</TitleText>
+                  </div>
+                  <div className={join(...costAmountStyles)}>
+                    <CostAmount>${userTotals[index]}</CostAmount>
+                  </div>
                 </RoundedRectangle>
               </li>
             </ul>
@@ -95,17 +128,15 @@ const ExpenseLayout: FC = () => {
         </div>
       ))}
       <Outlet />
-      <SubHeader>
-        <Link to={`new`}>Add Expense</Link>
-      </SubHeader>
+      <AddButtonText>
+        <Link to={`new`}>
+          <span className={join(`flex`, `m-8`)}>
+            <SvgAddButton /> <span className={join(`ml-2`)}>Add Expense</span>
+          </span>
+        </Link>
+      </AddButtonText>
     </div>
   )
 }
-
-//tripId folder: makes a new segment to route
-//in tripId folder:
-//wrap modal in div or span that takes over entire screen,
-// fixed position, width 100 vw, height 100 vh, use container
-//to block out, then center modal inside of it
 
 export default ExpenseLayout

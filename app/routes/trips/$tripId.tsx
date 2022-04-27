@@ -1,5 +1,3 @@
-import { link } from "fs"
-
 import type { FC } from "react"
 
 import { Link, Outlet } from "remix"
@@ -26,7 +24,32 @@ const TripOverview: FC = () => {
   ]
   return (
     <div>
+      <Link to="/home" className={join(...linkStyles)}></Link>
+      <h1 className={join(`flex`, `items-center`, `justify-center`)}>
+        Trip name goes here
+      </h1>
       <Outlet />
+      <Link to="edit/" className={join()}>
+        Edit
+      </Link>
+      <Link to="packing-list/" className={join(...linkStyles)}>
+        Packing List
+      </Link>
+      <Link to="expenses/" className={join(...linkStyles)}>
+        Expenses
+      </Link>
+      <Link to="attendees/" className={join(...linkStyles)}>
+        Attendees
+      </Link>
+      <Link to="decider/" className={join(...linkStyles)}>
+        Decider
+      </Link>
+      <Link to="stops/" className={join(...linkStyles)}>
+        Stops
+      </Link>
+      <Link to="/trips" className={join(...linkStyles)}>
+        Trips List
+      </Link>
     </div>
   )
 }
