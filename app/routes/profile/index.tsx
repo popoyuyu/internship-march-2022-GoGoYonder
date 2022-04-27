@@ -4,56 +4,14 @@ import { Link, useLoaderData, Form } from "remix"
 
 import { join } from "~/utils"
 
+import NavBar from "../navbar"
+
 const Index: FC = () => {
   return (
     <div>
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>
         Profile Home
       </h1>
-      <Link
-        to="/trips"
-        className={join(
-          `flex`,
-          `items-center`,
-          `justify-center`,
-          `rounded-md`,
-          `border`,
-          `border-transparent`,
-          `bg-white`,
-          `px-4`,
-          `py-3`,
-          `text-base`,
-          `font-medium`,
-          `text-yellow-700`,
-          `shadow-sm`,
-          `hover:bg-yellow-50`,
-          `sm:px-8`,
-        )}
-      >
-        Trips
-      </Link>
-      <Link
-        to="/notes"
-        className={join(
-          `flex`,
-          `items-center`,
-          `justify-center`,
-          `rounded-md`,
-          `border`,
-          `border-transparent`,
-          `bg-white`,
-          `px-4`,
-          `py-3`,
-          `text-base`,
-          `font-medium`,
-          `text-yellow-700`,
-          `shadow-sm`,
-          `hover:bg-yellow-50`,
-          `sm:px-8`,
-        )}
-      >
-        Notes
-      </Link>
       <Link
         to="/profile/edit"
         className={join(
@@ -92,6 +50,7 @@ const Index: FC = () => {
           Logout
         </button>
       </Form>
+      <NavBar />
     </div>
   )
 }

@@ -1,14 +1,14 @@
 import type { FC } from "react"
 
-import { Link } from "remix"
+import { Link, Outlet } from "remix"
 
 import { join } from "~/utils"
 
-const Expenses: FC = () => {
+const NewStop: FC = () => {
   return (
     <div>
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>
-        Expenses
+        Stop Info
       </h1>
       <Link
         to="/trips/trip-id-goes-here/"
@@ -55,7 +55,7 @@ const Expenses: FC = () => {
         Return to profile
       </Link>
       <Link
-        to="/trips/trip-id-goes-here/expenses/new"
+        to="/trips/trip-id-goes-here/stops"
         className={join(
           `flex`,
           `items-center`,
@@ -74,10 +74,10 @@ const Expenses: FC = () => {
           `sm:px-8`,
         )}
       >
-        Add Expense
+        Return to Stops List
       </Link>
     </div>
   )
 }
 
-export default Expenses
+export default NewStop
