@@ -29,7 +29,10 @@ import {
   SubHeader,
   ModalBackdrop,
   Modal,
+  AddButtonText,
+  InputFieldMid,
 } from "~/styles/styledComponents"
+import SvgSwipeButton from "~/styles/SVGR/SvgSwipeButton"
 import { join } from "~/utils"
 
 type ActionData =
@@ -85,27 +88,37 @@ const NewExpense: FC = () => {
     )
   }
 
+  const centered = [`flex`, `items-center`, `justify-center`, `flex-col`]
+
   return (
     <div>
       <ModalBackdrop
         onClick={() => navigate(`/trips/${params.tripId}/expenses`)}
       />
-      <Modal className={join(`w-px:321`)}>
-        <SubHeader>Add Your Expenses</SubHeader>
+      <Modal className={join(...centered)}>
+        <div
+          className={join(`pt-2`)}
+          onClick={() => navigate(`/trips/${params.tripId}/expenses`)}
+        >
+          <SvgSwipeButton />
+        </div>
+        <AddButtonText className={join(`mr-48`, `p-8`)}>
+          Add Expense
+        </AddButtonText>
         <form method="post">
-          <p className={join(`p-2`)}>
-            <InputLabel>
+          <p>
+            <InputLabel className={join(`mr-56`)}>
               Expense Type
-              <p className={join(`p-2`, `text-center`)}>
-                <InputField type="text" name="description" />
+              <p>
+                <InputFieldMid type="text" name="description" />
               </p>
             </InputLabel>
           </p>
-          <p className={join(`p-2`, `text-center`)}>
+          <p>
             <InputLabel>
               Expense Total
-              <p className={join(`p-2`, `text-center`)}>
-                <InputField type="text" name="total" />
+              <p>
+                <InputFieldMid type="text" name="total" />
               </p>
             </InputLabel>
           </p>
@@ -116,8 +129,8 @@ const NewExpense: FC = () => {
             outputError(actionData.inputDescription)}
           {actionData?.inputTotal && outputError(actionData.inputTotal)}
 
-          <p className={join(`p-8`, `center`)}>
-            <MainBtn type="submit">Expense Total</MainBtn>
+          <p className={join(`mt-8`, `pb-16`)}>
+            <MainBtn type="submit">Add Expense</MainBtn>
           </p>
         </form>
       </Modal>
