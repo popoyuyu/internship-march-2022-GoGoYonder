@@ -1,3 +1,5 @@
+import { link } from "fs"
+
 import type { FC } from "react"
 
 import { Link, Outlet } from "remix"
@@ -24,7 +26,9 @@ const TripOverview: FC = () => {
   ]
   return (
     <div>
-      <Link to="/home" className={join(...linkStyles)}></Link>
+      <Link to="/home" className={join(...linkStyles)}>
+        X
+      </Link>
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>
         Trip name goes here
       </h1>

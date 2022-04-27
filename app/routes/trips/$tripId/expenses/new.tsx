@@ -9,11 +9,16 @@ import {
   useActionData,
   useParams,
   useLoaderData,
+<<<<<<< HEAD
   useNavigate,
 } from "remix"
 
 import { useCatch } from "@remix-run/react"
 import type { Params } from "react-router"
+=======
+} from "remix"
+
+>>>>>>> 36513849d6e895f2688f5fea0bd2ad7f9428e76f
 import invariant from "tiny-invariant"
 
 import { Attendee, getAttendeesByTripId } from "~/models/attendee.server"
@@ -24,6 +29,7 @@ import {
   MainBtn,
   InputField,
   InputLabel,
+<<<<<<< HEAD
   ErrorDiv,
   Header,
   SubHeader,
@@ -33,6 +39,11 @@ import {
   InputFieldMid,
 } from "~/styles/styledComponents"
 import SvgSwipeButton from "~/styles/SVGR/SvgSwipeButton"
+=======
+  Header,
+  SubHeader,
+} from "~/styles/styledComponents"
+>>>>>>> 36513849d6e895f2688f5fea0bd2ad7f9428e76f
 import { join } from "~/utils"
 
 type ActionData =
@@ -75,6 +86,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 }
 
 const NewExpense: FC = () => {
+<<<<<<< HEAD
   const params = useParams()
   const actionData = useActionData()
   const navigate = useNavigate()
@@ -134,6 +146,30 @@ const NewExpense: FC = () => {
           </p>
         </form>
       </Modal>
+=======
+  return (
+    <div>
+      <SubHeader>Add Your Expenses</SubHeader>
+      <form method="post">
+        <p>
+          <InputLabel>
+            Expense Type
+            <p>
+              <InputField type="text" name="description" />
+            </p>
+          </InputLabel>
+        </p>
+        <p>
+          <InputLabel>
+            Expense Total
+            <InputField type="text" name="total" />
+          </InputLabel>
+        </p>
+        <p>
+          <MainBtn type="submit">Expense Total</MainBtn>
+        </p>
+      </form>
+>>>>>>> 36513849d6e895f2688f5fea0bd2ad7f9428e76f
     </div>
   )
 }

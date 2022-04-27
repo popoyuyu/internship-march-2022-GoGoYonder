@@ -22,6 +22,7 @@ import {
   InputField,
   InputLabel,
   Header,
+<<<<<<< HEAD
   RoundedRectangle,
   CostAmount,
   ModalBackdrop,
@@ -33,6 +34,12 @@ import {
 } from "~/styles/styledComponents"
 import SvgAddButton from "~/styles/SVGR/SvgAddButton"
 import SvgBackButton from "~/styles/SVGR/SvgBackButton"
+=======
+  SubHeader,
+  RoundedRectangle,
+  CostText,
+} from "~/styles/styledComponents"
+>>>>>>> 36513849d6e895f2688f5fea0bd2ad7f9428e76f
 import { join } from "~/utils"
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
@@ -64,6 +71,7 @@ const ExpenseLayout: FC = () => {
 
   console.log(userTotals)
 
+<<<<<<< HEAD
   const rectangleStyles = [`flex`, `mx-2`]
   const avatarDivStyles = [`ml-2`, `flex`]
   const titleDivStyles = [`ml-4`, `text-left`, `flex-1`]
@@ -96,6 +104,21 @@ const ExpenseLayout: FC = () => {
                       ${expense.total}
                     </CostAmount>
                   </div>
+=======
+  return (
+    <div>
+      <Header>Cost Sharing</Header>
+      <SubHeader>Expenses</SubHeader>
+      {data.map((attendee, index) => (
+        <div key={attendee.tripId + index}>
+          <ul>
+            {attendee.expenses.map((expense: Expense) => (
+              <li key={expense.id}>
+                <RoundedRectangle>
+                  <SubHeader>{attendee.user.userName}</SubHeader>
+                  {expense.description}
+                  <CostText>${expense.total}</CostText>
+>>>>>>> 36513849d6e895f2688f5fea0bd2ad7f9428e76f
                 </RoundedRectangle>
               </li>
             ))}
@@ -103,6 +126,7 @@ const ExpenseLayout: FC = () => {
         </div>
       ))}
       <br></br>
+<<<<<<< HEAD
       <TitleText>
         <span className={join(`ml-8`)}>Total Expenses</span>
       </TitleText>
@@ -121,12 +145,24 @@ const ExpenseLayout: FC = () => {
                   <div className={join(...costAmountStyles)}>
                     <CostAmount>${userTotals[index]}</CostAmount>
                   </div>
+=======
+      <SubHeader>Expense Totals</SubHeader>
+      {data.map((attendee, index) => (
+        <div key={attendee.userId}>
+          {userTotals[index] ? (
+            <ul>
+              <li>
+                <RoundedRectangle>
+                  <SubHeader>{attendee.user.userName}</SubHeader>
+                  <CostText>${userTotals[index]}</CostText>
+>>>>>>> 36513849d6e895f2688f5fea0bd2ad7f9428e76f
                 </RoundedRectangle>
               </li>
             </ul>
           ) : null}
         </div>
       ))}
+<<<<<<< HEAD
       <Outlet />
       <AddButtonText>
         <Link to={`new`}>
@@ -135,8 +171,26 @@ const ExpenseLayout: FC = () => {
           </span>
         </Link>
       </AddButtonText>
+=======
+      <br></br>
+      <Outlet />
+      <SubHeader>
+        <p>
+          <Link to={`new`}>Add Expense</Link>
+        </p>
+      </SubHeader>
+>>>>>>> 36513849d6e895f2688f5fea0bd2ad7f9428e76f
     </div>
   )
 }
 
+<<<<<<< HEAD
+=======
+//tripId folder: makes a new segment to route
+//in tripId folder:
+//wrap modal in div or span that takes over entire screen,
+// fixed position, width 100 vw, height 100 vh, use container
+//to block out, then center modal inside of it
+
+>>>>>>> 36513849d6e895f2688f5fea0bd2ad7f9428e76f
 export default ExpenseLayout

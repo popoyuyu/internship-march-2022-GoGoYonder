@@ -45,9 +45,8 @@ export const SubHeader = styled.h3`
 `
 export const InputLabel = styled.label`
   font-size: 1em;
-  font-weight: semi-bold;
+  font-weight: bold;
   color: #ffffff;
-  width: 276px;
 `
 export const InputField = styled.input`
   width: 315px;
@@ -183,4 +182,8 @@ export const TripLiDetail = styled.h2`
   line-height: 19px;
   text-transform: capitalize;
   margin-bottom: 1em;
+`
+export const NavButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `

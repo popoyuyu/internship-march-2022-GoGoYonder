@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules
 
 /build
@@ -10,3 +11,17 @@ node_modules
 /prisma/data.db-journal
 
 /app/styles/tailwind.css
+=======
+node_modules
+
+/build
+/public/build
+.env
+
+/cypress/screenshots
+/cypress/videos
+/prisma/data.db
+/prisma/data.db-journal
+
+/app/styles/tailwind.css
+>>>>>>> 36513849d6e895f2688f5fea0bd2ad7f9428e76f
