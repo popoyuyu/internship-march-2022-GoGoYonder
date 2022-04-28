@@ -59,11 +59,8 @@ const Map: FC = () => {
 
   const url = `https://www.google.com/maps/embed/v1/view?zoom=10&center=${position.lat}%2C${position.lng}&key=${data.apiKey}`
 
-  const width = window?.innerWidth
-  const height = window?.innerHeight
-
   return (
-    <div>
+    <div className={join(`h-full`)}>
       <h1 className={join(`flex`, `items-center`, `justify-center`)}>Map</h1>
       <Link
         to="/trips/trip-id-goes-here/"
@@ -114,12 +111,16 @@ const Map: FC = () => {
           className={join(`relative`, `flex`, `items-center`, `justify-center`)}
         >
           <MapInputField
-            className={join(`w-full`, `h-full`, `absolute`)}
+            className={join(`w-full`, `h-full`, `absolute`, `mt-14`)}
             placeholder="Search..."
           />
         </div>
       </Form>
-      <iframe width={width} height={height} loading="lazy" src={url}></iframe>
+      <iframe
+        className={join(`w-full`, `h-full`)}
+        loading="lazy"
+        src={url}
+      ></iframe>
       <NavBar />
     </div>
   )
