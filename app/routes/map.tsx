@@ -8,40 +8,16 @@ import { Navigator } from "node-navigator"
 import type { Params } from "react-router-dom"
 import { Position } from "vitest"
 
+import SvgSearchIcon from "~/styles/SVGR/SearchIcon"
 import { join } from "~/utils"
 
 import { MapInputField } from "../styles/styledComponents"
 import NavBar from "./navbar"
 
-// if (navigator.geolocation) {
-//   navigator.geolocation.getCurrentPosition(
-//     (position: GeolocationPosition) => {
-//       const pos = {
-//         lat: position.coords.latitude,
-//         lng: position.coords.longitude,
-//       };
-
-//       infoWindow.setPosition(pos);
-//       infoWindow.setContent("Location found.");
-//       infoWindow.open(map);
-//       map.setCenter(pos);
-//     },
-//     () => {
-//       handleLocationError(true, infoWindow, map.getCenter()!);
-//     }
-//   );
-// } else {
-//   // Browser doesn't support Geolocation
-//   handleLocationError(false, infoWindow, map.getCenter()!);
-// }
-// });
-
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
 const getLoaderData = async (request: Request, params: Params<string>) => {
-  // console.log(process.env)
   const apiKey = process.env.MAP_API
-  // console.log(apiKey)
   return {
     apiKey: apiKey,
   }
@@ -82,9 +58,7 @@ const Map: FC = () => {
     }
   }, [])
 
-  // console.log(data.apiKey)
   const url = `https://www.google.com/maps/embed/v1/view?zoom=10&center=${position.lat}%2C${position.lng}&key=${data.apiKey}`
-  // console.log(url)
 
   const width = window?.innerWidth
   const height = window?.innerHeight
@@ -137,12 +111,14 @@ const Map: FC = () => {
         Return to profile
       </Link>
       <Form method="post">
-        <div className={join(`text-center`)}>
-          <input type="hidden" />
+        <div className={join(`relative`)}>
           <MapInputField
-            className={join(`opacity-60`, `absolute`)}
+            className={join(`w-full`, `h-full`, `absolute`)}
             placeholder="Search..."
-          ></MapInputField>
+          />
+          {/* <div className={join(`absolute`, `top-0`)}>
+            <SvgSearchIcon />
+          </div> */}
         </div>
       </Form>
       <iframe width={width} height={height} loading="lazy" src={url}></iframe>
