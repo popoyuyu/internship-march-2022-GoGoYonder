@@ -8,7 +8,6 @@ import { Navigator } from "node-navigator"
 import type { Params } from "react-router-dom"
 import { Position } from "vitest"
 
-import SvgSearchIcon from "~/styles/SVGR/SearchIcon"
 import { join } from "~/utils"
 
 import { MapInputField } from "../styles/styledComponents"
@@ -111,14 +110,13 @@ const Map: FC = () => {
         Return to profile
       </Link>
       <Form method="post">
-        <div className={join(`relative`)}>
+        <div
+          className={join(`relative`, `flex`, `items-center`, `justify-center`)}
+        >
           <MapInputField
             className={join(`w-full`, `h-full`, `absolute`)}
             placeholder="Search..."
           />
-          {/* <div className={join(`absolute`, `top-0`)}>
-            <SvgSearchIcon />
-          </div> */}
         </div>
       </Form>
       <iframe width={width} height={height} loading="lazy" src={url}></iframe>
