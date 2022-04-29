@@ -1,5 +1,4 @@
 import type { FC } from "react"
-import { useState } from "react"
 
 import type { LoaderFunction } from "remix"
 import {
@@ -63,7 +62,6 @@ const ExpenseLayout: FC = () => {
     }
   })
 
-  // const params =
   const { tripId } = useParams()
 
   const rectangleStyles = [`flex`, `mx-2`]
@@ -89,7 +87,12 @@ const ExpenseLayout: FC = () => {
               <li key={expense.id}>
                 <RoundedRectangle className={join(...rectangleStyles)}>
                   <div className={join(...avatarDivStyles)}>
-                    <Avatar src={attendee.user.avatarUrl} />
+                    <Avatar
+                      src={
+                        attendee.user.avatarUrl ||
+                        `public/img/default-avatar.jpg`
+                      }
+                    />
                   </div>
                   <div className={join(...titleDivStyles)}>
                     <TitleText>{attendee.user.userName}</TitleText>
@@ -117,7 +120,12 @@ const ExpenseLayout: FC = () => {
               <li>
                 <RoundedRectangle className={join(...rectangleStyles)}>
                   <div className={join(...avatarDivStyles)}>
-                    <Avatar src={attendee.user.avatarUrl} />
+                    <Avatar
+                      src={
+                        attendee.user.avatarUrl ||
+                        `public/img/default-avatar.jpg`
+                      }
+                    />
                   </div>
                   <div className={join(...titleDivStyles)}>
                     <TitleText>{attendee.user.userName}</TitleText>
