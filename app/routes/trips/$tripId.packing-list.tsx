@@ -4,7 +4,6 @@ import type { LoaderFunction, ActionFunction } from "remix"
 import { Link, json, useLoaderData, Outlet, useFetcher } from "remix"
 
 import type { Item } from "@prisma/client"
-import { useSubmit, useTransition } from "@remix-run/react"
 import type { Params } from "react-router"
 import invariant from "tiny-invariant"
 
@@ -13,9 +12,9 @@ import { getAttendeeById } from "~/models/attendee.server"
 import { getItemById, updateChecked } from "~/models/item.server"
 import { requireUserId } from "~/session.server"
 import {
-  RoundedRectangle,
   Header,
   AddButtonText,
+  RoundedRectangleNoMargin,
 } from "~/styles/styledComponents"
 import SvgAddButton from "~/styles/SVGR/SvgAddButton"
 import SvgBackButton from "~/styles/SVGR/SvgBackButton"
@@ -63,22 +62,22 @@ const PackingList: FC = () => {
     (item: Item) => item.isChecked !== true,
   )
 
-  const rectangleStyles = [`flex`, `mx-2`]
+  // const rectangleStyles = [`mx-2`]
   const costAmountStyles = [`flex-1`, `text-right`, `mr-2`]
+  const rectangleStyles = [`flex`, `mx-2`]
   return (
     <div>
       <div className={join(`ml-8`)}>
         <SvgBackButton />
       </div>
       <Header>Packing List</Header>
-      <Outlet />
-      <RoundedRectangle className={join(...rectangleStyles)}>
-        <ul className={join(`mx-8`)}>
+      <RoundedRectangleNoMargin className={join(`mx-6`)}>
+        <ul className="mb-3">
           {uncheckedItems?.map((item: Item) => (
             <PackingListItem item={item} key={item.id} />
           ))}
         </ul>
-      </RoundedRectangle>
+      </RoundedRectangleNoMargin>
       <div>
         <ul>
           {checkedItems?.map((item: Item) => (
@@ -87,6 +86,7 @@ const PackingList: FC = () => {
         </ul>
       </div>
 
+      <Outlet />
       <AddButtonText>
         <Link to={`/trips/${data?.tripId}/packing-list/new`}>
           <span className={join(`flex`, `m-8`)}>
@@ -98,22 +98,22 @@ const PackingList: FC = () => {
   )
 }
 
-const inputClassName = `join(
-  flex
-  items-center
-  justify-center
-  rounded-md
-  border
-  border-transparent
-  bg-white
-  px-4
-  py-3
-  text-base
-  font-medium
-  text-yellow-700
-  shadow-sm
-  hover:bg-yellow-50
-  sm:px-8
-)`
+// const inputClassName = `join(
+//   flex
+//   items-center
+//   justify-center
+//   rounded-md
+//   border
+//   border-transparent
+//   bg-white
+//   px-4
+//   py-3
+//   text-base
+//   font-medium
+//   text-yellow-700
+//   shadow-sm
+//   hover:bg-yellow-50
+//   sm:px-8
+// )`
 
 export default PackingList
