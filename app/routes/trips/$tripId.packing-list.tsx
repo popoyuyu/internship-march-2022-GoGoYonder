@@ -12,20 +12,23 @@ import PackingListItem from "~/components/PackingListItem"
 import { getAttendeeById } from "~/models/attendee.server"
 import { getItemById, updateChecked } from "~/models/item.server"
 import { requireUserId } from "~/session.server"
-import { RoundedRectangle } from "~/styles/styledComponents"
+import {
+  RoundedRectangle,
+  Header,
+  AddButtonText,
+} from "~/styles/styledComponents"
+import SvgAddButton from "~/styles/SVGR/SvgAddButton"
+import SvgBackButton from "~/styles/SVGR/SvgBackButton"
 import { join } from "~/utils"
 
 //---------------------------Loader
 
-// setting a type to loaderData, which will be the same as typeof getLoaderData
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
-// jsonifies the getLoaderData return after it returns, instantiates the loader function
 export const loader: LoaderFunction = async ({ request, params }) => {
   return json(await getLoaderData(request, params))
 }
 
-// pass in Request as a get request from server, pass in params as a way to parse out data from url
 const getLoaderData = async (request: Request, params: Params<string>) => {
   // eslint-disable-next-line prefer-destructuring
   const userId = await requireUserId(request)
@@ -34,14 +37,11 @@ const getLoaderData = async (request: Request, params: Params<string>) => {
   invariant(userId, `need userId`)
   invariant(tripId, `need tripId`)
 
-  // this function is defined in the attendee server logic file, will return an object
   return getAttendeeById(tripId, userId)
 }
 
 //---------------------------Action
 
-// actions are used for post, put, patch, and delete requests
-// this action function is getting
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
   const itemId = form.get(`id`)?.toString()
@@ -62,42 +62,38 @@ const PackingList: FC = () => {
   const uncheckedItems = data?.packingList.filter(
     (item: Item) => item.isChecked !== true,
   )
+
+  const rectangleStyles = [`flex`, `mx-2`]
+  const costAmountStyles = [`flex-1`, `text-right`, `mr-2`]
   return (
     <div>
-      <h1 className={join(`flex`, `items-center`, `justify-center`)}>
-        Packing List
-      </h1>
+      <div className={join(`ml-8`)}>
+        <SvgBackButton />
+      </div>
+      <Header>Packing List</Header>
       <Outlet />
-
-      <h3>UnChecked Items</h3>
-      <RoundedRectangle>
-        <ul>
+      <RoundedRectangle className={join(...rectangleStyles)}>
+        <ul className={join(`mx-8`)}>
           {uncheckedItems?.map((item: Item) => (
             <PackingListItem item={item} key={item.id} />
           ))}
         </ul>
       </RoundedRectangle>
-      <h3>Checked Items</h3>
-      <RoundedRectangle>
+      <div>
         <ul>
           {checkedItems?.map((item: Item) => (
             <PackingListItem item={item} key={item.id} />
           ))}
         </ul>
-      </RoundedRectangle>
+      </div>
 
-      <Link to="/trips/trip-id-goes-here" className={inputClassName}>
-        Return to trip dashboard
-      </Link>
-      <Link
-        to={`/trips/${data?.tripId}/packing-list/new`}
-        className={inputClassName}
-      >
-        Add Item
-      </Link>
-      <Link to="/profile" className={inputClassName}>
-        Return to profile
-      </Link>
+      <AddButtonText>
+        <Link to={`/trips/${data?.tripId}/packing-list/new`}>
+          <span className={join(`flex`, `m-8`)}>
+            <SvgAddButton /> <span className={join(`ml-2`)}>Add Item</span>
+          </span>
+        </Link>
+      </AddButtonText>
     </div>
   )
 }

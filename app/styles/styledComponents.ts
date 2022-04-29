@@ -99,6 +99,27 @@ export const RoundedRectangle = styled.div`
   padding: 2em;
   font-size: 0.5em;
 `
+export const WhiteRoundedRectangle = styled.div`
+  height: max-content;
+  margin: auto;
+  margin-top: 1em;
+  background: #ffffff;
+  border-radius: 13px;
+  color: #2f3e46;
+  padding: 2em;
+  font-size: 0.5em;
+`
+export const BottomLineDiv = styled.div`
+  height: max-content;
+  margin: auto;
+  margin-top: 1em;
+  padding: 2em;
+  font-size: 0.5em;
+  border-bottom-style: solid;
+  border-bottom-color: #ffffff;
+  border-bottom-width: 0.5px;
+`
+
 export const ModalBackdrop = styled.div`
   position: fixed;
   top: 0;
