@@ -62,6 +62,9 @@ const PackingList: FC = () => {
     (item: Item) => item.isChecked !== true,
   )
 
+  const uncheckedAmount = uncheckedItems?.length
+  console.log(uncheckedAmount)
+
   // const rectangleStyles = [`mx-2`]
   const costAmountStyles = [`flex-1`, `text-right`, `mr-2`]
   const rectangleStyles = [`flex`, `mx-2`]
@@ -71,13 +74,18 @@ const PackingList: FC = () => {
         <SvgBackButton />
       </div>
       <Header>Packing List</Header>
-      <RoundedRectangleNoMargin className={join(`mx-6`)}>
-        <ul className="mb-3">
-          {uncheckedItems?.map((item: Item) => (
-            <PackingListItem item={item} key={item.id} />
-          ))}
-        </ul>
-      </RoundedRectangleNoMargin>
+      {uncheckedAmount > 0 ? (
+        <RoundedRectangleNoMargin className={join(`mx-6`)}>
+          <ul className="mb-3">
+            {uncheckedItems?.map((item: Item, uncheckedAmount: number) => (
+              <PackingListItem item={item} key={item.id} />
+            ))}
+          </ul>
+        </RoundedRectangleNoMargin>
+      ) : (
+        <></>
+      )}
+
       <div>
         <ul>
           {checkedItems?.map((item: Item) => (
