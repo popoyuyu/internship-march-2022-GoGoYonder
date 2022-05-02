@@ -15,6 +15,22 @@ import { MainBtn } from "app/styles/styledComponents"
 
 import { verifyLogin } from "~/models/user.server"
 import { createUserSession, getUserId } from "~/session.server"
+import SvgCalendar from "~/styles/SVGR/SvgCalendar"
+import SvgCamera from "~/styles/SVGR/SvgCamera"
+import SvgCloseCircle from "~/styles/SVGR/SvgCloseCircle"
+import SvgCoins from "~/styles/SVGR/SvgCoins"
+import SvgDice from "~/styles/SVGR/SvgDice"
+import SvgEndpoint from "~/styles/SVGR/SvgEndPoint"
+import SvgFinishFlag from "~/styles/SVGR/SvgFinishFlag"
+import SvgGear from "~/styles/SVGR/SvgGear"
+import SvgHamburger from "~/styles/SVGR/SvgHamburger"
+import SvgLocationArrow from "~/styles/SVGR/SvgLocationArrow"
+import SvgLuggage from "~/styles/SVGR/SvgLuggage"
+import SvgPencil from "~/styles/SVGR/SvgPencil"
+import SvgPin from "~/styles/SVGR/SvgPin"
+import SvgStar from "~/styles/SVGR/SvgStar"
+import SvgStartFlag from "~/styles/SVGR/SvgStartFlag"
+import SvgUserBeacon from "~/styles/SVGR/SvgUserBeacon"
 import { join, validateEmail } from "~/utils"
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -185,6 +201,28 @@ const LoginPage: FC = () => {
             </div>
           </div>
         </Form>
+
+        <div>
+          <h3>SVG Viewer</h3>
+          <div>
+            <SvgStartFlag />
+            <SvgUserBeacon />
+            <SvgCalendar />
+            <SvgCamera />
+            <SvgCloseCircle />
+            <SvgCoins />
+            <SvgDice />
+            <SvgEndpoint />
+            <SvgFinishFlag />
+            <SvgGear />
+            <SvgHamburger />
+            <SvgLocationArrow />
+            <SvgLuggage />
+            <SvgPencil />
+            <SvgPin />
+            <SvgStar />
+          </div>
+        </div>
       </div>
     </div>
   )
