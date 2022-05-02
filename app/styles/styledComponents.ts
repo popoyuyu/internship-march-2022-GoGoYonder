@@ -127,6 +127,16 @@ export const BottomLineDiv = styled.div`
   border-bottom-color: rgba(255, 255, 255, 0.19);
   border-bottom-width: 1px;
 `
+export const BottomLineDiv: hover = styled.div`
+  height: max-content;
+  margin: auto;
+  margin-top: 1em;
+  padding: 2em;
+  font-size: 0.5em;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(255, 255, 255, 0.19);
+  border-bottom-width: 1px;
+`
 
 export const ModalBackdrop = styled.div`
   position: fixed;

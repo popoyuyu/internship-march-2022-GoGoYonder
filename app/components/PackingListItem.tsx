@@ -31,7 +31,7 @@ const PackingListItem: FC<ItemProps> = ({ item }) => {
         <RoundedRectangle className="class=flex justify-between">
           <fetcher.Form method="post">
             <input type="hidden" name="id" value={item.id} />
-            <BottomLineDiv>
+            <BottomLineDiv className="hover:delay-0 transition delay-150 duration-300">
               <div className="... flex justify-between">
                 <TitleText>{item.description}</TitleText>
                 <button type="submit" display="inline" aria-label="check circle">
