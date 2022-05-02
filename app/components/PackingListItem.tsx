@@ -34,7 +34,7 @@ const PackingListItem: FC<ItemProps> = ({ item }) => {
             <BottomLineDiv className="hover:delay-0 transition delay-150 duration-300">
               <div className="... flex justify-between">
                 <TitleText>{item.description}</TitleText>
-                <button type="submit" display="inline" aria-label="check circle">
+                <button type="submit" aria-label="check circle">
                   <ReturnCheckBox isChecked={item.isChecked} key={item.id} />
                 </button>
               </div>
@@ -53,7 +53,7 @@ const PackingListItem: FC<ItemProps> = ({ item }) => {
             <input type="hidden" name="id" value={item.id} />
             <div className={join(...titleDivStyles)}>
               <TitleTextDark>{item.description}</TitleTextDark>
-              <button type="submit" display="inline" aria-label="check circle">
+              <button type="submit" aria-label="check circle">
                 <ReturnCheckBox isChecked={item.isChecked} key={item.id} />
               </button>
             </div>

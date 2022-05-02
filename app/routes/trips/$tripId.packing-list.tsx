@@ -63,11 +63,12 @@ const PackingList: FC = () => {
   )
 
   const uncheckedAmount = uncheckedItems?.length
-  console.log(uncheckedAmount)
+  invariant(uncheckedAmount, `unchecked amount must be a number`)
+  // console.log(uncheckedAmount)
 
   // const rectangleStyles = [`mx-2`]
-  const costAmountStyles = [`flex-1`, `text-right`, `mr-2`]
-  const rectangleStyles = [`flex`, `mx-2`]
+  // const costAmountStyles = [`flex-1`, `text-right`, `mr-2`]
+  // const rectangleStyles = [`flex`, `mx-2`]
   return (
     <div>
       <div className={join(`ml-8`)}>
