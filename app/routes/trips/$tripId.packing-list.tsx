@@ -4,6 +4,7 @@ import type { LoaderFunction, ActionFunction } from "remix"
 import { Link, json, useLoaderData, Outlet, useFetcher } from "remix"
 
 import type { Item } from "@prisma/client"
+import { Response } from "node-fetch"
 import type { Params } from "react-router"
 import invariant from "tiny-invariant"
 
@@ -61,9 +62,15 @@ const PackingList: FC = () => {
   const uncheckedItems = data?.packingList.filter(
     (item: Item) => item.isChecked !== true,
   )
-
-  const uncheckedAmount = uncheckedItems?.length
-  invariant(uncheckedAmount, `unchecked amount must be a number`)
+  const length = uncheckedItems?.length as number
+  // const typeOf = typeof length
+  // const uncheckedAmount = () => {
+  //   if (typeof typeOf == number) {
+  //     return uncheckedItems?.length
+  //   }
+  //   return `Not a number`
+  // }
+  // invariant(uncheckedAmount, `unchecked amount must be a number`)
   // console.log(uncheckedAmount)
 
   // const rectangleStyles = [`mx-2`]
@@ -75,10 +82,10 @@ const PackingList: FC = () => {
         <SvgBackButton />
       </div>
       <Header>Packing List</Header>
-      {uncheckedAmount > 0 ? (
+      {length > 0 ? (
         <RoundedRectangleNoMargin className={join(`mx-6`)}>
           <ul className="mb-3">
-            {uncheckedItems?.map((item: Item, uncheckedAmount: number) => (
+            {uncheckedItems?.map((item: Item) => (
               <PackingListItem item={item} key={item.id} />
             ))}
           </ul>
