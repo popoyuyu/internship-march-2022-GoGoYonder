@@ -241,3 +241,25 @@ export const NavButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
 `
+export const ProHugeNumber = styled.h3`
+  font-size: 3em;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 3px;
+`
+export const ProH4 = styled.h4`
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+`
+export const ProH5 = styled.h5`
+  font-size: 3em;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 3px;
+`
+export const ProBody = styled.body`
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+`
