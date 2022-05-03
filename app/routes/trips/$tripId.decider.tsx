@@ -32,6 +32,7 @@ import {
   DeciderDescription,
 } from "~/styles/styledComponents"
 import SvgBackButton from "~/styles/SVGR/SvgBackButton"
+import SvgDice from "~/styles/SVGR/SvgDice"
 import { join } from "~/utils"
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
@@ -81,9 +82,11 @@ const Decider: FC = () => {
   const { tripId } = useParams()
 
   const defaultAvatar = `public/img/default-avatar.jpg`
-  const rectangleStyles = [`flex`, `mx-2`]
+  const rectangleStyles = [`flex`, `mx-2`, `width-full`]
   const avatarDivStyles = [`ml-2`, `flex`]
   const titleDivStyles = [`ml-4`, `text-left`, `flex-1`]
+  const centered = [`flex`, `items-center`, `justify-center`, `flex-col`]
+  const buttonContents = [`flex`, `items-center`, `justify-center`]
 
   return (
     <div>
@@ -94,29 +97,41 @@ const Decider: FC = () => {
           </div>
         </Link>
       </div>
-      <DeciderDescription>
-        <p>
-          The Decider will select a traveler in this trip at random to choose the
-          next activity.
-        </p>
-      </DeciderDescription>
-      <RoundedRectangle className={join(...rectangleStyles)}>
-        <div className={join(...avatarDivStyles)}>
-          <Avatar src={data?.winnerAvatarUrl || defaultAvatar} />
-        </div>
-        <div className={join(...titleDivStyles)}>
-          <TitleText>{data?.winner}</TitleText>
-          <CostDescription>
-            {day}
-            {time}
-          </CostDescription>
-        </div>
-      </RoundedRectangle>
+      <div className={join(...centered)}>
+        <DeciderDescription>
+          <p>
+            The Decider will select a traveler in this trip at random to choose
+            the next activity.
+          </p>
+        </DeciderDescription>
+        <RoundedRectangle className={join(...rectangleStyles)}>
+          <div className={join(...avatarDivStyles)}>
+            <Avatar src={data?.winnerAvatarUrl || defaultAvatar} />
+          </div>
+          <div className={join(...titleDivStyles)}>
+            <TitleText>{data?.winner}</TitleText>
+            <CostDescription className={join(`flex`)}>
+              <p>{day}</p>
+              <p className={join(`ml-2`)}>{time}</p>
+            </CostDescription>
+          </div>
+        </RoundedRectangle>
 
-      <div>
-        <Form method="post">
-          <WideButton type="submit">Select Random</WideButton>
-        </Form>
+        <div>
+          <Form method="post">
+            <WideButton type="submit" className={join(...buttonContents)}>
+              <span
+                className={join(
+                  `drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]`,
+                  `mr-4`,
+                )}
+              >
+                <SvgDice />
+              </span>
+              Select Random
+            </WideButton>
+          </Form>
+        </div>
       </div>
     </div>
   )
