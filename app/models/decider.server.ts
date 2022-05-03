@@ -15,14 +15,16 @@ export async function getDeciderByTripId(tripId: Trip[`id`]) {
 
 export async function updateDeciderByDeciderId(
   id: Decider[`id`],
-  result: Decider[`result`],
+  winner: Decider[`winner`],
+  winnerAvatarUrl: Decider[`winnerAvatarUrl`],
 ) {
   return prisma.decider.update({
     where: {
       id,
     },
     data: {
-      result,
+      winner,
+      winnerAvatarUrl,
     },
   })
 }
