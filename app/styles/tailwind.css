@@ -521,17 +521,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
-.bottom-0 {
-  bottom: 0px;
+.right-0 {
+  right: 0px;
 }
 
-.m-8 {
-  margin: 2rem;
+.top-4 {
+  top: 1rem;
 }
 
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
+.left-2\/4 {
+  left: 50%;
+}
+
+.z-10 {
+  z-index: 10;
+
 }
 
 .mx-6 {
@@ -542,6 +546,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .my-4 {
@@ -601,10 +610,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 2rem;
 }
 
+
+.ml-1 {
+  margin-left: 0.25rem;
+
 .mb-3 {
   margin-bottom: 0.75rem;
 }
-
 .mr-64 {
   margin-right: 16rem;
 }
@@ -619,6 +631,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mr-64 {
+  margin-right: 16rem;
 }
 
 .block {
@@ -800,6 +816,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#52796F\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(82 121 111 / var(--tw-bg-opacity));
+}
+
 .bg-slate-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(30 41 59 / var(--tw-bg-opacity));
@@ -808,6 +829,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+
+.bg-\[rgba\(255\2c 0\2c 0\)\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 0 0 / var(--tw-bg-opacity));
+}
+
+
+
+.bg-transparent {
+  background-color: transparent;
 }
 
 .bg-emerald-400 {
@@ -819,6 +852,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   -o-object-fit: cover;
      object-fit: cover;
 }
+
+
+.p-2 {
+  padding: 0.5rem;
 
 .p-2\.5 {
   padding: 0.625rem;
@@ -839,6 +876,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .p-8 {
   padding: 2rem;
 }
+
+
+.p-4 {
+  padding: 1rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
 
 .px-7 {
   padding-left: 1.75rem;
