@@ -25,10 +25,6 @@ import { join } from "~/utils"
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
-export const loader: LoaderFunction = async ({ request, params }) => {
-  return json(await getLoaderData(request, params))
-}
-
 const getLoaderData = async (request: Request, params: Params<string>) => {
   // eslint-disable-next-line prefer-destructuring
   const userId = await requireUserId(request)
@@ -38,6 +34,10 @@ const getLoaderData = async (request: Request, params: Params<string>) => {
   invariant(tripId, `need tripId`)
 
   return getAttendeeById(tripId, userId)
+}
+
+export const loader: LoaderFunction = async ({ request, params }) => {
+  return json(await getLoaderData(request, params))
 }
 
 //---------------------------Action

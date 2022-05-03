@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import type { Password, User } from "@prisma/client"
 import bcrypt from "bcryptjs"
+import { data } from "msw/lib/types/context"
 
 import { prisma } from "../db.server"
+import { Trip } from "./trip.server"
 
 export type { User } from "@prisma/client"
 
@@ -11,7 +13,10 @@ export async function getUsers(): Promise<User[]> {
 }
 
 export async function getUserById(id: User[`id`]): Promise<User | null> {
-  return prisma.user.findUnique({ where: { id } })
+  return prisma.user.findUnique({
+    where: { id },
+    include: { trips: true },
+  })
 }
 
 export async function getUserByEmail(
