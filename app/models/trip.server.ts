@@ -16,6 +16,8 @@ export async function getTripById(id: Trip[`id`]) {
     },
     include: {
       stops: true,
+      decider: {},
+      attendees: {},
     },
   })
 }
