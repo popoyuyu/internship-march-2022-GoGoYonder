@@ -59,7 +59,7 @@ async function seed() {
     }),
   )
   await Promise.all(
-    getDeciders().map((decider) => {
+    getDecider().map((decider) => {
       return prisma.decider.create({ data: decider })
     }),
   )
@@ -115,6 +115,7 @@ const getTrips = (): Trip[] => {
   return [
     {
       id: `cl1xvci7b0050qz1d3o01tyg1`,
+      deciderId: `cl2pcwfus01059ooyle0i7l1r`,
       ownerId: `cl1xv8xul0010qz1dmv2l3jqy`,
       startDate: null,
       endDate: null,
@@ -128,6 +129,7 @@ const getTrips = (): Trip[] => {
     },
     {
       id: `cl1xvd63a0068qz1dbhh557su`,
+      deciderId: `cl2pcviv900719ooyfr13urm4`,
       ownerId: `cl1ihz4wr02309c1dbp8gi835`,
       startDate: null,
       endDate: null,
@@ -141,6 +143,7 @@ const getTrips = (): Trip[] => {
     },
     {
       id: `cl1xvdwqy0085qz1dfy8rscc9`,
+      deciderId: `cl2pcvepo00489ooy1y7176bb`,
       ownerId: `cl1xvbab00028qz1d1e0u5h63`,
       startDate: null,
       endDate: null,
@@ -154,6 +157,7 @@ const getTrips = (): Trip[] => {
     },
     {
       id: `cl1xwxl5a0024jj1d78omqrta`,
+      deciderId: `cl2pcur0g00199ooynzsn6q5f`,
       ownerId: `cl1xwwtyf0007jj1dl1yiycqb`,
       startDate: null,
       endDate: null,
@@ -267,20 +271,12 @@ const getAttendees = (): Attendee[] => {
     },
   ]
 }
-const getDeciders = (): Pick<Decider, `tripId`>[] => {
+const getDecider = (): Pick<Decider, `id` | `tripId`>[] => {
   return [
-    {
-      tripId: `cl1xvci7b0050qz1d3o01tyg1`,
-    },
-    {
-      tripId: `cl1xvd63a0068qz1dbhh557su`,
-    },
-    {
-      tripId: `cl1xvdwqy0085qz1dfy8rscc9`,
-    },
-    {
-      tripId: `cl1xwxl5a0024jj1d78omqrta`,
-    },
+    { id: `cl2pcwfus01059ooyle0i7l1r`, tripId: `cl1xvci7b0050qz1d3o01tyg1` },
+    { id: `cl2pcviv900719ooyfr13urm4`, tripId: `cl1xvd63a0068qz1dbhh557su` },
+    { id: `cl2pcvepo00489ooy1y7176bb`, tripId: `cl1xvdwqy0085qz1dfy8rscc9` },
+    { id: `cl2pcur0g00199ooynzsn6q5f`, tripId: `cl1xwxl5a0024jj1d78omqrta` },
   ]
 }
 
