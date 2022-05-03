@@ -64,6 +64,7 @@ const ExpenseLayout: FC = () => {
 
   const { tripId } = useParams()
 
+  const defaultAvatar = `public/img/default-avatar.jpg`
   const rectangleStyles = [`flex`, `mx-2`]
   const avatarDivStyles = [`ml-2`, `flex`]
   const titleDivStyles = [`ml-4`, `text-left`, `flex-1`]
@@ -87,12 +88,7 @@ const ExpenseLayout: FC = () => {
               <li key={expense.id}>
                 <RoundedRectangle className={join(...rectangleStyles)}>
                   <div className={join(...avatarDivStyles)}>
-                    <Avatar
-                      src={
-                        attendee.user.avatarUrl ||
-                        `public/img/default-avatar.jpg`
-                      }
-                    />
+                    <Avatar src={attendee.user.avatarUrl || defaultAvatar} />
                   </div>
                   <div className={join(...titleDivStyles)}>
                     <TitleText>{attendee.user.userName}</TitleText>
@@ -120,12 +116,7 @@ const ExpenseLayout: FC = () => {
               <li>
                 <RoundedRectangle className={join(...rectangleStyles)}>
                   <div className={join(...avatarDivStyles)}>
-                    <Avatar
-                      src={
-                        attendee.user.avatarUrl ||
-                        `public/img/default-avatar.jpg`
-                      }
-                    />
+                    <Avatar src={attendee.user.avatarUrl || defaultAvatar} />
                   </div>
                   <div className={join(...titleDivStyles)}>
                     <TitleText>{attendee.user.userName}</TitleText>
