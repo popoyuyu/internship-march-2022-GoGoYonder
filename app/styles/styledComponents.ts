@@ -44,7 +44,18 @@ export const SubHeader = styled.h3`
   color: #ffffff;
 `
 
-export const MapInputField = styled.input`
+export const SearchBar = styled.input`
+  font-family: "Lato";
+  padding-left: 3em;
+  background: #6b767c
+    url("data:image/svg+xml,%3Csvg width='16' height='15' viewBox='0 0 16 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.05465 12.5555C10.5651 12.5555 13.4109 9.96875 13.4109 6.77777C13.4109 3.5868 10.5651 1 7.05465 1C3.54417 1 0.698364 3.5868 0.698364 6.77777C0.698364 9.96875 3.54417 12.5555 7.05465 12.5555Z' stroke='white' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M15.0001 14L11.5438 10.8583' stroke='white' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat 13px center;
+  border-radius: 10px;
+  &::placeholder {
+    color: white;
+  }
+`
+export const MapInputField = styled(SearchBar)`
   font-family: "Lato";
   width: 342px;
   height: 39px;
@@ -68,27 +79,26 @@ export const InputLabel = styled.label`
   color: #ffffff;
 `
 export const InputField = styled.input`
-  width: 315px;
-  weight: semi-bold;
-  height: 55px;
-  color: black;
-  padding .5em;
-  border-radius: 15px;`
+width: 315px;
+weight: semi-bold;
+height: 55px;
+color: black;
+padding .5em;
+border-radius: 15px;`
 
 export const InputFieldMid = styled.input`
-  width: 276px;
-  weight: semi-bold;
-  height: 55px;
-  color: black;
-  padding .5em;
-  border-radius: 15px;`
+width: 276px;
+weight: semi-bold;
+height: 55px;
+color: black;
+padding .5em;
+border-radius: 15px;`
 
 export const Avatar = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
 `
-
 export const RoundedRectangle = styled.div`
   height: max-content;
   margin: auto;
@@ -99,6 +109,35 @@ export const RoundedRectangle = styled.div`
   padding: 2em;
   font-size: 0.5em;
 `
+export const RoundedRectangleNoMargin = styled.div`
+  height: max-content;
+  background: #52796f;
+  border-radius: 13px;
+  color: #ffffff;
+  padding: 2em;
+  font-size: 0.5em;
+  margin-bottom: 2em;
+`
+export const WhiteRoundedRectangle = styled.div`
+  height: max-content;
+  margin: auto;
+  margin-top: 1em;
+  background: #ffffff;
+  border-radius: 13px;
+  color: #2f3e46;
+  font-size: 0.5em;
+`
+export const BottomLineDiv = styled.div`
+  height: max-content;
+  margin: auto;
+  margin-top: 1em;
+  padding: 2em;
+  font-size: 0.5em;
+  border-bottom-style: solid;
+  border-bottom-color: rgba(255, 255, 255, 0.19);
+  border-bottom-width: 1px;
+`
+
 export const ModalBackdrop = styled.div`
   position: fixed;
   top: 0;
@@ -129,6 +168,12 @@ export const TitleText = styled.h3`
   font-size: 16px;
   color: #ffffff;
 `
+export const TitleTextDark = styled.h3`
+  font-family: Lato;
+  font-style: SemiBold;
+  font-size: 16px;
+  color: #2a3840;
+`
 export const CostDescription = styled.h4`
   font-family: Lato;
   font-style: SemiBold;
@@ -156,6 +201,12 @@ export const TripBtn = styled(MainBtn)`
   font-family: "Lato";
   font-weight: 700;
   font-size: 16px;
+`
+export const DangerBtn = styled(TripBtn)`
+  background: #2f3e46;
+  color: #ff5e03;
+  margin-bottom: 1rem;
+  margin-top: 0px;
 `
 export const TripLiContainer = styled.li`
   background: #52796f;
