@@ -2,8 +2,10 @@ import type { FC } from "react"
 
 import { Link, useLoaderData, Form } from "remix"
 
-import { Header, SubHeader } from "~/styles/styledComponents"
+import { AddButtonText, Header, SubHeader } from "~/styles/styledComponents"
+import SvgAddButton from "~/styles/SVGR/SvgAddButton"
 import SvgBackButton from "~/styles/SVGR/SvgBackButton"
+import SvgGear from "~/styles/SVGR/SvgGear"
 import { join } from "~/utils"
 
 import NavBar from "../navbar"
@@ -15,6 +17,9 @@ const Index: FC = () => {
         <SvgBackButton />
       </div>
       <Header>Your Account</Header>
+      <span className={join(`flex`, `m-8`)}>
+        <SvgGear />
+      </span>
       <div>
         <p>Total Trips:</p>
         <p>Member Since:</p>
