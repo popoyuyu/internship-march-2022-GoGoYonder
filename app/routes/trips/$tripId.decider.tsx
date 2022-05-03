@@ -23,7 +23,14 @@ import {
   updateDeciderByDeciderId,
 } from "~/models/decider.server"
 import { getTripById } from "~/models/trip.server"
-import { RoundedRectangle, WideButton } from "~/styles/styledComponents"
+import {
+  RoundedRectangle,
+  WideButton,
+  Avatar,
+  TitleText,
+  CostDescription,
+  DeciderDescription,
+} from "~/styles/styledComponents"
 import SvgBackButton from "~/styles/SVGR/SvgBackButton"
 import { join } from "~/utils"
 
@@ -32,8 +39,7 @@ type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 const getLoaderData = async (params: Params<string>) => {
   invariant(params.tripId, `trips required`)
   const decider = await getDeciderByTripId(params.tripId)
-  const attendee = await getAttendeeNames(params.tripId)
-  return { decider, attendee }
+  return decider
 }
 export const loader: LoaderFunction = async ({ params }) => {
   return json<LoaderData>(await getLoaderData(params))
@@ -41,8 +47,8 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 type decider =
   | {
-      tripId: string | null
-      result: string | null
+      winnerAvatarUrl: string | null
+      winner: string | null
     }
   | undefined
 
@@ -68,17 +74,16 @@ export const action: ActionFunction = async ({ request, params }) => {
 
 const Decider: FC = () => {
   const data = useLoaderData<LoaderData>()
-  console.log(data)
-  console.log(data.decider)
+  const date = data?.updatedAt ? new Date(data?.updatedAt) : new Date(0)
+  const day = date?.toLocaleDateString()
+  const time = date?.toLocaleTimeString()
 
-  const randomAttendee = data.attendee.map((attendee) => attendee.user)
   const { tripId } = useParams()
-
-  console.log(randomAttendee)
 
   const defaultAvatar = `public/img/default-avatar.jpg`
   const rectangleStyles = [`flex`, `mx-2`]
   const avatarDivStyles = [`ml-2`, `flex`]
+  const titleDivStyles = [`ml-4`, `text-left`, `flex-1`]
 
   return (
     <div>
@@ -89,17 +94,24 @@ const Decider: FC = () => {
           </div>
         </Link>
       </div>
-      <div>
-        {/* {` `}
-        <RoundedRectangle className={join(...rectangleStyles)}>
-          <div className={join(...avatarDivStyles)}>
-            <Avatar src={attendee.user.avatarUrl || defaultAvatar} />
-          </div>
-          <div className={join(...titleDivStyles)}>
-            <TitleText>{data?.result}</TitleText>
-          </div>
-        </RoundedRectangle> */}
-      </div>
+      <DeciderDescription>
+        <p>
+          The Decider will select a traveler in this trip at random to choose the
+          next activity.
+        </p>
+      </DeciderDescription>
+      <RoundedRectangle className={join(...rectangleStyles)}>
+        <div className={join(...avatarDivStyles)}>
+          <Avatar src={data?.winnerAvatarUrl || defaultAvatar} />
+        </div>
+        <div className={join(...titleDivStyles)}>
+          <TitleText>{data?.winner}</TitleText>
+          <CostDescription>
+            {day}
+            {time}
+          </CostDescription>
+        </div>
+      </RoundedRectangle>
 
       <div>
         <Form method="post">
