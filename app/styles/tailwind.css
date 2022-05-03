@@ -580,16 +580,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.25rem;
 }
 
+.ml-8 {
+  margin-left: 2rem;
+}
+
 .ml-4 {
   margin-left: 1rem;
 }
 
 .mr-2 {
   margin-right: 0.5rem;
-}
-
-.ml-8 {
-  margin-left: 2rem;
 }
 
 .mr-64 {

@@ -11,6 +11,12 @@ export const MainBtn = styled.button`
   background: #cad2c5;
   border-radius: 15px;
 `
+export const WideButton = styled.button`
+  width: 315px;
+  height: 56px;
+  background: #cad2c5;
+  border-radius: 15px;
+`
 export const ClearBtn = styled(MainBtn)`
   box-sizing: border-box;
   background: rgba(202, 210, 197, 0);

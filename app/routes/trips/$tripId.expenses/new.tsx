@@ -124,6 +124,15 @@ const NewExpense: FC = () => {
               </p>
             </InputLabel>
           </p>
+          {/* <div className={join(`absolute`, `bg-[rgba(255,0,0)]`, `flex`)}>
+            <SvgBackButton />
+            <input
+              className={join(`bg-transparent`)}
+              type="text"
+              name="total"
+              placeholder="Search"
+            />
+          </div> */}
           {actionData?.userId && outputError(actionData.userId)}
           {actionData?.tripId && outputError(actionData.tripId)}
           {actionData?.inputDescription &&
