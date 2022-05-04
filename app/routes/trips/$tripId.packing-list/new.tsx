@@ -119,12 +119,12 @@ const AddItem: FC = () => {
 
       <Modal className={join(...centered)}>
 
-      <div
-        className={join(`pt-2`)}
-        onClick={() => navigate(`/trips/${params.tripId}/packing-list`)}
-      >
-        <SvgSwipeButton />
-      </div>
+        <div
+          className={join(`pt-2`)}
+          onClick={() => navigate(`/trips/${params.tripId}/packing-list`)}
+        >
+          <SvgSwipeButton />
+        </div>
 
 
         <AddButtonText className={join(`mr-48`, `p-8`)}>
@@ -132,7 +132,7 @@ const AddItem: FC = () => {
         </AddButtonText>
 
 
-       
+
 
         <Form method="post">
           <p>

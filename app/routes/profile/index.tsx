@@ -4,11 +4,9 @@ import type { LoaderFunction } from "remix"
 import { Outlet, json, useLoaderData, Link } from "remix"
 
 import type { Trip } from "@prisma/client"
-import { User } from "@prisma/client"
-import moment from "moment"
 
 import { getUserById } from "~/models/user.server"
-import { getUser, requireUserId } from "~/session.server"
+import { requireUserId } from "~/session.server"
 import {
   Header,
   SubHeader,
@@ -24,22 +22,12 @@ import SvgProfileDial from "~/styles/SVGR/SvgProfileDial"
 import { join } from "~/utils"
 
 import NavBar from "../navbar"
-import EditProfile from "./edit"
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
-// const getLoaderData = async (request: Request) => {
-//   const userId = await requireUserId(request)
-//   console.log(userId)
-//   const user = await getUserById(userId)
-//   return { user: user }
-// }
-
 const getLoaderData = async (request: Request) => {
   const userId = await requireUserId(request)
-  // console.log(userId)
   const user = await getUserById(userId)
-  // console.log(user)
   return { user: user }
 }
 
@@ -50,13 +38,8 @@ export const loader: LoaderFunction = async ({ request }) => {
 const Index: FC = () => {
   //Main Data
   const data = useLoaderData<LoaderData>()
-  // console.log(data)
   const user = data?.user
-  // console.log(`=======`)
-  // console.log(user)
-  // console.log(`=======`)
   const trips = data?.user?.trips
-  // console.log(trips)
 
   //Dates
   const convertStringToDate = (inputDate: string) => {
@@ -70,17 +53,18 @@ const Index: FC = () => {
   const attendeesCount = attendees.length
 
   return (
-    <div className="flex-col place-content-center">
+    <div className="flex-col">
       <div className={join(`ml-8`)}>
         <SvgBackButton />
       </div>
 
-      <div className="flex w-full items-center justify-between">
+      <div className={join(`flex`, `justify-between`, `items-center`)}>
         <div>
           <Header>Your Account</Header>
         </div>
         <div className="mx-8">
-          <Link to={`/profile/edit`}>
+          <Outlet />
+          <Link to={`edit`}>
             <span className={join(`flex`, `m-8`)}>
               <SvgGear />
             </span>
@@ -88,11 +72,11 @@ const Index: FC = () => {
         </div>
       </div>
 
-      <div className="flex-col">
-        <div>
+      <div className={join(`container`, `mx-auto`, `-space-y-40`)}>
+        <div className={join(`flex`, `justify-center`, `mb-10`)}>
           <SvgProfileDial />
         </div>
-        <div className={join(`text-center, -mt-45`)}>
+        <div className={join(`text-center`)}>
           <ProHugeNumber>{trips.length}</ProHugeNumber>
           <ProH4>Total Trips</ProH4>
           <ProBody>
@@ -102,33 +86,40 @@ const Index: FC = () => {
         </div>
       </div>
 
-      <div>
-        <SubHeader>Recent Trips</SubHeader>
-      </div>
+      <div className={join(`container`, `mx-auto`, `mt-20`)}>
+        <div className={join(`text-center`, `-ml-20`, `p-8`)}>
+          <SubHeader>Recent Trips</SubHeader>
+        </div>
 
-      <ul>
-        {trips.map((trip: Trip) => (
-          <div key={trip.id}>
-            <div className></div>
-            <ProTripImage>
-              <SvgTrip />
-            </ProTripImage>
-            <ProH4>{trip.nickName}</ProH4>
-            <ProBody>
-              {convertStringToDate(trip.startDate)}
-              {` `}
-              {trip.startDate !== null ? `–` : ``}
-              {` `}
-              {convertStringToDate(trip.endDate)}
-            </ProBody>
-            <ProBody>
-              {attendeesCount}
-              {` `}Travelers
-            </ProBody>
-          </div>
-        ))}
-      </ul>
-      <Outlet />
+        <ul>
+          {trips.map((trip: Trip) => (
+            <div
+              key={trip.id}
+              className={join(`flex`, `items-center`, `mb-20`, `justify-center`)}
+            >
+              <div className={join(`order-1`)}>
+                <ProTripImage>
+                  <SvgTrip />
+                </ProTripImage>
+              </div>
+              <div className={join(`order-2`, `ml-5`)}>
+                <ProH4>{trip.nickName}</ProH4>
+                <ProBody>
+                  {convertStringToDate(trip.startDate)}
+                  {` `}
+                  {trip.startDate !== null ? `–` : ``}
+                  {` `}
+                  {convertStringToDate(trip.endDate)}
+                </ProBody>
+                <ProBody>
+                  {attendeesCount}
+                  {` `}Travelers
+                </ProBody>
+              </div>
+            </div>
+          ))}
+        </ul>
+      </div>
 
       <NavBar />
     </div>

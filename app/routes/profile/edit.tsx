@@ -30,9 +30,7 @@ type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
 const getLoaderData = async (request: Request) => {
   const userId = await requireUserId(request)
-  // console.log(userId)
   const user = await getUserById(userId)
-  // console.log(user)
   return { user: user }
 }
 
@@ -48,18 +46,10 @@ type ActionData =
   }
   | undefined
 
-// export const action: ActionFunction = async ({ request }) => {
-//   const formData = await request.formData()
-//   const formUserId = formData.get(`userId`)
-//   const formEmail = formData.get(`email`)
-//   const formUserName = formData.get(`userName`)
-//   console.log(`================ ======`)
-//   console.log(formUserId, formEmail, formUserName)
-//   console.log(`================ ======`)
+
 
 export const action: ActionFunction = async ({ request }) => {
   const userId = await requireUserId(request)
-  // console.log(userId)
   const user = await getUserById(userId)
   const existingEmail = user?.email
   const existingUserName = user?.userName
@@ -67,36 +57,11 @@ export const action: ActionFunction = async ({ request }) => {
   const formUserId = formData.get(`userId`)
 
   const formEmail = formData.get(`email`)
-  console.log(`typeof formEmail`)
-  console.log(typeof formEmail)
+
   const formUserName = formData.get(`userName`)
   const finalEmail = formEmail === `` ? existingEmail : formEmail
-  // const finalEmail = formEmail === `` ? console.log(`email string is empty`) : console.log(`email string is full`)
-  // const finalEmail = formEmail === `` ? console.log(`email string is empty`) : console.log(`email string is full`)
   const finalUserName = formUserName === `` ? existingUserName : formUserName
-  console.log(`================ ======`)
-  console.log(`existingEmail`)
-  console.log(existingEmail)
-  console.log(`existingUserName`)
-  console.log(existingUserName)
-  console.log(`================ ======`)
-  console.log(`================ ======`)
-  console.log(`finalEmail`)
-  console.log(finalEmail)
-  console.log(`finalUserName`)
-  console.log(finalUserName)
-  console.log(`================ ======`)
 
-  // const errors: ActionData = {
-  //   userId: formUserId ? null : `userId is required.`,
-  //   email: formEmail ? null : `email is required`,
-  //   userName: formUserName ? null : `username is required`,
-  // }
-
-  // const hasErrors = Object.values(errors).some((errorMessage) => errorMessage)
-  // if (hasErrors) {
-  //   return json<ActionData>(errors)
-  // }
 
   invariant(typeof formUserId === `string`, `userId must be a string`)
   invariant(typeof finalEmail === `string`, `email must be a string`)
@@ -114,8 +79,6 @@ const EditProfile: FC = () => {
   const data = useLoaderData()
   const user = data?.user
   const userId = user.id
-  const userEmail = user.email
-  const userUserName = user.userName
 
 
   const centered = [`flex`, `items-center`, `justify-center`, `flex-col`]
@@ -143,25 +106,33 @@ const EditProfile: FC = () => {
 
 
         <Form method="post">
-          <p>
-            <input type="hidden" name="userId" value={userId} />
+          <input type="hidden" name="userId" value={userId} />
+          <div>
 
-            <InputLabel>
-              Email Address:{` `}
+            <InputLabel className={join(`mr-56`)}>
+              Email Address{` `}
               {errors?.email ? (
                 <em className="text-red-600">{errors.email}</em>
               ) : null}
-              <InputFieldMid type="text" name="email" />
-            </InputLabel>
+              <p>
 
+                <InputFieldMid type="text" name="email" />
+              </p>
+            </InputLabel>
+          </div>
+          <div>
             <InputLabel>
-              Username:{` `}
+              Username{` `}
               {errors?.userName ? (
                 <em className="text-red-600">{errors.userName}</em>
               ) : null}
-              <InputFieldMid type="text" name="userName" />
+              <p>
+
+                <InputFieldMid type="text" name="userName" />
+              </p>
             </InputLabel>
-          </p>
+          </div>
+
 
           <p className={join(`mt-8`, `pb-16`)}>
             <MainBtn type="submit">
@@ -178,6 +149,4 @@ const EditProfile: FC = () => {
   )
 }
 
-
-// value={userId}
 export default EditProfile

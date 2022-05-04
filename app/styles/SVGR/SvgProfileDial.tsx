@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
-import * as React from "react"
 import type { FC } from "react"
 
-const SvgAddButton: FC = (props) => (
+const SvgProfileDial: FC = (props) => (
   <svg
     width="309"
     height="233"
@@ -39,4 +38,4 @@ const SvgAddButton: FC = (props) => (
   </svg>
 )
 
-export default SvgAddButton
+export default SvgProfileDial
