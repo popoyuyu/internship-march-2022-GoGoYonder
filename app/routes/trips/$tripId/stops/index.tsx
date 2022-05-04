@@ -50,7 +50,7 @@ const Stops: FC = () => {
       {data.stops.map((stop: FormattedStop) => (
         <RoundedRectangle key={stop.id} className={join(`flex`)}>
           <img
-            src={stop.apiResult?.icon}
+            src={stop.apiResult?.icon.toString()}
             className={join(
               `flex`,
               `items-center`,
