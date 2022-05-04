@@ -12,6 +12,13 @@ export const MainBtn = styled.button`
   background: #cad2c5;
   border-radius: 15px;
 `
+export const WideButton = styled.button`
+  width: 315px;
+  height: 56px;
+  margin: auto;
+  background: #cad2c5;
+  border-radius: 15px;
+`
 export const ClearBtn = styled(MainBtn)`
   box-sizing: border-box;
   background: rgba(202, 210, 197, 0);
@@ -36,6 +43,7 @@ export const Header = styled.h1`
 `
 
 export const SubHeader = styled.h3`
+  margin: auto;
   font-family: "Lato";
   font-style: normal;
   font-weight: 600;
@@ -139,6 +147,15 @@ export const BottomLineDiv = styled.div`
   border-bottom-width: 1px;
 `
 
+export const DeciderDescription = styled.div`
+  height: max-content;
+  margin: auto;
+  margin-top: 1em;
+  padding: 1em;
+  background: rgba(255, 255, 255, 0.29);
+  color: #e4eddf;
+  border-radius: 8px;
+`
 export const ModalBackdrop = styled.div`
   position: fixed;
   top: 0;

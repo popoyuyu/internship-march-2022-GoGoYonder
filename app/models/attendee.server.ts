@@ -27,6 +27,17 @@ export async function getAttendeesByTripId(tripId: Trip[`id`]) {
   })
 }
 
+export async function getAttendeeNames(tripId: Trip[`id`]) {
+  return prisma.attendee.findMany({
+    where: {
+      tripId: tripId,
+    },
+    include: {
+      user: {},
+    },
+  })
+}
+
 export async function getAttendeeById(
   tripId: Attendee[`tripId`],
   userId: Attendee[`userId`],
