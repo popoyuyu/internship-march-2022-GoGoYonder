@@ -128,12 +128,12 @@ const Index: FC = () => {
         {data.trips.pending.map((trip) => (
           <TripLiContainer key={trip.id}>
             <TripLiImage src="https://images.unsplash.com/photo-1541570213932-8cd806e3f8f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHJvYWQlMjB0cmlwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60" />
-            <TripLiTitle>
+            <TripLiDetail>
               {trip.stops.find((s) => s.index == 0)?.apiResult?.name || `TBD`}
               <span className="mx-5">→</span>
               {trip.stops.find((s) => s.index == trip.stops.length - 1)
                 ?.apiResult?.name || `TBD`}
-            </TripLiTitle>
+            </TripLiDetail>
             <TripHr />
             <TripLiFlex>
               <TripLiGroup>Starts</TripLiGroup>
@@ -170,12 +170,13 @@ const Index: FC = () => {
           <TripLiContainer key={trip.id}>
             <Link to={trip.id}>
               <TripLiImage src="https://images.unsplash.com/photo-1541570213932-8cd806e3f8f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHJvYWQlMjB0cmlwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60" />
-              <TripLiTitle>
+              <TripLiTitle>{trip.nickName}</TripLiTitle>
+              <TripLiDetail>
                 {trip.stops.find((s) => s.index == 0)?.apiResult?.name || `TBD`}
                 <span className="mx-5">→</span>
                 {trip.stops.find((s) => s.index == trip.stops.length - 1)
                   ?.apiResult?.name || `TBD`}
-              </TripLiTitle>
+              </TripLiDetail>
               <TripHr />
               <TripLiFlex>
                 <TripLiGroup>Starts</TripLiGroup>

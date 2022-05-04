@@ -1,5 +1,6 @@
 import { Link } from "remix"
 
+import { ComboboxInput } from "@reach/combobox"
 import styled from "styled-components"
 
 // font-family: 'Lato', sans-serif;
@@ -55,7 +56,7 @@ export const SearchBar = styled.input`
     color: white;
   }
 `
-export const MapInputField = styled(SearchBar)`
+export const MapInputField = styled(ComboboxInput)`
   font-family: "Lato";
   width: 342px;
   height: 39px;
@@ -198,6 +199,7 @@ export const ErrorDiv = styled.div`
 export const TripBtn = styled(MainBtn)`
   width: 90%;
   margin: 0.5em 0;
+  color: #2f3e46;
   font-family: "Lato";
   font-weight: 700;
   font-size: 16px;
@@ -207,6 +209,8 @@ export const DangerBtn = styled(TripBtn)`
   color: #ff5e03;
   margin-bottom: 1rem;
   margin-top: 0px;
+  background-[#2F3E46];
+  color: text-[#FF5E03];
 `
 export const TripLiContainer = styled.li`
   background: #52796f;

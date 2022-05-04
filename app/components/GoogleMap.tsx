@@ -45,6 +45,7 @@ const center = {
   lat: 45.5152,
   lng: -122.6784,
 }
+// These need to be decided on as a team
 const options = {
   styles: mapStyles,
   //This disables ALL base Ui, we can add back in individually what we want
@@ -60,21 +61,13 @@ const options = {
   overviewMapControl: true,
   rotateControl: true
 */
-export const links: LinksFunction = () => {
-  return [
-    {
-      rel: `stylesheet`,
-      href: `@reach/combobox/styles.css`,
-    },
-  ]
-}
-const TestMap: FC = () => {
+const Map: FC = () => {
   const data = useLoaderData()
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: data.apiKey,
     libraries: libraries,
   })
-
+  const [markers, setMarkers] = React.useState([])
   const mapRef: React.MutableRefObject<google.maps.Map | null> =
     React.useRef(null)
   const onMapLoad = React.useCallback((map) => {
@@ -124,4 +117,4 @@ const Locate: FC<LocateType> = ({ panTo }) => {
     </button>
   )
 }
-export default TestMap
+export default Map
