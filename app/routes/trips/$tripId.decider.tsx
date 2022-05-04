@@ -30,6 +30,8 @@ import {
   TitleText,
   CostDescription,
   DeciderDescription,
+  Header,
+  SubHeader,
 } from "~/styles/styledComponents"
 import SvgBackButton from "~/styles/SVGR/SvgBackButton"
 import SvgDice from "~/styles/SVGR/SvgDice"
@@ -82,28 +84,36 @@ const Decider: FC = () => {
   const { tripId } = useParams()
 
   const defaultAvatar = `public/img/default-avatar.jpg`
-  const rectangleStyles = [`flex`, `mx-2`, `width-full`]
+
+  const rectangleStyles = [`flex`, `mx-2`]
   const avatarDivStyles = [`ml-2`, `flex`]
   const titleDivStyles = [`ml-4`, `text-left`, `flex-1`]
-  const centered = [`flex`, `items-center`, `justify-center`, `flex-col`]
+  const centered = [`items-center`, `flex-col`]
+  const backButtonHeaderRow = [`flex`, `mt-12`, `mb-16`]
   const buttonContents = [`flex`, `items-center`, `justify-center`]
 
   return (
-    <div>
-      <div>
+    <div className={join(`mx-8`)}>
+      <div className={join(...backButtonHeaderRow)}>
         <Link to={`/trips/${tripId}`}>
-          <div className={join(`ml-8`)}>
+          <div className={join(`ml-2`)}>
             <SvgBackButton />
           </div>
         </Link>
+        <SubHeader>Decider</SubHeader>
       </div>
       <div className={join(...centered)}>
-        <DeciderDescription>
-          <p>
-            The Decider will select a traveler in this trip at random to choose
-            the next activity.
-          </p>
-        </DeciderDescription>
+        <div className={join(`mb-20`)}>
+          <DeciderDescription>
+            <p>
+              The Decider will select a traveler in this trip at random to choose
+              the next activity.
+            </p>
+          </DeciderDescription>
+        </div>
+        <TitleText>
+          <span className={join(`mb - 10`)}>Previous Result</span>
+        </TitleText>
         <RoundedRectangle className={join(...rectangleStyles)}>
           <div className={join(...avatarDivStyles)}>
             <Avatar src={data?.winnerAvatarUrl || defaultAvatar} />
@@ -117,7 +127,7 @@ const Decider: FC = () => {
           </div>
         </RoundedRectangle>
 
-        <div>
+        <div className={join(`mt-10`)}>
           <Form method="post">
             <WideButton type="submit" className={join(...buttonContents)}>
               <span

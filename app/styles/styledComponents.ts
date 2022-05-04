@@ -14,6 +14,7 @@ export const MainBtn = styled.button`
 export const WideButton = styled.button`
   width: 315px;
   height: 56px;
+  margin: auto;
   background: #cad2c5;
   border-radius: 15px;
 `
@@ -41,6 +42,7 @@ export const Header = styled.h1`
 `
 
 export const SubHeader = styled.h3`
+  margin: auto;
   font-family: "Lato";
   font-style: normal;
   font-weight: 600;
@@ -85,6 +87,15 @@ export const RoundedRectangle = styled.div`
   color: #ffffff;
   padding: 2em;
   font-size: 0.5em;
+`
+export const DeciderDescription = styled.div`
+  height: max-content;
+  margin: auto;
+  margin-top: 1em;
+  padding: 1em;
+  background: rgba(255, 255, 255, 0.29);
+  color: #e4eddf;
+  border-radius: 8px;
 `
 export const ModalBackdrop = styled.div`
   position: fixed;

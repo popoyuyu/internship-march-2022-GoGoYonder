@@ -30,6 +30,7 @@ import {
   AddButtonText,
   Avatar,
   CostDescription,
+  SubHeader,
 } from "~/styles/styledComponents"
 import SvgAddButton from "~/styles/SVGR/SvgAddButton"
 import SvgBackButton from "~/styles/SVGR/SvgBackButton"
@@ -68,16 +69,20 @@ const ExpenseLayout: FC = () => {
   const rectangleStyles = [`flex`, `mx-2`]
   const avatarDivStyles = [`ml-2`, `flex`]
   const titleDivStyles = [`ml-4`, `text-left`, `flex-1`]
+  const backButtonHeaderRow = [`flex`, `mt-12`, `mb-16`]
   const costAmountStyles = [`flex-1`, `text-right`, `mr-2`]
 
   return (
     <div>
-      <Link to={`/trips/${tripId}`}>
-        <div className={join(`ml-8`)}>
-          <SvgBackButton />
-        </div>
-      </Link>
-      <Header>Cost Sharing</Header>
+      <div className={join(...backButtonHeaderRow)}>
+        <Link to={`/trips/${tripId}`}>
+          <div className={join(`ml-8`)}>
+            <SvgBackButton />
+          </div>
+        </Link>
+        <SubHeader>Cost Sharing</SubHeader>
+      </div>
+
       <TitleText>
         <span className={join(`ml-8`)}>Expenses</span>
       </TitleText>
