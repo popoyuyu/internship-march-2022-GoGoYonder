@@ -57,7 +57,7 @@ model Trip {
   ownerId   String
   owner     User       @relation(name: "trips", fields: [ownerId], references: [id])
   attendees Attendee[]
-  deciderId String
+  deciderId String?
   decider   Decider[]
   stops     Stop[]
   startDate DateTime?
