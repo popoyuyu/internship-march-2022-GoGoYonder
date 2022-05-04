@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { Link } from "remix"
 
 import styled from "styled-components"
@@ -262,4 +263,14 @@ export const ProBody = styled.body`
   font-size: 12px;
   font-weight: 500;
   color: #ffffff;
+`
+export const ProTripImage = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: #84a98c;
+  border-radius: 9px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  place-content: center;
 `

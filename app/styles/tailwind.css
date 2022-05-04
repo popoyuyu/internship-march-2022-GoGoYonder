@@ -549,14 +549,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 1rem;
 }
 
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
+}
+
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .mx-5 {
@@ -589,6 +589,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 3.5rem;
 }
 
+.mr-48 {
+  margin-right: 12rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
 .ml-8 {
   margin-left: 2rem;
 }
@@ -609,16 +617,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 16rem;
 }
 
-.mr-48 {
-  margin-right: 12rem;
-}
-
 .mr-56 {
   margin-right: 14rem;
-}
-
-.mt-8 {
-  margin-top: 2rem;
 }
 
 .block {
@@ -695,6 +695,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.place-content-center {
+  place-content: center;
 }
 
 .items-center {

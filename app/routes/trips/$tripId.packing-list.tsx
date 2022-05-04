@@ -63,19 +63,6 @@ const PackingList: FC = () => {
     (item: Item) => item.isChecked !== true,
   )
   const length = uncheckedItems?.length as number
-  // const typeOf = typeof length
-  // const uncheckedAmount = () => {
-  //   if (typeof typeOf == number) {
-  //     return uncheckedItems?.length
-  //   }
-  //   return `Not a number`
-  // }
-  // invariant(uncheckedAmount, `unchecked amount must be a number`)
-  // console.log(uncheckedAmount)
-
-  // const rectangleStyles = [`mx-2`]
-  // const costAmountStyles = [`flex-1`, `text-right`, `mr-2`]
-  // const rectangleStyles = [`flex`, `mx-2`]
   return (
     <div>
       <div className={join(`ml-8`)}>
