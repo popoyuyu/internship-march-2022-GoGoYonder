@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { Link } from "remix"
 
 import { ComboboxInput } from "@reach/combobox"
@@ -9,6 +10,13 @@ import styled from "styled-components"
 export const MainBtn = styled.button`
   width: 276.07px;
   height: 56px;
+  background: #cad2c5;
+  border-radius: 15px;
+`
+export const WideButton = styled.button`
+  width: 315px;
+  height: 56px;
+  margin: auto;
   background: #cad2c5;
   border-radius: 15px;
 `
@@ -36,6 +44,7 @@ export const Header = styled.h1`
 `
 
 export const SubHeader = styled.h3`
+  margin: auto;
   font-family: "Lato";
   font-style: normal;
   font-weight: 600;
@@ -139,6 +148,15 @@ export const BottomLineDiv = styled.div`
   border-bottom-width: 1px;
 `
 
+export const DeciderDescription = styled.div`
+  height: max-content;
+  margin: auto;
+  margin-top: 1em;
+  padding: 1em;
+  background: rgba(255, 255, 255, 0.29);
+  color: #e4eddf;
+  border-radius: 8px;
+`
 export const ModalBackdrop = styled.div`
   position: fixed;
   top: 0;
@@ -260,4 +278,36 @@ export const TripLiDetail = styled.h2`
 export const NavButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+`
+export const ProHugeNumber = styled.h3`
+  font-size: 3em;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 3px;
+`
+export const ProH4 = styled.h4`
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+`
+export const ProH5 = styled.h5`
+  font-size: 3em;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 3px;
+`
+export const ProBody = styled.body`
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+`
+export const ProTripImage = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: #84a98c;
+  border-radius: 9px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  place-content: center;
 `
