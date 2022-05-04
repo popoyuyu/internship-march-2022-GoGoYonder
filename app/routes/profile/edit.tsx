@@ -48,44 +48,74 @@ type ActionData =
   }
   | undefined
 
+// export const action: ActionFunction = async ({ request }) => {
+//   const formData = await request.formData()
+//   const formUserId = formData.get(`userId`)
+//   const formEmail = formData.get(`email`)
+//   const formUserName = formData.get(`userName`)
+//   console.log(`================ ======`)
+//   console.log(formUserId, formEmail, formUserName)
+//   console.log(`================ ======`)
+
 export const action: ActionFunction = async ({ request }) => {
+  const userId = await requireUserId(request)
+  // console.log(userId)
+  const user = await getUserById(userId)
+  const existingEmail = user?.email
+  const existingUserName = user?.userName
   const formData = await request.formData()
   const formUserId = formData.get(`userId`)
+
   const formEmail = formData.get(`email`)
+  console.log(`typeof formEmail`)
+  console.log(typeof formEmail)
   const formUserName = formData.get(`userName`)
+  const finalEmail = formEmail === `` ? existingEmail : formEmail
+  // const finalEmail = formEmail === `` ? console.log(`email string is empty`) : console.log(`email string is full`)
+  // const finalEmail = formEmail === `` ? console.log(`email string is empty`) : console.log(`email string is full`)
+  const finalUserName = formUserName === `` ? existingUserName : formUserName
   console.log(`================ ======`)
-  console.log(formUserId, formEmail, formUserName)
+  console.log(`existingEmail`)
+  console.log(existingEmail)
+  console.log(`existingUserName`)
+  console.log(existingUserName)
+  console.log(`================ ======`)
+  console.log(`================ ======`)
+  console.log(`finalEmail`)
+  console.log(finalEmail)
+  console.log(`finalUserName`)
+  console.log(finalUserName)
   console.log(`================ ======`)
 
-  const errors: ActionData = {
-    userId: formUserId ? null : `userId is required.`,
-    email: formEmail ? null : `email is required`,
-    userName: formUserName ? null : `username is required`,
-  }
+  // const errors: ActionData = {
+  //   userId: formUserId ? null : `userId is required.`,
+  //   email: formEmail ? null : `email is required`,
+  //   userName: formUserName ? null : `username is required`,
+  // }
 
-  const hasErrors = Object.values(errors).some((errorMessage) => errorMessage)
-  if (hasErrors) {
-    return json<ActionData>(errors)
-  }
+  // const hasErrors = Object.values(errors).some((errorMessage) => errorMessage)
+  // if (hasErrors) {
+  //   return json<ActionData>(errors)
+  // }
 
   invariant(typeof formUserId === `string`, `userId must be a string`)
-  invariant(typeof formEmail === `string`, `email must be a string`)
-  invariant(typeof formUserName === `string`, `username must be a string`)
+  invariant(typeof finalEmail === `string`, `email must be a string`)
+  invariant(typeof finalUserName === `string`, `username must be a string`)
 
 
-  await updateUserById(formUserId, formEmail, formUserName)
+  await updateUserById(formUserId, finalEmail, finalUserName)
 
   return redirect(`/profile`)
 }
 
 const EditProfile: FC = () => {
-  const data = useLoaderData()
   const errors = useActionData()
   const navigate = useNavigate()
+  const data = useLoaderData()
   const user = data?.user
   const userId = user.id
-  // const userEmail = user.email
-  // const userUserName = user.userName
+  const userEmail = user.email
+  const userUserName = user.userName
 
 
   const centered = [`flex`, `items-center`, `justify-center`, `flex-col`]
