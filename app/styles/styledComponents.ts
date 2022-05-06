@@ -360,3 +360,10 @@ export const ProfileFormSubmitBtn = styled.button`
   margin-left: 5px;
   width: 135px;
 `
+export const ProfileAvatarMain = styled.img`
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background-color: green;
+  border: 2px solid #ffffff;
+`

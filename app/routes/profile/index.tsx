@@ -1,12 +1,14 @@
+/* eslint-disable max-len */
 import type { FC } from "react"
 
 import type { LoaderFunction } from "remix"
 import { Outlet, json, useLoaderData, Link, Form } from "remix"
 
 import { User } from "@prisma/client"
-import type { Trip } from "@prisma/client"
+import type { Trip, Attendee } from "@prisma/client"
 
 import { getAttendeesByUserId } from "~/models/attendee.server"
+import { getTripById } from "~/models/trip.server"
 import { getUserById } from "~/models/user.server"
 import { requireUserId } from "~/session.server"
 import {
@@ -18,6 +20,7 @@ import {
   ProBody,
   ProTripImage,
   MainBtn,
+  ProfileAvatarMain,
 } from "~/styles/styledComponents"
 import SvgBackButton from "~/styles/SVGR/SvgBackButton"
 import SvgGear from "~/styles/SVGR/SvgGear"
@@ -32,8 +35,17 @@ type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 const getLoaderData = async (request: Request) => {
   const userId = await requireUserId(request)
   const user = await getUserById(userId)
-  const attendeeObject = await getAttendeesByUserId(userId)
-  return { user: user, attendee: attendeeObject }
+  const attendeeTrips = user.attendees
+  // console.log(attendeeTrips[0].tripId)
+  //--------------
+  const tripList = attendeeTrips.map(async (item: Attendee) => {
+    await getTripById(item.tripId)
+  })
+  // console.log(tripList)
+
+  //----------------
+  return { user: user, trips: tripList }
+  // return { user: user }
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -43,17 +55,23 @@ export const loader: LoaderFunction = async ({ request }) => {
 const Index: FC = () => {
   //-----------
   //NEED:
-  //-USER avatar url
-  //-USER.trips OR .attendees - number & list of total trips
-  //-USER created date
-  //-TRIP trip details from .map (user.trip returns only trips user owns)
-  //-^cont. map through TRIPs from ATTENDEES list
+  //X (data.user)-USER avatar url
+  //-USER.trips OR .attendees - list of trip objects (with details) --> GET TRIP BY ID AND RETURN IN LOADER
   //------------
+
   //Main Data
   const data = useLoaderData<LoaderData>()
+  // console.log(data)
+  console.log(`===========`)
+  console.log(data.user)
+  console.log(`===========`)
+  console.log(data.trips[0])
   // const user = data?.user
   const trips = data?.user?.trips
-  console.log(data?.user?.attendees)
+
+  //avatar
+  const avatar = data.user?.avatarUrl
+  console.log(avatar)
 
   //Dates
   const convertStringToDate = (inputDate: string) => {
@@ -106,21 +124,28 @@ const Index: FC = () => {
           </div>
         </div>
 
-        <div className={join(`container`, `mx-auto`, `-space-y-40`)}>
+        <div className={join(`container`, `mx-auto`, `-space-y-60`)}>
           <div className={join(`flex`, `justify-center`, `mb-10`)}>
             <SvgProfileDial />
           </div>
-          <div className={join(`text-center`)}>
-            <ProHugeNumber>{trips.length}</ProHugeNumber>
-            <ProH4>Total Trips</ProH4>
-            <ProBody>
-              Member Since{` `}
-              {profileCreatedDate}
-            </ProBody>
+          <div
+            className={join(`flex-col`, `text-center`, `justify-content-center`)}
+          >
+            <div className={join(`flex`, `justify-center`, `pt-6`)}>
+              <ProfileAvatarMain src={avatar} />
+            </div>
+            <div>
+              <ProHugeNumber>{attendees.length}</ProHugeNumber>
+              <ProH4>Total Trips</ProH4>
+              <ProBody>
+                Member Since{` `}
+                {profileCreatedDate}
+              </ProBody>
+            </div>
           </div>
         </div>
 
-        <div className={join(`container`, `mx-auto`, `mt-20`)}>
+        <div className={join(`container`, `mx-auto`, `mt-8`)}>
           <div className={join(`text-center`, `-ml-20`, `p-8`)}>
             <SubHeader>Recent Trips</SubHeader>
           </div>
