@@ -16,12 +16,14 @@ import { getUserId, requireUserId } from "~/session.server"
 import {
   AddButtonText,
   Header,
+  HomePageImg,
   InputField,
+  PhotoOverlay,
   SideBySideInputs,
   TitleText,
   WideButton,
 } from "~/styles/styledComponents"
-import { join, formatTrip } from "~/utils"
+import { TripWithFormattedStops, join, formatTrip } from "~/utils"
 
 import NavBar from "./navbar"
 
@@ -31,13 +33,18 @@ const getLoaderData = async (request: Request) => {
   const userId = await getUserId(request)
   invariant(userId, `userId is required`)
   const upcomingTrip = await getUpcomingTripByUserId(userId)
-  invariant(upcomingTrip, `must have upcomingTrip`)
+  if (!upcomingTrip) {
+    return null
+  }
   const trip = formatTrip(upcomingTrip)
-
   return trip
 }
 export const loader: LoaderFunction = async ({ request }) => {
-  return json<LoaderData>(await getLoaderData(request))
+  const data = await getLoaderData(request)
+  if (data === null) {
+    return null
+  }
+  return json<LoaderData>(data)
 }
 
 type ActionData =
@@ -79,8 +86,8 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 const Home: FC = () => {
-  const data = useLoaderData<LoaderData>()
-  const trip = data
+  const trip = useLoaderData<LoaderData>()
+  const defaultPhoto = `public/img/dashboard.jpg`
 
   console.log(trip)
 
@@ -110,9 +117,9 @@ const Home: FC = () => {
           </p>
           <div className={join(...inputGrid)}>
             <AddButtonText>Start Date</AddButtonText>
-            <input type="date" name="startDate" />
+            <InputField type="date" name="startDate" />
             <AddButtonText>End Date</AddButtonText>
-            <input type="date" name="endDate" />
+            <InputField type="date" name="endDate" />
           </div>
           {/* <div className={join(...inputGrid)}>
             <AddButtonText>Start Location</AddButtonText>
@@ -130,7 +137,13 @@ const Home: FC = () => {
           <span className={join(`ml-8`)}>Current Trip</span>
         </TitleText>
       </div>
-      <TripView trip={trip} />
+      {!trip && (
+        <div>
+          <PhotoOverlay />
+          <HomePageImg src={defaultPhoto} />
+        </div>
+      )}
+      {trip && <TripView trip={trip} />}
       <NavBar />
     </div>
   )

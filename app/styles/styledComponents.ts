@@ -112,6 +112,19 @@ export const Avatar = styled.img`
   height: 50px;
   border-radius: 50%;
 `
+export const HomePageImg = styled.img`
+  width: 100%;
+  height: max-content;
+  margin: auto;
+  border-radius: 15px;
+`
+export const PhotoOverlay = styled.div`
+width: 100%;
+height: max-content;
+margin: auto;
+background:background: rgba(11, 26, 7, 0.46);
+border-radius: 15px
+`
 export const RoundedRectangle = styled.div`
   height: max-content;
   margin: auto;

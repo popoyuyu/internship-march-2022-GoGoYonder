@@ -28,7 +28,7 @@ const TripView: FC<TripViewProps> = ({ trip }) => {
     <div>
       <ul>
         <TripLiContainer key={trip.id}>
-          <Link to={trip.id}>
+          <Link to={`/trips/${trip.id}`}>
             <TripLiImage src="https://images.unsplash.com/photo-1541570213932-8cd806e3f8f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHJvYWQlMjB0cmlwfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60" />
             <TripLiTitle>{trip.nickName}</TripLiTitle>
             <TripLiDetail>
