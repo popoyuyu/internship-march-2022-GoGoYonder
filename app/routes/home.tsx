@@ -33,11 +33,20 @@ const getLoaderData = async (request: Request) => {
   const userId = await getUserId(request)
   invariant(userId, `userId is required`)
   const upcomingTrip = await getUpcomingTripByUserId(userId)
+<<<<<<< HEAD
   if (!upcomingTrip) {
     return null
   }
   const trip = formatTrip(upcomingTrip)
   return trip
+=======
+  if (upcomingTrip) {
+    invariant(upcomingTrip, `must have upcomingTrip`)
+    const trip = formatTrip(upcomingTrip)
+    return { trip }
+  }
+  return {}
+>>>>>>> 6ab5bdbc5c7633730c9d180c42f9318bfcc5e2fa
 }
 export const loader: LoaderFunction = async ({ request }) => {
   const data = await getLoaderData(request)
@@ -74,7 +83,12 @@ export const action: ActionFunction = async ({ request }) => {
 
   invariant(typeof nickName === `string`, `nickName must be a string`)
 
-  const trip = await createTrip({ nickName, ownerId, startDate, endDate })
+  const trip = await createTrip({
+    nickName,
+    owner: { connect: { id: ownerId } },
+    startDate,
+    endDate,
+  })
 
   const tripId = trip.id
   const userId = ownerId
@@ -86,8 +100,13 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 const Home: FC = () => {
+<<<<<<< HEAD
   const trip = useLoaderData<LoaderData>()
   const defaultPhoto = `public/img/dashboard.jpg`
+=======
+  const data = useLoaderData<LoaderData>()
+  const trip = data?.trip
+>>>>>>> 6ab5bdbc5c7633730c9d180c42f9318bfcc5e2fa
 
   console.log(trip)
 
@@ -128,7 +147,7 @@ const Home: FC = () => {
             <input type="text" name="endLocation" />
           </div> */}
           <p className={join(`py-6`)}>
-            <WideButton type="submit">Let's GoGo!</WideButton>
+            <WideButton type="submit">Let&apos;s GoGo!</WideButton>
           </p>
         </Form>
       </div>
@@ -137,12 +156,15 @@ const Home: FC = () => {
           <span className={join(`ml-8`)}>Current Trip</span>
         </TitleText>
       </div>
+<<<<<<< HEAD
       {!trip && (
         <div>
           <PhotoOverlay />
           <HomePageImg src={defaultPhoto} />
         </div>
       )}
+=======
+>>>>>>> 6ab5bdbc5c7633730c9d180c42f9318bfcc5e2fa
       {trip && <TripView trip={trip} />}
       <NavBar />
     </div>
