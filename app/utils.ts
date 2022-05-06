@@ -75,6 +75,7 @@ type FormattedApiResult = {
   place_id: string
   rating: number
   user_ratings_total: number
+  formatted_address: string
 }
 
 export type FormattedStop = {

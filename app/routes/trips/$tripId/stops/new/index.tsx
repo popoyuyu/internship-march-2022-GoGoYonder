@@ -29,7 +29,7 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 const NewStopSearch: FC = () => {
-  const context = useOutletContext()
+  const context = useOutletContext<any>()
   const { tripId } = useParams()
   return (
     <div>
