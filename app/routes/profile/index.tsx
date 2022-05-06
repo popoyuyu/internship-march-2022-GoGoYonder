@@ -43,14 +43,17 @@ export const loader: LoaderFunction = async ({ request }) => {
 const Index: FC = () => {
   //-----------
   //NEED:
-  //-trips as attendee, Trip object and length of array
-  //-User info: created at
+  //-USER avatar url
+  //-USER.trips OR .attendees - number & list of total trips
+  //-USER created date
+  //-TRIP trip details from .map (user.trip returns only trips user owns)
+  //-^cont. map through TRIPs from ATTENDEES list
   //------------
   //Main Data
   const data = useLoaderData<LoaderData>()
   // const user = data?.user
   const trips = data?.user?.trips
-  // console.log(data?.user?.attendees[])
+  console.log(data?.user?.attendees)
 
   //Dates
   const convertStringToDate = (inputDate: string) => {

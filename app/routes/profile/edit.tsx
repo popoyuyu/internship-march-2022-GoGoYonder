@@ -73,17 +73,17 @@ export const action: ActionFunction = async ({ request }) => {
   invariant(typeof formUserId === `string`, `userId must be a string`)
   invariant(typeof finalEmail === `string`, `email must be a string`)
   invariant(typeof finalUserName === `string`, `username must be a string`)
-  const errors: ActionData = {
-    userId: formUserId ? null : "userId is required",
-    email: formEmail ? null : "email is required",
-    userName: formUserName ? null : "username is required",
-  }
-  const hasErrors = Object.values(errors).some(
-    (errorMessage) => errorMessage
-  );
-  if (hasErrors) {
-    return json<ActionData>(errors);
-  }
+  // const errors: ActionData = {
+  //   userId: formUserId ? null : `userId is required`,
+  //   email: formEmail ? null : `email is required`,
+  //   userName: formUserName ? null : `username is required`,
+  // }
+  // const hasErrors = Object.values(errors).some(
+  //   (errorMessage) => errorMessage
+  // )
+  // if (hasErrors) {
+  //   return json<ActionData>(errors)
+  // }
 
 
   await updateUserById(formUserId, finalEmail, finalUserName)
@@ -92,8 +92,7 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 const Edit: FC = () => {
-  const actionData = useActionData()
-  console.log(actionData.response)
+  const errors = useActionData()
   const navigate = useNavigate()
   const data = useLoaderData()
   const user = data?.user
@@ -105,8 +104,7 @@ const Edit: FC = () => {
   return (
     <div className={join(...centered)}>
 
-      <div className={join(`grid`, `grid-cols-3`, `justify-center`, `align-middle`, `w-full
-      `, `pb-20`, `mt-2`, `content-center`)}>
+      <div className={join(`grid`, `grid-cols-3`, `justify-center`, `align-middle`, `w-full`, `pb-20`, `mt-2`, `content-center`)}>
         <button
           className={join(`pt-2`, `flex`, `justify-end`, `hover:pointer-events-auto`)}
           onClick={() => navigate(`/profile`)}
@@ -136,26 +134,27 @@ const Edit: FC = () => {
 
                 <ProfileFormInputText type="email" name="email" className={join(`focus:pointer-events-none`)} />
               </div>
+            </ProfileFormInputFrame>
 
-              {actionData?.email ? (
-                <em className="text-red-600">{actionData.email}</em>
-              ) : null}
-              <ProfileFormInputFrame>
+            {errors?.email ? (
+              <em className="text-red-600">{errors.email}</em>
+            ) : null}
+            <ProfileFormInputFrame>
 
-                <div className={join(`mt-30`)}>
+              <div className={join(`mt-30`)}>
 
-                  <ProfileFormPlaceholder>Username</ProfileFormPlaceholder>
-                </div>
+                <ProfileFormPlaceholder>Username</ProfileFormPlaceholder>
+              </div>
 
-                <div className={join(`-mt-1`)}>
+              <div className={join(`-mt-1`)}>
 
-                  <ProfileFormInputText type="userName" name="userName" />
-                </div>
+                <ProfileFormInputText type="userName" name="userName" />
+              </div>
 
-              </ProfileFormInputFrame>
-              {errors?.username ? (
-                <em className="text-red-600">{errors.username}</em>
-              ) : null}
+            </ProfileFormInputFrame>
+            {errors?.userName ? (
+              <em className="text-red-600">{errors.userName}</em>
+            ) : null}
 
 
 
