@@ -34,8 +34,9 @@ const getLoaderData = async (request: Request) => {
   if (upcomingTrip) {
     invariant(upcomingTrip, `must have upcomingTrip`)
     const trip = formatTrip(upcomingTrip)
-    return trip
+    return { trip }
   }
+  return {}
 }
 export const loader: LoaderFunction = async ({ request }) => {
   return json<LoaderData>(await getLoaderData(request))
@@ -86,7 +87,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 const Home: FC = () => {
   const data = useLoaderData<LoaderData>()
-  const trip = data
+  const trip = data?.trip
 
   console.log(trip)
 
@@ -136,7 +137,7 @@ const Home: FC = () => {
           <span className={join(`ml-8`)}>Current Trip</span>
         </TitleText>
       </div>
-      <TripView trip={trip} />
+      {trip && <TripView trip={trip} />}
       <NavBar />
     </div>
   )
