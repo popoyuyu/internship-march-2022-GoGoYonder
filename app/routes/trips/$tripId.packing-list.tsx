@@ -21,10 +21,17 @@ import SvgAddButton from "~/styles/SVGR/SvgAddButton"
 import SvgBackButton from "~/styles/SVGR/SvgBackButton"
 import { join } from "~/utils"
 
-//---------------------------Loader
+//---------------------------Loader: Get
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
+// jsonifies the getLoaderData return after it returns, instantiates the loader function
+export const loader: LoaderFunction = async ({ request, params }) => {
+  return json(await getLoaderData(request, params))
+}
+
+// Request: info from the database, Params: info from the url
+// pass in Request as a get request from server, pass in params as a way to parse out data from url
 const getLoaderData = async (request: Request, params: Params<string>) => {
   // eslint-disable-next-line prefer-destructuring
   const userId = await requireUserId(request)
@@ -36,11 +43,7 @@ const getLoaderData = async (request: Request, params: Params<string>) => {
   return getAttendeeById(tripId, userId)
 }
 
-export const loader: LoaderFunction = async ({ request, params }) => {
-  return json(await getLoaderData(request, params))
-}
-
-//---------------------------Action
+//---------------------------Action: Delete, Update, Create
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
