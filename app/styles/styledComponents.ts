@@ -3,7 +3,6 @@ import { Link } from "remix"
 
 import { ComboboxInput } from "@reach/combobox"
 import styled from "styled-components"
-
 // font-family: 'Lato', sans-serif;
 // font-family: 'Playfair Display', serif;
 
@@ -30,17 +29,29 @@ export const SmMainBtn = styled(MainBtn)`
   width: 153px;
   height: 56px;
 `
-export const SmClearBtn = styled(ClearBtn)`
-  width: 153px;
+export const SaveButton = styled(MainBtn)`
+  width: 100%;
   height: 56px;
+`
+export const SmClearBtn = styled.button`
+  width: 100%;
+  height: 56px;
+  background: border-color;
+  border: 1px solid rgba(202, 210, 197, 1);
   color: #ffffff;
+  border-radius: 15px;
+`
+export const Hr = styled.hr`
+  border: 1px solid rgba(255, 255, 255, 0.19);
 `
 
 export const Header = styled.h1`
   font-family: "Playfair Display", serif;
   font-size: 2em;
+  font-weight: 700;
   margin: 1em auto 1em 1em;
   color: #ffffff;
+  z-index: 1;
 `
 
 export const SubHeader = styled.h3`
@@ -93,14 +104,21 @@ export const InputLabel = styled.label`
 `
 export const InputField = styled.input`
 width: 100%;
-weight: semi-bold;
+weight: 600;
+height: 55px;
+color: black;
+padding .5em;
+border-radius: 15px;`
+
+export const DateInputField = styled.input`
+width: ${(props) => (props.width ? props.width : `100%`)};
 height: 55px;
 color: black;
 padding .5em;
 border-radius: 15px;`
 
 export const InputFieldMid = styled.input`
-width: 276px;
+width: 100%
 weight: semi-bold;
 height: 55px;
 color: black;
@@ -112,6 +130,17 @@ export const Avatar = styled.img`
   height: 50px;
   border-radius: 50%;
 `
+export const TripDashboardImg = styled.div`
+  background-image: url("/img/new-mountains.jpeg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-clip: border-box;
+  width: 100%;
+  height: 50vh;
+`
+
 export const HomePageImg = styled.img`
   width: 100%;
   height: max-content;
@@ -192,33 +221,36 @@ export const Modal = styled.div`
 `
 export const CostAmount = styled.h3`
   font-family: Lato;
-  font-style: SemiBold;
+  font-weight: 600;
   font-size: 18px;
   color: #ffffff;
   align: right;
 `
-export const TitleText = styled.h3`
+export const TitleText = styled.h3<{
+  fontWeight?: 400 | 500 | 600 | 700
+  fontSize?: `12px` | `14px` | `16px` | `18px`
+}>`
   font-family: Lato;
-  font-style: SemiBold;
-  font-size: 16px;
+  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : 600)};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : `16px`)};
   color: #ffffff;
 `
 export const TitleTextDark = styled.h3`
   font-family: Lato;
-  font-style: SemiBold;
+  font-weight: 600;
   font-size: 16px;
   color: #2a3840;
 `
 export const CostDescription = styled.h4`
   font-family: Lato;
-  font-style: SemiBold;
+  font-weight: 600;
   font-size: 16px;
   color: #ffffff;
 `
 export const AddButtonText = styled.h4`
-Font family: Lato;
-Font style: Bold;
-Font size: 14px;
+font-family: Lato;
+font-weight: 900;
+Font-size: 14px;
 Line height: 17px;
 Line height: 100%;
 color: #ffffff;
@@ -240,12 +272,21 @@ export const TripBtn = styled(MainBtn)`
 `
 export const DangerBtn = styled(TripBtn)`
   background: #2f3e46;
+  width: 100%;
   color: #ff5e03;
   margin-bottom: 1rem;
   margin-top: 0px;
   background-[#2F3E46];
   color: text-[#FF5E03];
 `
+export const DeleteTripButton = styled.button`
+  width: 100%;
+  height: 56px;
+  margin: auto;
+  background: #cad2c5;
+  border-radius: 15px;
+`
+
 export const TripLiContainer = styled.li`
   background: #52796f;
   font-family: "Lato";
@@ -384,6 +425,10 @@ export const ProfileAvatarMain = styled.div`
   background-color: #52796f;
   border: 2px solid #ffffff;
 `
+export const TripNav = styled(RoundedRectangle)`
+  padding: 0.5em;
+`
+
 export const ProfileAvatarEdit = styled.div`
   width: 52px;
   height: 52px;

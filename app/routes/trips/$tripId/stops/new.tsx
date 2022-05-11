@@ -31,8 +31,10 @@ const NewStop: FC = () => {
         `w-full`,
         `h-full`,
         `top-0`,
+        `left-0`,
         `bg-[#2f3e46]`,
         `text-white`,
+        `z-100`,
         `font-semibold`,
       )}
     >

@@ -42,9 +42,11 @@ const LinkComponents: FC<TripViewProps> = ({ trip }) => {
         <TripLiGroup>Ends</TripLiGroup>
         <TripLiGroup>Stops</TripLiGroup>
         <TripLiDetail>
-          {trip.startDate ? trip.startDate : `00/00/00`}
+          {trip.startDate ? trip.startDate.toLocaleDateString() : `00/00/00`}
         </TripLiDetail>
-        <TripLiDetail>{trip.endDate ? trip.endDate : `00/00/00`}</TripLiDetail>
+        <TripLiDetail>
+          {trip.endDate ? trip.endDate.toLocaleDateString() : `00/00/00`}
+        </TripLiDetail>
         <TripLiDetail>{trip.stops.length}</TripLiDetail>
       </TripLiFlex>
     </>
@@ -56,7 +58,7 @@ const TripView: FC<TripViewProps> = ({ trip, isAccepted = true }) => {
       <ul>
         <TripLiContainer key={trip.id}>
           {isAccepted ? (
-            <Link to={trip.id}>
+            <Link to={`${trip.id}/attendees/`}>
               <LinkComponents trip={trip} />
             </Link>
           ) : (
