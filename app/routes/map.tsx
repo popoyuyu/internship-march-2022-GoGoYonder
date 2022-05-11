@@ -55,7 +55,7 @@ disableDefaultUI: true,
   overviewMapControl: true,
   rotateControl: true
 */
-type LocateType = {``
+type LocateType = {
   panTo: ({ lat, lng }: google.maps.LatLng) => void
 }
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
@@ -151,8 +151,8 @@ const Map: FC = () => {
                 key={s.index}
                 position={s.apiResult?.geometry.location}
                 icon={{
-                  url: "../img/mapmarker.svg",
-                  scaledSize: new google.maps.Size(32,42)
+                  url: `../img/mapmarker.svg`,
+                  scaledSize: new google.maps.Size(32, 42),
                 }}
               />
             ))
