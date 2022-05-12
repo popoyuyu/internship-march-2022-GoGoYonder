@@ -29,7 +29,6 @@ const getLoaderData = async (request: Request, params: Params<string>) => {
   invariant(tempTrip, `need tripId`)
   const trip = formatTrip(tempTrip)
   invariant(attendees, `need attendeesId`)
-  console.log(trip.stops)
   return { trip, attendees }
 }
 
@@ -94,7 +93,13 @@ const AttendeesLayout: FC = () => {
               <div className={join(`flex`, `flex-wrap`)}>
                 {data.attendees.map((attendee, index) => (
                   <div
-                    className={join(`flex-row`, `flex`, `items-center`, `w-2/4`)}
+                    className={join(
+                      `flex-row`,
+                      `flex`,
+                      `items-center`,
+                      `w-2/4`,
+                      `mb-3`,
+                    )}
                     key={attendee.user.id + attendee.user.id}
                   >
                     <span className={join(...avatarDivStyles)}>

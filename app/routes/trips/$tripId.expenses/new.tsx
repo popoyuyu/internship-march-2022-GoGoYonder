@@ -79,7 +79,6 @@ const NewExpense: FC = () => {
   const params = useParams()
   const actionData = useActionData()
   const navigate = useNavigate()
-  console.log(`in the right place`)
 
   const outputError = (errorMessage: string) => {
     return (

@@ -72,8 +72,6 @@ type ActionData =
   | undefined
 
 export const action: ActionFunction = async ({ request, params }) => {
-  //Date Editing
-  console.log(`action function`)
   const formData = await request.formData()
   const { tripId } = params
   const inputStartDate = formData.get(`startDate`)
@@ -82,20 +80,10 @@ export const action: ActionFunction = async ({ request, params }) => {
   const endDate = inputEndDate ? new Date(inputEndDate.toString()) : null
   const currentDate = new Date().toString()
 
-  // const errors: ActionData = {
-  //   tripId: tripId ? null : `not a valid id`,
-  //   inputStartDate: inputStartDate ? null : `Must be a date`,
-  //   inputEndDate: inputEndDate ? null : `Must be a date`,
-  // }
-  // const hasErrors = Object.values(errors).some((errorMessage) => errorMessage)
-  // if (hasErrors) {
-  //   return json<ActionData>(errors)
-  // }
   invariant(tripId, `tripId must be defined`)
 
   const userId = formData.get(`userId`)
   if (userId) {
-    console.log(`deleting`)
     await deleteAttendee(tripId, userId.toString())
     return redirect(`/trips/${tripId}/edit`)
   }
@@ -107,7 +95,6 @@ const Edit: FC = () => {
   const data = useLoaderData<LoaderData>()
   const { attendees } = data
   const fetcher = useFetcher()
-  console.log(data.trip)
   const navigate = useNavigate()
   const params = useParams()
   const currentStartDate = data.startDate ? data.startDate : data.defaultDate
