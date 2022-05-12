@@ -22,7 +22,6 @@ import {
   TitleText,
   WideButton,
 } from "~/styles/styledComponents"
-
 import {
   TripWithFormattedStops,
   join,
