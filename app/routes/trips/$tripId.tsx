@@ -44,7 +44,7 @@ const TripDetails: FC = () => {
   const inactiveStyle = [`text-opacity-50`]
   const centered = [`flex`, `items-center`, `justify-center`]
   return (
-    <>
+    <div className="pb-5">
       <TripDashboardImg />
       <div>
         <Link to="/home" className={join(`fixed`, `top-2`, `left-1`, `p-4`)}>
@@ -89,7 +89,7 @@ const TripDetails: FC = () => {
           <Outlet />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
