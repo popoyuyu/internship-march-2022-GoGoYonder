@@ -1,5 +1,3 @@
-import { link } from "fs"
-
 import type { FC } from "react"
 
 import type { LoaderFunction } from "remix"
@@ -11,19 +9,10 @@ import invariant from "tiny-invariant"
 import { getAttendeesByTripId } from "~/models/attendee.server"
 import { getTripById } from "~/models/trip.server"
 import { getUserId } from "~/session.server"
-import {
-  Header,
-  TripNav,
-  TripDashboardImg,
-  TitleText,
-} from "~/styles/styledComponents"
-import SvgCloseCircle from "~/styles/SVGR/SvgCloseCircle"
+import { Header, TripNav, TripDashboardImg } from "~/styles/styledComponents"
 import SvgCloseCircleWhite from "~/styles/SVGR/SvgCloseCircleWhite"
 import SvgHamburger from "~/styles/SVGR/SvgHamburger"
 import { formatTrip, join } from "~/utils"
-
-import AttendeesLayout from "./$tripId/attendees"
-import StopsLayout from "./$tripId/stops"
 
 type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 
@@ -45,7 +34,6 @@ const getLoaderData = async (request: Request, params: Params<string>) => {
 
 const TripDetails: FC = () => {
   const data = useLoaderData<LoaderData>()
-  const photoSrc = `/img/trip-dashboard.jpg`
   const baseStyle = [`text-black`, `text-[14px]`, `py-3`, `px-14`, `mx-auto`]
   const activeStyle = [
     `bg-[#E4EDDF]`,
@@ -54,7 +42,6 @@ const TripDetails: FC = () => {
     `font-bold`,
   ]
   const inactiveStyle = [`text-opacity-50`]
-  const containerStyle = [`m-1`, `mx-auto`, `w-max`, `h-max`]
   const centered = [`flex`, `items-center`, `justify-center`]
   return (
     <>
@@ -102,8 +89,5 @@ const TripDetails: FC = () => {
     </>
   )
 }
-//to: `/home`,
-
-// index.tsx --> Overview / Stops
 
 export default TripDetails

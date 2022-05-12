@@ -1,5 +1,4 @@
 import type { FC } from "react"
-import { useEffect } from "react"
 
 import type { LoaderFunction } from "remix"
 import { Link, Form, json, redirect } from "remix"
