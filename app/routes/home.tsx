@@ -83,7 +83,8 @@ export const action: ActionFunction = async ({ request }) => {
 
   const tripId = trip.id
   const userId = ownerId
-  await createAttendee({ tripId, userId })
+  const isAccepted = new Date()
+  await createAttendee({ tripId, userId, isAccepted })
   const decider = await createDecider({ tripId })
   invariant(decider, `decider not created successfully`)
   await updateTrip(tripId, decider.id)

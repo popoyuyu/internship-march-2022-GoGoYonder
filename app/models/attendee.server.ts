@@ -59,7 +59,7 @@ export async function getAttendeeById(
   })
 }
 export async function createAttendee(
-  attendee: Pick<Attendee, `tripId` | `userId`>,
+  attendee: Pick<Attendee, `isAccepted` | `tripId` | `userId`>,
 ) {
   return prisma.attendee.create({ data: attendee })
 }

@@ -78,8 +78,8 @@ export const action: ActionFunction = async ({ request }) => {
 
   invariant(typeof tripId === `string`, `tripId must be a string`)
   invariant(typeof userId === `string`, `userId must be a string`)
-
-  await createAttendee({ tripId, userId })
+  const isAccepted = null
+  await createAttendee({ tripId, userId, isAccepted })
   return redirect(`/trips/${tripId}/edit`)
 }
 

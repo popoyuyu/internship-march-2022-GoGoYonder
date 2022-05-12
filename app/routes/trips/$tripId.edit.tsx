@@ -16,6 +16,7 @@ import {
 import type { Expense } from "@prisma/client"
 import { Trip, Attendee, User } from "@prisma/client"
 import type { Params } from "react-router"
+import { useNavigate } from "react-router"
 import invariant from "tiny-invariant"
 
 import { getAttendeesByTripId, deleteAttendee } from "~/models/attendee.server"
@@ -107,7 +108,7 @@ const Edit: FC = () => {
   const { attendees } = data
   const fetcher = useFetcher()
   console.log(data.trip)
-
+  const navigate = useNavigate()
   const params = useParams()
   const currentStartDate = data.startDate ? data.startDate : data.defaultDate
   const currentEndDate = data.endDate ? data.endDate : data.defaultDate
@@ -120,7 +121,13 @@ const Edit: FC = () => {
   const mainFlex = [`flex`]
   const avatarDiv = [`flex`, `flex-1`, `pb-8`]
   const nameDiv = [`flex-1`, `-ml-12`, `text-left`]
-  const deleteDiv = [`flex-1`, `text-right`, `mr-8`]
+  const deleteDiv = [
+    `flex-3`,
+    `flex`,
+    `items-center`,
+    `justify-center`,
+    `text-right`,
+  ]
 
   const inputGrid = [`grid grid-flow-col grid-rows-2 gap-8`]
   const negativeMargin = [`-mt-6`]
@@ -176,11 +183,13 @@ const Edit: FC = () => {
                               {attendee.user.userName}
                             </span>
                           </div>
-                          {/* <div className={join(...nameDiv)}>
-                            <TitleText>{attendee.user.userName}</TitleText>
-                          </div> */}
                           <div className={join(...deleteDiv)}>
-                            <button type="submit" className={join(`pb-8`)}>
+                            {attendee.isAccepted === null ? (
+                              <h1 className={join(`text-lg`, `m-2`)}>
+                                Pending...
+                              </h1>
+                            ) : null}
+                            <button type="submit" className={join(`p-5`)}>
                               <SvgCloseCircleWhite />
                             </button>
                           </div>
@@ -209,7 +218,12 @@ const Edit: FC = () => {
           </RoundedRectangle>
         </div>
         <p className={join(`py-8`, ...flexItems)}>
-          <SmClearBtn>Cancel</SmClearBtn>
+          <SmClearBtn
+            type="button"
+            onClick={() => navigate(`/trips/${params.tripId}/attendees/`)}
+          >
+            Cancel
+          </SmClearBtn>
           <SaveButton type="submit">Save</SaveButton>
         </p>
       </Form>
