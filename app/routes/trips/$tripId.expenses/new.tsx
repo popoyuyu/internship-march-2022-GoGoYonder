@@ -34,7 +34,7 @@ import {
 } from "~/styles/styledComponents"
 import SvgBackButton from "~/styles/SVGR/SvgBackButton"
 import SvgSwipeButton from "~/styles/SVGR/SvgSwipeButton"
-import { join } from "~/utils"
+import { join, MAX_FORM_LENGTH } from "~/utils"
 
 type ActionData =
   | {
@@ -114,7 +114,11 @@ const NewExpense: FC = () => {
             <InputLabel className={join(`mr-56`)}>
               Expense Type
               <p>
-                <InputFieldMid type="text" name="description" />
+                <InputField
+                  maxLength={MAX_FORM_LENGTH}
+                  type="text"
+                  name="description"
+                />
               </p>
             </InputLabel>
           </p>
@@ -122,7 +126,11 @@ const NewExpense: FC = () => {
             <InputLabel>
               Expense Total
               <p>
-                <InputFieldMid type="text" name="total" />
+                <InputField
+                  maxLength={MAX_FORM_LENGTH}
+                  type="text"
+                  name="total"
+                />
               </p>
             </InputLabel>
           </p>
