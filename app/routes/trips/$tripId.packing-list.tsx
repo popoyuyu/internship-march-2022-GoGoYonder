@@ -15,6 +15,7 @@ import { requireUserId } from "~/session.server"
 import {
   Header,
   AddButtonText,
+  SubHeader,
   RoundedRectangleNoMargin,
 } from "~/styles/styledComponents"
 import SvgAddButton from "~/styles/SVGR/SvgAddButton"
@@ -39,8 +40,9 @@ const getLoaderData = async (request: Request, params: Params<string>) => {
   const tripId = params.tripId
   invariant(userId, `need userId`)
   invariant(tripId, `need tripId`)
-
-  return getAttendeeById(tripId, userId)
+  const attendee = await getAttendeeById(tripId, userId)
+  invariant(attendee, `attendee required`)
+  return attendee
 }
 
 //---------------------------Action: Delete, Update, Create
@@ -66,12 +68,18 @@ const PackingList: FC = () => {
     (item: Item) => item.isChecked !== true,
   )
   const length = uncheckedItems?.length as number
+  const backButtonHeaderRow = [`flex`, `mt-12`, `mb-16`]
   return (
     <div>
-      <div className={join(`ml-8`)}>
-        <SvgBackButton />
+      <div className={join(...backButtonHeaderRow)}>
+        <Link
+          className={join(`ml-8`, `p-5`)}
+          to={`/trips/${data.tripId}/attendees/`}
+        >
+          <SvgBackButton />
+        </Link>
+        <SubHeader>Packing List</SubHeader>
       </div>
-      <Header>Packing List</Header>
       {length > 0 ? (
         <RoundedRectangleNoMargin className={join(`mx-6`)}>
           <ul className="mb-3">

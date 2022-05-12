@@ -65,7 +65,7 @@ export const action: ActionFunction = async ({ request, params }) => {
   const attendeeArray = attendees.map((attendee) => attendee.user)
   const winner = attendeeArray[Math.floor(Math.random() * attendeeArray.length)]
   invariant(winner, `winner is not defined`)
-
+  invariant(trip.deciderId, `a decider will have been made`)
   const decider = await updateDeciderByDeciderId(
     trip.deciderId,
     winner.userName,
@@ -96,10 +96,8 @@ const Decider: FC = () => {
   return (
     <div className={join(`mx-8`)}>
       <div className={join(...backButtonHeaderRow)}>
-        <Link to={`/trips/${tripId}`}>
-          <div className={join(`ml-2`)}>
-            <SvgBackButton />
-          </div>
+        <Link className={join(`ml-2`, `p-5`)} to={`/trips/${tripId}/attendees/`}>
+          <SvgBackButton />
         </Link>
         <SubHeader>Decider</SubHeader>
       </div>

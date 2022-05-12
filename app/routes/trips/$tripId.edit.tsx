@@ -129,7 +129,7 @@ const Edit: FC = () => {
   return (
     <div className={join(`mx-8`)}>
       <div className={join(...backButtonHeaderRow)}>
-        <Link to={`/trips/${params.tripId}`}>
+        <Link to={`/trips/${params.tripId}/attendees/`}>
           <div className={join(`ml-8`)}>
             <SvgBackButton />
           </div>
