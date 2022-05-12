@@ -52,7 +52,10 @@ const TripDetails: FC = () => {
         </Link>
 
         {data.trip.ownerId === data.userId ? (
-          <Link to="edit" className={join(`fixed`, `top-2`, `right-2`, `p-4`)}>
+          <Link
+            to="edit-trip"
+            className={join(`fixed`, `top-2`, `right-2`, `p-4`)}
+          >
             <SvgHamburger />
           </Link>
         ) : null}

@@ -30,6 +30,8 @@ import {
 import SvgSwipeButton from "~/styles/SVGR/SvgSwipeButton"
 import { join, validateEmail } from "~/utils"
 
+import TripDetails from "./$tripId"
+
 type LoaderData = {
   trip: Trip
 }
@@ -99,7 +101,10 @@ const DeleteTrip: FC = () => {
 
   return (
     <div>
-      <ModalBackdrop onClick={() => navigate(`/trips/${params.tripId}`)} />
+      <TripDetails />
+      <ModalBackdrop
+        onClick={() => navigate(`/trips/${params.tripId}/attendees`)}
+      />
       <Modal>
         <div className={join(...centered)}>
           <div
