@@ -115,7 +115,7 @@ const NewExpense: FC = () => {
             <InputLabel className={join(`mr-56`)}>
               Expense Type
               <p>
-                <InputFieldMid
+                <InputField
                   maxLength={MAX_FORM_LENGTH}
                   type="text"
                   name="description"
@@ -127,7 +127,7 @@ const NewExpense: FC = () => {
             <InputLabel>
               Expense Total
               <p>
-                <InputFieldMid
+                <InputField
                   maxLength={MAX_FORM_LENGTH}
                   type="text"
                   name="total"

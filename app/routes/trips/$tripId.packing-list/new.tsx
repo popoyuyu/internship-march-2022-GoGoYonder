@@ -140,7 +140,7 @@ const AddItem: FC = () => {
               {errors?.description ? (
                 <em className="text-red-600">{errors.description}</em>
               ) : null}
-              <InputFieldMid maxLength={MAX_FORM_LENGTH} 
+              <InputField maxLength={MAX_FORM_LENGTH} 
               type="text" name="description" className={inputClassName} />
             </InputLabel>
           </p>

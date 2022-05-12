@@ -127,7 +127,7 @@ const NewAttendee: FC = () => {
               <InputLabel>
                 User Email
                 <p>
-                  <InputFieldMid
+                  <InputField
                     maxLength={MAX_FORM_LENGTH}
                     type="text"
                     name="email"
