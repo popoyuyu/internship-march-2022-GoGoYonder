@@ -1,8 +1,7 @@
-import type { FC, useEffect } from "react"
+import type { FC } from "react"
 
 import type { ActionFunction, LoaderFunction } from "remix"
 import {
-  Link,
   json,
   Form,
   redirect,
@@ -19,16 +18,13 @@ import type { Trip } from "~/models/trip.server"
 import { getTripById, deleteTrip } from "~/models/trip.server"
 import { getUserId } from "~/session.server"
 import {
-  MainBtn,
   ErrorDiv,
   ModalBackdrop,
   Modal,
-  AddButtonText,
   DangerBtn,
-  DeleteTripButton,
 } from "~/styles/styledComponents"
 import SvgSwipeButton from "~/styles/SVGR/SvgSwipeButton"
-import { join, validateEmail } from "~/utils"
+import { join } from "~/utils"
 
 import TripDetails from "./$tripId"
 
@@ -103,13 +99,13 @@ const DeleteTrip: FC = () => {
     <div>
       <TripDetails />
       <ModalBackdrop
-        onClick={() => navigate(`/trips/${params.tripId}/attendees`)}
+        onClick={() => navigate(`/trips/${params.tripId}/attendees/`)}
       />
       <Modal>
         <div className={join(...centered)}>
           <div
             className={join(`pt-2`)}
-            onClick={() => navigate(`/trips/${params.tripId}`)}
+            onClick={() => navigate(`/trips/${params.tripId}/attendees/`)}
           >
             <SvgSwipeButton />
           </div>
