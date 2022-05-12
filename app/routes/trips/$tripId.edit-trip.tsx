@@ -30,6 +30,8 @@ import {
 import SvgSwipeButton from "~/styles/SVGR/SvgSwipeButton"
 import { join, validateEmail } from "~/utils"
 
+import Home from "../home"
+
 type LoaderData = {
   trip: Trip
 }
@@ -124,6 +126,7 @@ const DeleteTrip: FC = () => {
           </div>
         </div>
       </Modal>
+      <Home />
     </div>
   )
 }

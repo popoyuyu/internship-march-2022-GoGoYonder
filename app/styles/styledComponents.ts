@@ -272,7 +272,6 @@ export const TripBtn = styled(MainBtn)`
 `
 export const DangerBtn = styled(TripBtn)`
   background: #2f3e46;
-  width: 100%;
   color: #ff5e03;
   margin-bottom: 1rem;
   margin-top: 0px;
