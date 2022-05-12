@@ -47,7 +47,7 @@ const TripDetails: FC = () => {
     <>
       <TripDashboardImg />
       <div>
-        <Link to="home" className={join(`fixed`, `top-2`, `left-1`, `p-4`)}>
+        <Link to="/home" className={join(`fixed`, `top-2`, `left-1`, `p-4`)}>
           <SvgCloseCircleWhite />
         </Link>
 
