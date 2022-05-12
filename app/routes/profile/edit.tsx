@@ -77,17 +77,6 @@ export const action: ActionFunction = async ({ request }) => {
   invariant(typeof finalEmail === `string`, `email must be a string`)
   invariant(typeof finalUserName === `string`, `username must be a string`)
   invariant(typeof finalAvatar === `string`, `url must be a string`)
-  // const errors: ActionData = {
-  //   userId: formUserId ? null : `userId is required`,
-  //   email: formEmail ? null : `email is required`,
-  //   userName: formUserName ? null : `username is required`,
-  // }
-  // const hasErrors = Object.values(errors).some(
-  //   (errorMessage) => errorMessage
-  // )
-  // if (hasErrors) {
-  //   return json<ActionData>(errors)
-  // }
 
 
   await updateUserById(formUserId, finalEmail, finalUserName, finalAvatar)

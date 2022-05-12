@@ -4,11 +4,9 @@ import type { FC } from "react"
 import type { LoaderFunction } from "remix"
 import { Outlet, json, useLoaderData, Link, Form } from "remix"
 
-import { User } from "@prisma/client"
-import type { Trip, Attendee } from "@prisma/client"
+import type { Trip } from "@prisma/client"
 import invariant from "tiny-invariant"
 
-import { getAttendeesByUserId } from "~/models/attendee.server"
 import { getTripById } from "~/models/trip.server"
 import { getUserById } from "~/models/user.server"
 import { requireUserId } from "~/session.server"
@@ -20,11 +18,9 @@ import {
   ProH4,
   ProBody,
   ProTripImage,
-  MainBtn,
   ProfileAvatarMain,
   ProfileAvatarImg,
 } from "~/styles/styledComponents"
-import SvgBackButton from "~/styles/SVGR/SvgBackButton"
 import SvgDefaultAvatar from "~/styles/SVGR/SvgDefaultAvatar"
 import SvgGear from "~/styles/SVGR/SvgGear"
 import SvgTrip from "~/styles/SVGR/SvgPin"
@@ -40,7 +36,6 @@ const getLoaderData = async (request: Request) => {
   const user = await getUserById(userId)
   invariant(user, `user must exist`)
 
-  //--------------
   const tripList: Trip[] = []
   await Promise.all(
     user.attendees.map(async (attendee) => {
@@ -51,14 +46,7 @@ const getLoaderData = async (request: Request) => {
     }),
   )
 
-  // const tripList = attendeeTrips.map(async (item: Attendee) => {
-  //   return await getTripById(item.tripId)
-  // })
-  // console.log(tripList)
-
-  //----------------
   return { user: user, trips: tripList }
-  // return { user: user }
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -66,42 +54,23 @@ export const loader: LoaderFunction = async ({ request }) => {
 }
 
 const Index: FC = () => {
-  //-----------
-  //NEED:
-  //X (data.user)-USER avatar url
-  //-USER.trips OR .attendees - list of trip objects (with details) --> GET TRIP BY ID AND RETURN IN LOADER
-  //------------
-
-  //Main Data
   const data = useLoaderData<LoaderData>()
-  // console.log(data)
-  // console.log(`===========`)
-  // console.log(data.user)
-  // console.log(`===========`)
-  // console.log(data.trips)
+
   const user = data?.user
   const trips = data?.trips
-  // console.log(typeof data.user?.avatarUrl)
 
-  //avatar
   const avatar = data.user?.avatarUrl ? (
     data.user?.avatarUrl
   ) : (
     <SvgDefaultAvatar />
-  ) // change with default avatar link
-  // console.log(avatar)
-
-  //Dates
+  )
   const convertStringToDate = (inputDate: string) => {
     return (inputDate ? new Date(inputDate) : new Date(0)).toLocaleDateString()
   }
   const createdDate = data.user?.createdAt
-  // console.log(typeof createdDate)
   const profileCreatedDate = convertStringToDate(createdDate.toString())
 
-  //Attendees
   const attendees = data?.user?.attendees
-  // console.log(attendees)
   const attendeesCount = attendees.length
 
   return (
@@ -115,12 +84,6 @@ const Index: FC = () => {
             <Outlet />
             <div className={join(`flex`, `justify-between`, `items-center`)}>
               <AddButtonText>
-                {/* <Link to={`/logout`}>
-                  <span className={join(`flex`, `m-8`)}>
-                    <span className={join(`ml-2`)}>Logout</span>
-                  </span>
-                </Link> */}
-
                 <Form action="/logout" method="post">
                   <button
                     type="submit"
@@ -155,7 +118,6 @@ const Index: FC = () => {
                 ) : (
                   avatar
                 )}
-                {/* <SvgDefaultAvatar /> */}
               </ProfileAvatarMain>
             </div>
             <div>
@@ -177,7 +139,7 @@ const Index: FC = () => {
           <ul>
             {trips.map((trip: Trip) => (
               <div key={trip.id} className={join(`mt-5`)}>
-                <Link to={`/trips/${trip.id}`}>
+                <Link to={`/trips/${trip.id}/attendees/`}>
                   <div
                     className={join(`flex`, `items-center`, `justify-center`)}
                   >
