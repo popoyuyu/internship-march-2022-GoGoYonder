@@ -1,7 +1,7 @@
 import type { FC } from "react"
 
 import type { ActionFunction, LoaderFunction } from "remix"
-import { Link, json, Form, redirect, useActionData, useLoaderData } from "remix"
+import { json, Form, redirect, useActionData, useLoaderData } from "remix"
 
 import invariant from "tiny-invariant"
 
@@ -19,11 +19,10 @@ import {
   HomePageImg,
   InputField,
   PhotoOverlay,
-  SideBySideInputs,
   TitleText,
   WideButton,
 } from "~/styles/styledComponents"
-import { TripWithFormattedStops, join, formatTrip } from "~/utils"
+import { join, formatTrip } from "~/utils"
 
 import NavBar from "./navbar"
 
@@ -50,6 +49,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 type ActionData =
   | {
       nickName: string | null
+      badDate: string | null
     }
   | undefined
 
@@ -65,6 +65,13 @@ export const action: ActionFunction = async ({ request }) => {
 
   const errors: ActionData = {
     nickName: nickName ? null : `nickName is required`,
+    badDate: !startDate
+      ? null
+      : !endDate
+      ? null
+      : startDate?.getUTCMilliseconds() > endDate?.getUTCMilliseconds()
+      ? null
+      : `Invalid start date`,
   }
 
   const hasErrors = Object.values(errors).some((errorMessage) => errorMessage)
@@ -131,12 +138,6 @@ const Home: FC = () => {
               <InputField type="date" name="endDate" />
             </div>
           </div>
-          {/* <div className={join(...inputGrid)}>
-            <AddButtonText>Start Location</AddButtonText>
-            <input type="text" name="startLocation" />
-            <AddButtonText>End Location</AddButtonText>
-            <input type="text" name="endLocation" />
-          </div> */}
           <p className={join(`py-6`)}>
             <WideButton type="submit">Let&apos;s GoGo!</WideButton>
           </p>
