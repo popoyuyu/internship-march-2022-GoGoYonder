@@ -1,7 +1,7 @@
 import type { FC } from "react"
 
 import type { LoaderFunction, ActionFunction } from "remix"
-import { Link, json, useLoaderData, Outlet, useFetcher } from "remix"
+import { Link, json, useLoaderData, Outlet, useFetcher, useParams } from "remix"
 
 import type { Item } from "@prisma/client"
 import { Response } from "node-fetch"
@@ -59,6 +59,8 @@ export const action: ActionFunction = async ({ request }) => {
 
 const PackingList: FC = () => {
   const data = useLoaderData<LoaderData>()
+  const params = useParams()
+
   const checkedItems = data?.packingList.filter(
     (item: Item) => item.isChecked === true,
   )
@@ -66,10 +68,16 @@ const PackingList: FC = () => {
     (item: Item) => item.isChecked !== true,
   )
   const length = uncheckedItems?.length as number
+
+  const backButtonHeaderRow = [`flex`, `mt-12`, `mb-16`]
   return (
     <div>
-      <div className={join(`ml-8`)}>
-        <SvgBackButton />
+      <div className={join(...backButtonHeaderRow)}>
+        <Link to={`/trips/${params.tripId}`}>
+          <div className={join(`ml-8`)}>
+            <SvgBackButton />
+          </div>
+        </Link>
       </div>
       <Header>Packing List</Header>
       {length > 0 ? (
@@ -103,23 +111,5 @@ const PackingList: FC = () => {
     </div>
   )
 }
-
-// const inputClassName = `join(
-//   flex
-//   items-center
-//   justify-center
-//   rounded-md
-//   border
-//   border-transparent
-//   bg-white
-//   px-4
-//   py-3
-//   text-base
-//   font-medium
-//   text-yellow-700
-//   shadow-sm
-//   hover:bg-yellow-50
-//   sm:px-8
-// )`
 
 export default PackingList

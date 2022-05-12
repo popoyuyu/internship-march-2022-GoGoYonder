@@ -93,7 +93,6 @@ export const action: ActionFunction = async ({ request }) => {
 const Home: FC = () => {
   const trip = useLoaderData<LoaderData>()
   const defaultPhoto = `/img/dashboard.jpg`
-  console.log(defaultPhoto)
 
   const errors = useActionData()
   const inputClassName = `w-full rounded border border-gray-500 px-2 py-1 text-lg`
