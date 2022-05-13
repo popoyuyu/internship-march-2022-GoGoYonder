@@ -77,7 +77,7 @@ const ExpenseLayout: FC = () => {
   return (
     <div>
       <div className={join(...backButtonHeaderRow)}>
-        <Link to={`/trips/${tripId}`}>
+        <Link to={`/trips/${tripId}/attendees/`}>
           <div className={join(`ml-8`)}>
             <SvgBackButton />
           </div>
