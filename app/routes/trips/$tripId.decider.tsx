@@ -42,6 +42,7 @@ type LoaderData = Awaited<ReturnType<typeof getLoaderData>>
 const getLoaderData = async (params: Params<string>) => {
   invariant(params.tripId, `trips required`)
   const decider = await getDeciderByTripId(params.tripId)
+  invariant(decider, `decider will exist`)
   return decider
 }
 export const loader: LoaderFunction = async ({ params }) => {
@@ -78,9 +79,9 @@ export const action: ActionFunction = async ({ request, params }) => {
 const Decider: FC = () => {
   const data = useLoaderData<LoaderData>()
 
-  const date = data?.updatedAt ? new Date(data?.updatedAt) : new Date(0)
-  const day = date?.toLocaleDateString()
-  const time = date?.toLocaleTimeString()
+  const date = data.updatedAt ? new Date(data?.updatedAt) : new Date(0)
+  const day = date.toLocaleDateString()
+  const time = date.toLocaleTimeString()
 
   const { tripId } = useParams()
 
@@ -110,21 +111,25 @@ const Decider: FC = () => {
             </p>
           </DeciderDescription>
         </div>
-        <TitleText>
-          <span className={join(`mb - 10`)}>Previous Result</span>
-        </TitleText>
-        <RoundedRectangle className={join(...rectangleStyles)}>
-          <div className={join(...avatarDivStyles)}>
-            <Avatar src={data?.winnerAvatarUrl || defaultAvatar} />
+        {data.winner ? (
+          <div>
+            <TitleText>
+              <span className={join(`mb - 10`)}>Previous Result</span>
+            </TitleText>
+            <RoundedRectangle className={join(...rectangleStyles)}>
+              <div className={join(...avatarDivStyles)}>
+                <Avatar src={data?.winnerAvatarUrl || defaultAvatar} />
+              </div>
+              <div className={join(...titleDivStyles)}>
+                <TitleText>{data?.winner}</TitleText>
+                <CostDescription className={join(`flex`)}>
+                  <p>{day}</p>
+                  <p className={join(`ml-2`)}>{time}</p>
+                </CostDescription>
+              </div>
+            </RoundedRectangle>
           </div>
-          <div className={join(...titleDivStyles)}>
-            <TitleText>{data?.winner}</TitleText>
-            <CostDescription className={join(`flex`)}>
-              <p>{day}</p>
-              <p className={join(`ml-2`)}>{time}</p>
-            </CostDescription>
-          </div>
-        </RoundedRectangle>
+        ) : null}
 
         <div className={join(`mt-10`)}>
           <Form method="post">
