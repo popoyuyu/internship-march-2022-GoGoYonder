@@ -24,7 +24,7 @@ const NavButton: FC<NavButtonProps> = ({ to, Icon, text }) => {
     `rounded-lg`,
   ]
   const centered = [`flex`, `items-center`, `justify-center`]
-  const sizing = [`py-3`, `px-24`]
+  const sizing = [`py-3`, `px-15`]
   return (
     <NavButtonWrapper className={join(...buttonStyles)}>
       <NavLink
