@@ -89,33 +89,34 @@ const Stops: FC = () => {
             >
               <input hidden readOnly name="upIndex" value={stop.index} />
               <input hidden readOnly name="stopId" value={stop.id} />
-              <button type="submit" className={join(`text-3xl`)}>
+              <button type="submit" className={join(`text-3xl`, `pb-3`)}>
                 ↓
               </button>
             </Form>
             <Form method="post" className={join(`ml-3`)}>
               <input hidden readOnly name="downIndex" value={stop.index} />
               <input hidden readOnly name="stopId" value={stop.id} />
-              <button type="submit" className={join(`text-3xl`)}>
+              <button type="submit" className={join(`text-3xl`, `mr-3`, `pb-3`)}>
                 ↑
               </button>
             </Form>
+            <Form
+              method="post"
+              className={join(
+                `ml-auto`,
+                `mr-0`,
+                `flex`,
+                `items-center`,
+                `justify-center`,
+                `flex-3`,
+              )}
+            >
+              <input hidden readOnly name="stopId" value={stop.id} />
+              <button type="submit">
+                <SvgCloseCircle />
+              </button>
+            </Form>
           </div>
-          <Form
-            method="post"
-            className={join(
-              `ml-auto`,
-              `mr-0`,
-              `flex`,
-              `items-center`,
-              `justify-center`,
-            )}
-          >
-            <input hidden readOnly name="stopId" value={stop.id} />
-            <button type="submit">
-              <SvgCloseCircle />
-            </button>
-          </Form>
         </RoundedRectangle>
       ))}
       <Link to="new" className={join(`text-white`)}>
