@@ -171,7 +171,7 @@ const Edit: FC = () => {
 
                 {avatarInput && (
                   <div className={join(`-mt-1`, `flex`)}>
-                    <ProAvatarInput maxLength={MAX_FORM_LENGTH} type="string" name="avatarURL" className={join(`mt-2`, `pr-2`)} />
+                    <ProAvatarInput type="url" name="avatarURL" className={join(`mt-2`, `pr-2`)} />
                   </div>
                 )}
 
