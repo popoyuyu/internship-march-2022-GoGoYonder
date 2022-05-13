@@ -107,16 +107,8 @@ const Edit: FC = () => {
     setAvatarInput(true)
     setAvatarValue(false)
   }
-  useEffect(() => {
-    console.log(`useEffectRan`)
-    console.log(avatarInput)
-  }, [avatarInput])
-
-
-
 
   const centered = [`flex`, `items-center`, `place-content-center`, `flex-col`]
-
 
   return (
     <div className={join(...centered)}>

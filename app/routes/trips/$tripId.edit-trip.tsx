@@ -58,7 +58,6 @@ export const action: ActionFunction = async ({ request, params }) => {
   invariant(typeof tripId === `string`, `tripId must be a string`)
   const trip = await getTripById(tripId)
   invariant(trip, `must have trip`)
-  console.log(trip)
 
   const errors: ActionData = {
     tripId: tripId ? null : `This trip is no longer valid`,
@@ -79,7 +78,6 @@ const DeleteTrip: FC = () => {
   const data = useLoaderData<LoaderData>()
   const actionData = useActionData()
   const navigate = useNavigate()
-  console.log(data.trip.id)
 
   const outputError = (errorMessage: string) => {
     return (

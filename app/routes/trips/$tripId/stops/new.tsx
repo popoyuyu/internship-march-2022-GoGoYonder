@@ -18,7 +18,6 @@ export const action: ActionFunction = async ({ request }) => {
   const key = `&key=` + process.env.MAP_API
   const formattedSearch = baseUrl + formatUrl(search.toString()) + key
   const data = await fetch(formattedSearch).then((result) => result.json())
-  console.log(data)
   return json({ data })
 }
 
