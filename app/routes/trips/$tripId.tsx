@@ -62,7 +62,7 @@ const TripDetails: FC = () => {
 
         <div className={join(`mx-8`, `z-10`)}>
           <Header className={join(`ml-10`, `mr-auto`, `mt-10`)}>
-            Your Trip to {data.trip.nickName}
+            {data.trip.nickName}
           </Header>
           <TripNav className={join(...centered)}>
             <NavLink
