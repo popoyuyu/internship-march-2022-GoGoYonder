@@ -54,7 +54,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 type ActionData =
   | {
       nickName: string | null
-      badDate: string | null
     }
   | undefined
 
@@ -70,13 +69,6 @@ export const action: ActionFunction = async ({ request }) => {
 
   const errors: ActionData = {
     nickName: nickName ? null : `nickName is required`,
-    badDate: !startDate
-      ? null
-      : !endDate
-      ? null
-      : startDate?.getUTCMilliseconds() > endDate?.getUTCMilliseconds()
-      ? null
-      : `Invalid start date`,
   }
 
   const hasErrors = Object.values(errors).some((errorMessage) => errorMessage)

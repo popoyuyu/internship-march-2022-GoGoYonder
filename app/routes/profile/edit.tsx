@@ -69,7 +69,7 @@ export const action: ActionFunction = async ({ request }) => {
   const formAvatarUrl = formData.get(`avatarURL`)
   const finalEmail = formEmail === `` ? existingEmail : formEmail
   const finalUserName = formUserName === `` ? existingUserName : formUserName
-  const finalAvatar = formAvatarUrl === `` ? existingAvatar : formAvatarUrl
+  const finalAvatar = formAvatarUrl === `` ? existingAvatar : formAvatarUrl?.toString()
 
 
 
@@ -228,6 +228,7 @@ const Edit: FC = () => {
         <div className={join(`flex`, `flex-row`, `w-276`, `absolute`, `left-0`, `bottom-3`, `h-16`, `w-full`, `place-content-center`)}>
 
           <ProfileFormCancelBtn className={join(`flex`, `items-center`, `text-xs`, `place-content-center`)}
+           type="button"
             onClick={() => navigate(`/profile`)}>
             Cancel
           </ProfileFormCancelBtn>

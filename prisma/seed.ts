@@ -89,7 +89,7 @@ const getUsers = (): User[] => {
       id: `cl1ihz4wr02309c1dbp8gi835`,
       email: `ella@test`,
       userName: `Ella`,
-      avatarUrl: `https://images.unsplash.com/photo-1497329440692-92a8710c8f18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fGdvb2Z5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60`,
+      avatarUrl: `https://www.personality-database.com/profile_images/597.png`,
       createdAt: new Date(0),
       updatedAt: new Date(0),
     },
@@ -231,6 +231,18 @@ const getAttendees = (): Attendee[] => {
       ),
       updatedAt: new Date(
         `Tue Sep 23 2021 16:17:00 GMT-0400 (Eastern Daylight Time)`,
+      ),
+    },
+    {
+      //ella on Jacobs
+      tripId: `cl1xwxl5a0024jj1d78omqrta`,
+      userId: `cl1ihz4wr02309c1dbp8gi835`,
+      isAccepted: null,
+      createdAt: new Date(
+        `Tue Sep 22 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
+      updatedAt: new Date(
+        `Tue Sep 22 2021 16:17:00 GMT-0400 (Eastern Daylight Time)`,
       ),
     },
     {
