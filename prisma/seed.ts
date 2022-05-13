@@ -80,7 +80,7 @@ const getUsers = (): User[] => {
     {
       id: `cl1xv8xul0010qz1dmv2l3jqy`,
       email: `kim@test`,
-      userName: `one`,
+      userName: `Kim`,
       avatarUrl: `https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80`,
       createdAt: new Date(0),
       updatedAt: new Date(0),
@@ -88,7 +88,7 @@ const getUsers = (): User[] => {
     {
       id: `cl1ihz4wr02309c1dbp8gi835`,
       email: `ella@test`,
-      userName: `two`,
+      userName: `Ella`,
       avatarUrl: `https://images.unsplash.com/photo-1497329440692-92a8710c8f18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fGdvb2Z5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=700&q=60`,
       createdAt: new Date(0),
       updatedAt: new Date(0),
@@ -96,7 +96,7 @@ const getUsers = (): User[] => {
     {
       id: `cl1xvbab00028qz1d1e0u5h63`,
       email: `jeff@test`,
-      userName: `three`,
+      userName: `Jeff`,
       avatarUrl: `https://images.unsplash.com/photo-1529466924508-a1761f426c75?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80`,
       createdAt: new Date(0),
       updatedAt: new Date(0),
@@ -104,7 +104,7 @@ const getUsers = (): User[] => {
     {
       id: `cl1xwwtyf0007jj1dl1yiycqb`,
       email: `jacob@test`,
-      userName: `three`,
+      userName: `Jacob`,
       avatarUrl: `https://images.unsplash.com/photo-1540968221243-29f5d70540bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80`,
       createdAt: new Date(0),
       updatedAt: new Date(0),
@@ -119,7 +119,7 @@ const getTrips = (): Trip[] => {
       ownerId: `cl1xv8xul0010qz1dmv2l3jqy`,
       startDate: null,
       endDate: null,
-      nickName: `testTrip1`,
+      nickName: `Summer Vacation`,
       createdAt: new Date(
         `Tue Sep 21 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
       ),
@@ -133,7 +133,7 @@ const getTrips = (): Trip[] => {
       ownerId: `cl1ihz4wr02309c1dbp8gi835`,
       startDate: null,
       endDate: null,
-      nickName: `testTrip2`,
+      nickName: `Christmas at Grandmas`,
       createdAt: new Date(
         `Tue Sep 22 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
       ),
@@ -147,7 +147,7 @@ const getTrips = (): Trip[] => {
       ownerId: `cl1xvbab00028qz1d1e0u5h63`,
       startDate: null,
       endDate: null,
-      nickName: `testTrip3`,
+      nickName: `Riverside Camping`,
       createdAt: new Date(
         `Tue Sep 23 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
       ),
@@ -161,7 +161,7 @@ const getTrips = (): Trip[] => {
       ownerId: `cl1xwwtyf0007jj1dl1yiycqb`,
       startDate: null,
       endDate: null,
-      nickName: `testTrip4`,
+      nickName: `There and Back Again`,
       createdAt: new Date(
         `Tue Sep 23 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
       ),
@@ -246,6 +246,18 @@ const getAttendees = (): Attendee[] => {
       ),
     },
     {
+      //kim on jacobs
+      tripId: `cl1xwxl5a0024jj1d78omqrta`,
+      userId: `cl1xv8xul0010qz1dmv2l3jqy`,
+      isAccepted: null,
+      createdAt: new Date(
+        `Tue Sep 21 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
+      updatedAt: new Date(
+        `Tue Sep 21 2021 16:17:00 GMT-0400 (Eastern Daylight Time)`,
+      ),
+    },
+    {
       //jacob@test
       tripId: `cl1xwxl5a0024jj1d78omqrta`,
       userId: `cl1xwwtyf0007jj1dl1yiycqb`,
@@ -285,21 +297,21 @@ const getExpenses = (): Expense[] => {
     {
       //kim expense
       id: `cl212bmtb0009fv1d26ntsf0z`,
-      description: `gas`,
-      total: 45,
+      description: `The Prancing Pony`,
+      total: 125,
       createdAt: new Date(`2022-04-15T23:29:38.879Z`),
       updatedAt: new Date(`2022-04-15T23:29:38.879Z`),
-      tripId: `cl1xvci7b0050qz1d3o01tyg1`,
+      tripId: `cl1xwxl5a0024jj1d78omqrta`,
       userId: `cl1xv8xul0010qz1dmv2l3jqy`,
     },
     {
       //kim expense
       id: `cl1ihmh8h00049c1dd4miflku`,
-      description: `french fries`,
-      total: 5,
+      description: `Lambas Bread`,
+      total: 50,
       createdAt: new Date(`2022-04-15T23:29:39.879Z`),
       updatedAt: new Date(`2022-04-15T23:29:39.879Z`),
-      tripId: `cl1xvci7b0050qz1d3o01tyg1`,
+      tripId: `cl1xwxl5a0024jj1d78omqrta`,
       userId: `cl1xv8xul0010qz1dmv2l3jqy`,
     },
     {
@@ -325,26 +337,26 @@ const getExpenses = (): Expense[] => {
     {
       //jeff expense
       id: `cl21btcg80061fv1db2hhq2wo`,
-      description: `Campsite`,
+      description: `Breakfast`,
       total: 56,
       createdAt: new Date(`2022-04-16T03:38:29.060Z`),
       updatedAt: new Date(`2022-04-16T03:38:29.062Z`),
-      tripId: `cl1xvdwqy0085qz1dfy8rscc9`,
+      tripId: `cl1xwxl5a0024jj1d78omqrta`,
       userId: `cl1xvbab00028qz1d1e0u5h63`,
     },
     {
       id: `cl21dpxa00135fv1d3nrsdq1m`,
-      description: `breakfast`,
+      description: `Second Breakfast`,
       total: 36,
       createdAt: new Date(`2022-04-16T03:38:29.063Z`),
       updatedAt: new Date(`2022-04-16T03:38:29.064Z`),
-      tripId: `cl1xvdwqy0085qz1dfy8rscc9`,
+      tripId: `cl1xwxl5a0024jj1d78omqrta`,
       userId: `cl1xvbab00028qz1d1e0u5h63`,
     },
     {
       //jacob expense
       id: `cl21dipg80101fv1dlrfbjhm8`,
-      description: `Museum Entry`,
+      description: `Ferry`,
       total: 100,
       createdAt: new Date(`2022-04-16T03:38:29.064Z`),
       updatedAt: new Date(`2022-04-16T03:38:29.066Z`),
@@ -354,7 +366,7 @@ const getExpenses = (): Expense[] => {
     {
       //jacob expense
       id: `cl21dknqf0118fv1dyot6gb3e`,
-      description: `Dinner`,
+      description: `Horse Rental`,
       total: 72,
       createdAt: new Date(`2022-04-16T03:38:29.067Z`),
       updatedAt: new Date(`2022-04-16T03:38:29.068Z`),
@@ -367,9 +379,9 @@ const getItems = (): Item[] => {
   return [
     {
       id: `cl1xvdwqy0046qz1dfy8rfcc7`,
-      description: `Camping Stove`,
-      tripId: `cl1xvd63a0068qz1dbhh557su`, //testTrip21
-      userId: `cl1ihz4wr02309c1dbp8gi835`, //ella@test
+      description: `Pippin Took and Merry Brandybuck`,
+      tripId: `cl1xwxl5a0024jj1d78omqrta`,
+      userId: `cl1xv8xul0010qz1dmv2l3jqy`,
       isChecked: true,
       createdAt: new Date(
         `Tue Sep 25 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
@@ -380,9 +392,9 @@ const getItems = (): Item[] => {
     },
     {
       id: `cl1xvdwqy0089qz1dfy8rqcc6`,
-      description: `Beach Towel`,
-      tripId: `cl1xvd63a0068qz1dbhh557su`, //testTrip2
-      userId: `cl1ihz4wr02309c1dbp8gi835`, //ella@test
+      description: `Cape`,
+      tripId: `cl1xwxl5a0024jj1d78omqrta`,
+      userId: `cl1xv8xul0010qz1dmv2l3jqy`,
       isChecked: false,
       createdAt: new Date(
         `Tue Sep 25 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
@@ -393,9 +405,9 @@ const getItems = (): Item[] => {
     },
     {
       id: `cl1xvdwqy0077qz1dfy8rxcc5`,
-      description: `Propane`,
-      tripId: `cl1xvd63a0068qz1dbhh557su`, //testTrip2
-      userId: `cl1ihz4wr02309c1dbp8gi835`, //ella@test
+      description: `The One Ring`,
+      tripId: `cl1xwxl5a0024jj1d78omqrta`,
+      userId: `cl1xwwtyf0007jj1dl1yiycqb`,
       isChecked: true,
       createdAt: new Date(
         `Tue Sep 25 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
