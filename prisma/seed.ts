@@ -117,8 +117,12 @@ const getTrips = (): Trip[] => {
       id: `cl1xvci7b0050qz1d3o01tyg1`,
       deciderId: `cl2pcwfus01059ooyle0i7l1r`,
       ownerId: `cl1xv8xul0010qz1dmv2l3jqy`,
-      startDate: null,
-      endDate: null,
+      startDate: new Date(
+        `Tue Aug 21 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
+      endDate: new Date(
+        `Tue Aug 26 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
       nickName: `Summer Vacation`,
       createdAt: new Date(
         `Tue Sep 21 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
@@ -287,7 +291,9 @@ const getAttendees = (): Attendee[] => {
       //jacob on kims trip
       tripId: `cl1xvci7b0050qz1d3o01tyg1`,
       userId: `cl1xwwtyf0007jj1dl1yiycqb`,
-      isAccepted: null,
+      isAccepted: new Date(
+        `Tue Sep 24 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
+      ),
       createdAt: new Date(
         `Tue Sep 24 2021 16:16:50 GMT-0400 (Eastern Daylight Time)`,
       ),
