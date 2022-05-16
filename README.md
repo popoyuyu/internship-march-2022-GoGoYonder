@@ -1,12 +1,97 @@
-# March 2022 Internship Project
+# GoGoYonder 
+## An [EyeCue Lab](https://eyecuelab.com)   Internship Project, March 2022
+### A road trip planning application 
+
+
+#### Created By: 
+_**Kim Brannian**_ [LinkedIn](https://www.linkedin.com/in/kim-brannian/)/[GitHub](https://github.com/kimberkay)  
+ _**Ella Tanttu**_ [LinkedIn](https://www.linkedin.com/in/ellatanttu/)/[GitHub](https://github.com/ellajtanttu)  
+ _**Jeff Lai**_ [LinkedIn](https://www.linkedin.com/in/jefflai94/)/[GitHub](https://github.com/popoyuyu)  
+ _**Jacob Wilson**_ [LinkedIn](https://www.linkedin.com/in/jacob-lee-eugene-wilson/)/[GitHub](https://github.com/JLEWilson)  
+
+#### Under Mentorship of:
+[EyeCue Lab](https://eyecuelab.com)   
+ Aaron Ross, aaron.ross@eyecuelab.com  
+ Jeremy Banka, jeremy.banka@eyecuelab.com  
+ Elly Maimon, eliran.maimon@eyecuelab.com  
+
+## Technologies Used
+
+- [Fly app deployment](https://fly.io) with [Docker](https://www.docker.com/)
+- Production-ready [SQLite Database](https://sqlite.org)
+- Healthcheck endpoint for [Fly backups region fallbacks](https://fly.io/docs/reference/configuration/#services-http_checks)
+- [GitHub Actions](https://github.com/features/actions) for deploy on merge to production and staging environments
+- Email/Password Authentication with [cookie-based sessions](https://remix.run/docs/en/v1/api/remix#createcookiesessionstorage)
+- Database ORM with [Prisma](https://prisma.io)
+- Styling with [Tailwind](https://tailwindcss.com/) and [styled-components](https://styled-components.com/)
+- End-to-end testing with [Cypress](https://cypress.io)
+- Local third party request mocking with [MSW](https://mswjs.io)
+- Unit testing with [Vitest](https://vitest.dev) and [Testing Library](https://testing-library.com)
+- Code formatting with [Prettier](https://prettier.io)
+- Linting with [ESLint](https://eslint.org)
+- Static Types with [TypeScript](https://typescriptlang.org)
+- Maps and Stops build using [Google-Maps-Platform](https://developers.google.com/maps)
+
+## Description
+A remix.run application that assists in the planning and organization of road trips. The user is able to initialize a trip and invite other users to assist in the planning of said trip.
+All users are able to view a home page that displays their active trip as well as a new trip creation form, a trips page that displays all pending, created, and accepted trips, a map layout of your active trips stops, and a profile page.
+As the owner of the trip you are able to view/edit trip details, delete the trip, add/delete/reorder stops, and add attendees.
+As an attendee on a trip you are able to add attendees and stops.
+On a trip you are able to add and check off items on a packing list, Add and view expenses related to that trip, and select a random user on the trip for decision making purposes.
+
 
 ## Environments
  - [Staging](https://gogoyonder-staging.fly.dev/)
  - [Production](https://gogoyonder.fly.dev/)
 
+ ## Setup/Installation Requirements
+
+_Steps outlined assume installation of [npm](https://www.npmjs.com/)_
+
+Step 1: Clone the project
+ - _You can find the github repository [here](https://github.com/eyecuelab/internship-march-2022/tree/dev)_
+- _Click the code button, and copy the https link_
+- _In your in git bash or your preferred git terminal navigate to the directory you would like to store the project_
+- _Enter: `git clone` followed by the https link_
+- _Now that the repository is cloned to your computer, right click on the folder and click open with vs code_
+Step 2: Install Dependencies.
+* _Now type `npm install` in your terminal to install the packages used in the project_
+* _You can now view the project by typing `npm run start` in your terminal_
+Step 3: Initialize/Seed database
+* _You can initialize the database from our models with the command `npx prisma db push`_
+* _If you would like to use our development seed data run the command `npx prisma db seed`_
+
+The database comes seeded with 4 users and accompanying trips:
+Usernames: kim@test, jeff@test, ella@test, and jacob@test
+Password: testtest for all usernames
+
+## Endpoints
+| Rout            | Description |
+| :-----------:   | :-----------: |
+| /               | Landing Page|
+| /join           | Registration form     |
+| /login          | Sign in form |        
+| /home           | Create trip form with a link to your active trip |
+| /trips          | A list view of all owned, accepted and pending trips |
+| /trips/{tripId} | Trip Dashboard layout (not natively navigable ) |
+| /trips/{tripId}/attendees | Trip attendees and links to features |
+| /trips/{tripId}/stops | Editable list of stops |
+| /trips/{tripId}/stops/new | Search Google Places Api and add stops |
+| /trips/{tripId}/packing-list | Checklist for packing items |
+| /trips/{tripId}/packing-list/new | Modal/Form for new packing list items |
+| /trips/{tripId}/expenses | List of trip expenses and totals |
+| /trips/{tripId}/expenses/new| Modal/Form for new trip expenses |
+| /trips/{tripId}/decider | Choose a random user(for decision making) |
+| /map            | A map of your current or upcoming trip |  
+| /profile        | Profile details and completed trips |  
+| /profile/edit   | Edit form for profile details |  
+
+
+<details>
+    <summary>Remix Template README</summary>
 ## Built on the Remix Indie Stack
 
-![The Remix Indie Stack](https://repository-images.githubusercontent.com/465928257/a241fa49-bd4d-485a-a2a5-5cb8e4ee0abf)
+![The Remix Indie Stack](https://repository-images.githubusercontent.com/465924157/a241fa49-bd4d-485a-a2a5-5cb8e4ee0abf)
 
 Learn more about [Remix Stacks](https://remix.run/stacks)
 
@@ -168,3 +253,4 @@ This project uses ESLint for linting. That is configured in `.eslintrc.js`.
 #### Formatting
 
 We use [Prettier](https://prettier.io/) for auto-formatting in this project. It's recommended to install an editor plugin (like the [VSCode Prettier plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)) to get auto-formatting on save. There's also a `npm run format` script you can run to format all files in the project.
+</details>
